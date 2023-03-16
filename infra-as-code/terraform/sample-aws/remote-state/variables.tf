@@ -1,3 +1,3 @@
 variable "bucket_name" {
-  default = "try-workshop"
+  default = "moz-health-dev-s3-state"
 }

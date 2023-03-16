@@ -5,7 +5,7 @@
 
 variable "cluster_name" {
   description = "Name of the Kubernetes cluster"
-  default = "my-first-eks" #REPLACE
+  default = "moz-health-dev" #REPLACE
 }
 
 variable "vpc_cidr_block" {
@@ -26,7 +26,7 @@ variable "availability_zones" {
 
 variable "kubernetes_version" {
   description = "kubernetes version"
-  default = "1.20"
+  default = "1.22"
 }
 
 variable "instance_type" {
@@ -47,32 +47,32 @@ variable "number_of_worker_nodes" {
 
 variable "ssh_key_name" {
   description = "ssh key name, not required if your using spot instance types"
-  default = "my-first-eks" #REPLACE
+  default = "moz-impel" #REPLACE
 }
 
 
 variable "db_name" {
   description = "RDS DB name. Make sure there are no hyphens or other special characters in the DB name. Else, DB creation will fail"
-  default = "digitdb" #REPLACE
+  default = "mozhealthdev" #REPLACE
 }
 
 variable "db_username" {
   description = "RDS database user name"
-  default = "egovdemo" #REPLACE
+  default = "mozhealthdev" #REPLACE
 }
 
 #DO NOT fill in here. This will be asked at runtime
 variable "db_password" {}
 
 variable "public_key" {
-  default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCrfbaDFN3FmjUoVUx4YH1eHPruFbWz6JGPfSKTwIqT75xFzU/Q6KCa3Xa6FnEOpcUKXej95pkeUnXywohojF6FrNak5p5xfGmmwC8UA9s5UxsI7flBKVnjsAbcRuxoa/AtOzg4Cizz6zQLl2JZAivZU1PwZjIJo8dcum9bjZYVHwZc3csKJ2nYgpcQrV8AWnfKtLvl5WNfNF0i5bWOieNLKiEc5DtsKYbQ6umrhhCaoGcH0S/Gy6w0PPSnnfl/AWXO7ckFtEXQbdz9Y15zeUFKgUsbklXxmC6D37BkPGu+IjCZSOttPV+PRM0Dnf0jQLvMV0UhEkguD9ALC5xikqNlFyPH5bGetWDxtLbn61tnoOIYG6lXAdk2Oe35yWWt3ZgcccWtYuRwDo0ofBwY9jWOkEcCefDyYg+S7h1VzNsbB9DsFv0vPcaxHcZK8bLdyhnz1+9rXy/flbiS5kE0O97aZ4zm4wAmqiivN2wWhUez18k2Mcs= demo@demo" 
+  default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCnlDWZx+BNCam1Oktz8qq6/LVxWAS/IiphPSxYYbiRwoXsDtmMsYg2bqdpdJZpJLL5usvjF3YP7Gs0ILT5CvAW5f2lR4MfR6HR1u4OpT8R+sNmP0eUBu/v9tOzHJca7oe8jQkD/LUErUuvWCgvLAgYMOBw1x1x831PgxT22XJ3seS8SFgFf9pNag3zAy8mQ2fvf7MN+FTyrsH1Ya/7ZuxtcXkT4otocKZoudP1cX8NJqA9I/prs8q1nj5uCqIYEdqY4o1XaWQXHnRzjR2W2z6ZCJGYljK7DujHxmxZVbL87tk3b3lBDJJhO1nkvyt5OEWIm7DHJ2HQ6IViybjzaQ88E6kADmisJnxdvdwb2RAWhya3fDk9AWKW4lUSn/TYAo3tl+t7vLp3y5ls39F8aQ1qV3UgzPJLvfsy2KrGoePMhq6BUFTdNwcfqKLiDuGpR6xoIO2yj+CN7ZT3/IvfbwvYnZbzq4uoRqt8SWrjxjvlL51BN+a/uKg7vmMcbrXvTD0FT0p9ByY/kS2v6ZVPOz7m1frC6/FITIhc+D7KGAJ7WF4Q00yAok6Freh4/ZbfaMoRNL0zwZ5SlirW15QhpkAETIc/t6lXtFQFW6JykfRqpVUMuWdh4h+NJ112UiNGFejspSChuTJTXM5kh07yyJu9pJ5fTF5w9kWPuLsQLY9kPQ== prasanna@prasanna-Latitude-3420" 
   description = "ssh key"
 }
 
 ## change ssh key_name eg. digit-quickstart_your-name
 
 variable "key_name" {
-  default = "digit-quickstart"  
+  default = "moz-impel"  
   description = "ssh key name"
 }
 

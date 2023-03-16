@@ -147,7 +147,7 @@ func deployClusterConfigs(index map[string]string, configDir string, envOverride
 	defer os.RemoveAll(tmpDir)
 	args = append(args, fmt.Sprintf("--output-dir %s", tmpDir))
 
-	sopsDir:=strings.Trim(configDir, "/helm")
+	sopsDir := strings.Trim(configDir, "helm")
 	// fmt.Println("path too sops"+sopsDir)
 	if _, err := os.Stat(sopsDir + "/.sops.yaml"); os.IsNotExist(err) {
 		args = append(args, fmt.Sprintf("-f %s", envSecretFile))
