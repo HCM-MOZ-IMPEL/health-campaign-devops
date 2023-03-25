@@ -1,4 +1,4 @@
-version: v1.0
+evversion: v1.0
 modules:
   - name: m_backbone
     services:
@@ -76,11 +76,16 @@ modules:
       - egovio/egov-user-event:v1.2.0-c1e1e8ce24-21
       - egovio/inbox:v1.1.1-a9e95f948f-75
       - egovio/turn-io-adapter:v1.0.1-96b24b0d72-5
-  - name: health
+  - name: m_health
     dependencies:
       - "backbone"
       - "authn-authz"
       - "core"
     services:
-      - egovio/product:hlm-699-product-variant-a0355eb4b3-4
-      - egovio/project:hlm-700-project-staff-0530ca8bec-4
+      - egovio/facility:qa-972edcca9a-10
+      - egovio/household:qa-689445a57c-28
+      - egovio/individual:qa-247a48c674-19
+      - egovio/product:qa-0d6d887736-5
+      - egovio/project:qa-ce966a385f-54
+      - egovio/service-request:qa-2b9bf0593e-5
+      - egovio/stock:qa-ce925a4764-18
