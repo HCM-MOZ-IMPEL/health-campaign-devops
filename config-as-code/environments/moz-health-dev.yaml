@@ -13,8 +13,8 @@ cluster-configs:
     egov-config:
       data:
         db-host: "moz-health-dev-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com" ## Add db-host name eg: egov-demo.database.azure.com
-        db-name: "mozhealthdev" ## Add db-name
-        db-url: "jdbc:postgresql://moz-health-dev-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com:5432/mozhealthdev" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
+        db-name: "moz_health_dev" ## Add db-name
+        db-url: "jdbc:postgresql://moz-health-dev-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com:5432/moz_health_dev" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
         domain: "moz-health-dev.digit.org" ## Add your Domain Name
         egov-services-fqdn-name: "https://moz-health-dev.digit.org/" ## Add your Domain Name
 
@@ -354,7 +354,7 @@ pdf-service:
 # financials >>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 egf-master:
-  db-url: "jdbc:postgresql://moz-health-dev-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com:5432/mozhealthdev"
+  db-url: "jdbc:postgresql://moz-health-dev-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com:5432/moz_health_dev"
   memory_limits: 512Mi
   heap: "-Xmx256m -Xms256m"
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
