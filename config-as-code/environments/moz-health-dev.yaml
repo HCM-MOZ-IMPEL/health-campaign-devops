@@ -849,7 +849,7 @@ oauth2-proxy:
     configFile: |-
       email_domains = [ "*" ]
       github_org = "egovernments"
-      github_team = "micro-service-devops, health-dev"
+      github_team = "moz-health-dev, Mozambique-HCM"
       upstreams = [ "file:///dev/null" ]
 
 grafana:
