@@ -22,9 +22,9 @@ image:
   repository: "hcm-moz-impl"
 replicas: "1"
 healthChecks:
-  enabled: false
-  livenessProbePath: "/hcm-moz-impl/actuator/health"
-  readinessProbePath: "/hcm-moz-impl/actuator/health"
+  enabled: true
+  livenessProbePath: "/hcm-moz-impl/health"
+  readinessProbePath: "/hcm-moz-impl/health"
 appType: "java-spring"
 tracing-enabled: true
 heap: "-Xmx192m -Xms192m"
@@ -123,8 +123,6 @@ env: |
     value: "10"
   - name: THREAD_MAX_POOL_SIZE
     value: "100"
-  - name: THREAD_QUEUE_CAPACITY
-    value: "200"
   - name: EGOV_DIGIT_HOST_AUTH_KEY
     value: ZWdvdi11c2VyLWNsaWVudDo=
   - name: EGOV_DIGIT_HOST_USERNAME
