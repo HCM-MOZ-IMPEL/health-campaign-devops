@@ -91,4 +91,4 @@ modules:
       - egovio/stock:v1.0.0-a51bee1435-35
       - egovio/household:v1.0.0-a51bee1435-42
       - egovio/project:v1.0.0-a51bee1435-69
-      - egovio/hcm-moz-impl:develop-cc94beb-11
+      - egovio/hcm-moz-impl:develop-cc94beb-12
