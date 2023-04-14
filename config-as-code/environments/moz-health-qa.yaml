@@ -284,6 +284,23 @@ egov-mdms-service:
   masters-config-url: "file:///work-dir/health-campaign-mdms/master-config.json"
   java-args: -Dspring.profiles.active=monitoring
 
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+egov-mdms-create:
+  heap: "-Xmx256m -Xms256m"
+  replicas: 1
+  images:
+    - egovio/egov-mdms-create
+  mdms-path: "/work-dir/health-campaign-mdms/data"
+  initContainers:
+    gitSync:
+      repo: "git@github.com:HCM-MOZ-IMPEL/health-campaign-mdms"   ##### Change repo url with Your fork Repo url
+      branch: "DEV"                                        ##### Change repo branch with Your fork Repo branch
+  mdms-folder: "health-campaign-mdms"
+  masters-config-url: "file:///work-dir/health-campaign-mdms/master-config.json"
+  git-repo-path: "file:///work-dir/health-campaign-mdms/"
+  egov-repo-branch: "DEV"
+  java-args: -Dspring.profiles.active=monitoring
+
 egov-indexer:
   heap: "-Xmx512m -Xms512m"
   memory_limits: "768Mi"
