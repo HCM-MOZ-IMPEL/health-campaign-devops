@@ -90,9 +90,9 @@ env: |
   - name: CACHE_FETCH_ENABLED
     value: false
   - name: EGOV_GITHUB_USER
-    value: vishal-egov
+    value: prasanna@egovernments.org
   - name: EGOV_GITHUB_PASS
-    value: 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
+    value: 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
   - name: EGOV_KAFKA_TOPICS_GITPUSHPROCESS
     value: mdms.create.gitpushprocess
   - name: EGOV_KAFKA_TOPICS_GITPUSHPROCESS_KEY
