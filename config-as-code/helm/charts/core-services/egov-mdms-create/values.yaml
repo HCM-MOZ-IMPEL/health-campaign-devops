@@ -84,11 +84,11 @@ env: |
   - name: SEARCH_PATH_ENDPOINT
     value: /egov-mdms-service/v1/_search
   - name: FILEPATH_RELOAD
-    value: false
+    value: "false"
   - name: RELOAD_ENABLED
-    value: false
+    value: "false"
   - name: CACHE_FETCH_ENABLED
-    value: false
+    value: "false"
   - name: EGOV_GITHUB_USER
     value: prasanna@egovernments.org
   - name: EGOV_GITHUB_PASS
