@@ -121,7 +121,7 @@ env: |
   - name: EGOV_DHIS2_ORGANISATION_UNIT_FIELDS
     value: id,name,parent,path,level,children
   - name: EGOV_DHIS2_ORGANISATION_UNIT_LEVEL_ENDPOINT
-    value: /api/ORGANISATIONUNITLEVELS
+    value: /api/organisationUnitLevels
   - name: EGOV_DHIS2_ORGANISATION_UNIT_LEVEL_FIELDS
     value: id,name,level
   - name: THREAD_CORE_POOL_SIZE
@@ -152,7 +152,7 @@ env: |
   - name: MANAGEMENT_SECURITY_ENABLED
     value: "false"
   - name: EGOV_DHIS2_ORGANISATION_UNIT_PROVINCES
-    value: "[SOFALA,TETE]"
+    value: "SOFALA,TETE"
   - name: EGOV_PROJECT_TYPE_ID
     value: dbd45c31-de9e-4e62-a9b6-abb818928fd1
   - name: EGOV_PROJECT_TYPE
@@ -188,6 +188,8 @@ env: |
     value: egov
   - name: EGOV_KUBE_MDMS_POD
     value: egov-mdms-service
+  - name: EGOV_KUBE_IS_CLUSTER
+    value: "true"
   {{- if index .Values "tracing-enabled" }}
   - name: TRACER_OPENTRACING_ENABLED
     value: "true" 
