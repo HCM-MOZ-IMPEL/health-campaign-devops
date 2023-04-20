@@ -165,9 +165,9 @@ env: |
   - name: EGOV_FACILITY_SEARCH_PATH
     value: /facility/v1/_search
   - name: EGOV_FACILITY_CREATE_PATH
-    value: /facility/v1/_create
+    value: /facility/v1/bulk/_create
   - name: EGOV_FACILITY_UPDATE_PATH
-    value: /facility/v1/_update
+    value: /facility/v1/bulk/_update
   - name: EGOV_PROJECT_HOST
     valueFrom:
       configMapKeyRef:
