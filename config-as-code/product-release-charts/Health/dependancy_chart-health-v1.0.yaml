@@ -91,5 +91,5 @@ modules:
       - egovio/stock:v1.0.0-a51bee1435-35
       - egovio/household:v1.0.0-a51bee1435-42
       - egovio/project:v1.0.0-a51bee1435-69
-      - egovio/hcm-moz-impl:develop-351b153-25
+      - egovio/hcm-moz-impl:develop-8c1d2ce-26
       - egovio/egov-mdms-create:develop-1fb1ab3-1
