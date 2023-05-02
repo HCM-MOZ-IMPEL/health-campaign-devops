@@ -59,7 +59,7 @@ modules:
     services:
       - egovio/citizen:v1.8.0-b078fa041d-97
       - egovio/employee:v1.8.0-2ac8314b2f-116
-      - egovio/digit-ui:health_v1.0.0-da4c8a14b4-216
+      - egovio/digit-ui:hcm-moz-impl-a2f31d95de-4
   - name: m_dss   #dss
     dependencies:
       - "frontend"
