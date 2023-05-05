@@ -59,7 +59,7 @@ modules:
     services:
       - egovio/citizen:v1.8.0-b078fa041d-97
       - egovio/employee:v1.8.0-2ac8314b2f-116
-      - egovio/digit-ui:hcm-moz-impl-a2f31d95de-4
+      - egovio/digit-ui:hcm-moz-impl-311aabb282-5
   - name: m_dss   #dss
     dependencies:
       - "frontend"
@@ -91,5 +91,5 @@ modules:
       - egovio/stock:v1.0.0-a51bee1435-35
       - egovio/household:v1.0.0-a51bee1435-42
       - egovio/project:v1.0.0-a51bee1435-69
-      - egovio/hcm-moz-impl:develop-d300926-27
+      - egovio/hcm-moz-impl:v1.0.0-93eb34f-29
       - egovio/egov-mdms-create:develop-1fb1ab3-1
