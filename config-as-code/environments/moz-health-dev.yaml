@@ -17,7 +17,9 @@ cluster-configs:
         db-url: "jdbc:postgresql://moz-health-dev-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com:5432/moz_health_dev" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
         domain: "moz-health-dev.digit.org" ## Add your Domain Name
         egov-services-fqdn-name: "https://moz-health-dev.digit.org/" ## Add your Domain Name
-
+        aws-cluster-ip: "https://C0E3E5C2A4225DF4E7753B84AB1A637C.gr7.ap-south-1.eks.amazonaws.com"
+        aws-region: "ap-south-1"
+        aws-cluster-name: "arn:aws:eks:ap-south-1:680148267093:cluster/moz-health-dev"
         egov-state-level-tenant-id: "mz"
         s3-assets-bucket: "(pg-health-egov-assets|egov-health-playground-assets)"
         es-host: "elasticsearch-data-v1.es-cluster"

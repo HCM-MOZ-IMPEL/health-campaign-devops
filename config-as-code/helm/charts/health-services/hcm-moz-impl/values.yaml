@@ -206,6 +206,31 @@ env: |
     value: egov-mdms-service
   - name: EGOV_KUBE_IS_CLUSTER
     value: "true"
+  - name: EGOV_KUBE_CLUSTER_NAME
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: aws-cluster-name
+  - name: EGOV_AWS_REGION
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: aws-region
+  - name: EGOV_AWS_CREDENTIALS_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: egov-filestore
+        key: aws-key
+  - name: EGOV_AWS_CREDENTIALS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: egov-filestore
+        key: aws-secret-key
+  - name: EGOV_CLUSTER_ENDPOINT_URL
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: aws-cluster-ip
   {{- if index .Values "tracing-enabled" }}
   - name: TRACER_OPENTRACING_ENABLED
     value: "true" 
