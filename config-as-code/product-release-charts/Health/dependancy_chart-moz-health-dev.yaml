@@ -91,6 +91,6 @@ modules:
       - egovio/transformer:dev-aecf435424-35
       - egovio/stock:v1.0.0-a51bee1435-35
       - egovio/household:v1.0.0-a51bee1435-42
-      - egovio/project:v1.0.0-a51bee1435-69
+      - egovio/project:v1.1.0-73167482a2-80
       - egovio/hcm-moz-impl:develop-63ada1f-33
       - egovio/egov-mdms-create:develop-1fb1ab3-1
