@@ -41,6 +41,7 @@ modules:
       - egovio/report:v1.3.4-96b24b0d72-16
       - egovio/egov-document-uploader:v1.1.0-75d461a4d2-4
       - egovio/service-request:v1.0.0-a51bee1435-7
+      - egovio/pgr-services:v1.1.7-f58e5abb0d-8
       - egovio/playground:1.0
   - name: business
     dependencies:
@@ -59,7 +60,7 @@ modules:
     services:
       - egovio/citizen:v1.8.0-b078fa041d-97
       - egovio/employee:v1.8.0-2ac8314b2f-116
-      - egovio/digit-ui:health_v1.0.0-da4c8a14b4-216
+      - egovio/digit-ui:hcm-moz-impl-311aabb282-5
   - name: m_dss   #dss
     dependencies:
       - "frontend"
@@ -91,5 +92,5 @@ modules:
       - egovio/stock:v1.0.0-a51bee1435-35
       - egovio/household:v1.0.0-a51bee1435-42
       - egovio/project:v1.0.0-a51bee1435-69
-      # - egovio/hcm-moz-impl:develop-d300926-27
-      # - egovio/egov-mdms-create:develop-1fb1ab3-1
+      - egovio/hcm-moz-impl:develop-63ada1f-33
+      - egovio/egov-mdms-create:develop-1fb1ab3-1

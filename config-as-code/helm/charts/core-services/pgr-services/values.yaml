@@ -126,7 +126,7 @@ env: |
   - name: COMMENT_BY_EMPLOYEE_NOTIF_ENABLED
     value: {{ index .Values "comment-by-employee-notif-enabled" | quote }}
   - name: EGOV_PGR_APP_PLAYSTORE_LINK
-    value: ""
+    value: "https://goo.gl/ArDyQ1"
   - name: NOTIFICATION_ALLOWED_ON_STATUS
     value: {{ index .Values "notification-allowed-status" | quote }}
   - name: EGOV_HRMS_HOST
@@ -171,9 +171,9 @@ env: |
   - name: EGOV_USR_EVENTS_REOPEN_CODE
     value: "REOPEN" 
   - name: ENABLE_STATE_LEVEL_SEARCH
-    value: true
+    value: "true"
   - name: ENABLE_USERTYPE_EMPLOYEE
-    value: true
+    value: "true"
   - name: PGR_STATELEVEL_TENANTID
     valueFrom:
       configMapKeyRef:
