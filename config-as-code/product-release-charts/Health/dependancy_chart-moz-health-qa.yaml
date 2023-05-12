@@ -67,7 +67,7 @@ modules:
       - "core"
       - "business"
     services:
-      - egovio/dashboard-analytics:dashboard-v1.0.0-e4b882b67f-22
+      - egovio/dashboard-analytics:dashboard-v1.1.0-2ad7482dbd-32
       - egovio/dashboard-ingest:v1.1.4-72f8a8f87b-10
       - egovio/dss-dashboard:v1.8.0-0d70d60e63-53
   - name: Other             #Other Services
