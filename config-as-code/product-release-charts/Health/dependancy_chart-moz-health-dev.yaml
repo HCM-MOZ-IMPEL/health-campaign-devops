@@ -88,7 +88,7 @@ modules:
       - egovio/facility:dev-e0ad908683-23
       - egovio/product:v1.0.0-a51bee1435-11
       - egovio/individual:v1.0.0-a51bee1435-33
-      - egovio/transformer:dev-aecf435424-35
+      - egovio/transformer:dev-d0891407ee-37
       - egovio/stock:v1.0.0-a51bee1435-35
       - egovio/household:v1.0.0-a51bee1435-42
       - egovio/project:v1.1.0-73167482a2-80
