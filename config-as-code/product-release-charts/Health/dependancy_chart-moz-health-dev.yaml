@@ -90,7 +90,7 @@ modules:
       - egovio/individual:v1.0.0-a51bee1435-33
       - egovio/transformer:dev-d0891407ee-37
       - egovio/stock:v1.0.0-a51bee1435-35
-      - egovio/household:v1.0.0-a51bee1435-42
+      - egovio/household:dev-8d350429f4-48
       - egovio/project:v1.1.0-73167482a2-80
       - egovio/hcm-moz-impl:develop-63ada1f-33
       - egovio/egov-mdms-create:develop-1fb1ab3-1
