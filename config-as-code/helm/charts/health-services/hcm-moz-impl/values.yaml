@@ -54,6 +54,21 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: egov-user
+  - name: EGOV_HRMS_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-hrms
+  - name: EGOV_LOCALISATION_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-localization
+  - name: EGOV_MDMS_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-mdms-service
   - name: EGOV_IDGEN_PATH
     value: "egov-idgen/id/_generate"
   - name: EGOV_IDGEN_INTEGRATION_ENABLED
