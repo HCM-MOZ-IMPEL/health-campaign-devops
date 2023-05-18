@@ -165,7 +165,29 @@ logsDirs: /bitnami/kafka/data
 
 ## The largest record batch size allowed by Kafka
 ##
-maxMessageBytes: _1000012
+maxMessageBytes: _20000000
+
+##
+maxRequestSize: _20000000
+
+##
+partitionFetchBytes: _20000000
+
+##
+requestTimeoutMs: 600000
+
+##
+heartbeatIntervalMs: 1000
+
+##
+maxPollIntervalMs: 900000
+
+##
+maxPollRecords: 100
+
+##
+sessionTimeoutMs: 300000
+
 
 ## Default replication factors for automatically created topics
 ##
