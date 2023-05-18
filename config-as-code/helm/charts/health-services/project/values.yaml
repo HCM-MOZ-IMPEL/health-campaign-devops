@@ -20,7 +20,7 @@ initContainers:
 # Container Configs
 image:
   repository: "project"
-replicas: "2"
+replicas: "1"
 healthChecks:
   enabled: true
   livenessProbePath: "/project/health"
