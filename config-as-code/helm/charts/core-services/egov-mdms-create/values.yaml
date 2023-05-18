@@ -92,7 +92,7 @@ env: |
   - name: EGOV_GITHUB_USER
     value: prasanna@egovernments.org
   - name: EGOV_GITHUB_PASS
-    value: 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
+    value: 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
   - name: EGOV_KAFKA_TOPICS_GITPUSHPROCESS
     value: mdms.create.gitpushprocess
   - name: EGOV_KAFKA_TOPICS_GITPUSHPROCESS_KEY
