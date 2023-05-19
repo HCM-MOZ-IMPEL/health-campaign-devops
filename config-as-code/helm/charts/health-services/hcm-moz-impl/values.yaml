@@ -118,7 +118,7 @@ env: |
   - name: EGOV_DHIS2_HOST_PASSWORD
     value: Moz@m2022
   - name: EGOV_DHIS2_PAGE_SIZE
-    value: "500"
+    value: "100"
   - name: EGOV_DHIS2_USERS_ENDPOINT
     value: /api/users
   - name: EGOV_DHIS2_USERS_FIELDS
@@ -140,9 +140,9 @@ env: |
   - name: EGOV_DHIS2_ORGANISATION_UNIT_LEVEL_FIELDS
     value: id,name,level
   - name: THREAD_CORE_POOL_SIZE
-    value: "5"
+    value: "1"
   - name: THREAD_MAX_POOL_SIZE
-    value: "100"
+    value: "5"
   - name: EGOV_DIGIT_HOST_AUTH_KEY
     value: ZWdvdi11c2VyLWNsaWVudDo=
   - name: EGOV_DIGIT_HOST_USERNAME
