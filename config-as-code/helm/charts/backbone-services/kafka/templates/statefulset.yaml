@@ -252,21 +252,6 @@ spec:
               value: {{ .Values.socketSendBufferBytes | quote }}
             - name: KAFKA_CFG_ZOOKEEPER_CONNECTION_TIMEOUT_MS
               value: {{ .Values.zookeeperConnectionTimeoutMs | quote }}
-            - name: KAFKA_CFG_MAX_REQUEST_SIZE
-              value: {{ .Values.maxRequestSize | replace "_" "" | quote }}
-            - name: KAFKA_CFG_PARTITION_FETCH_BYTES
-              value: {{ .Values.partitionFetchBytes | replace "_" "" | quote }}
-            - name: KAFKA_CFG_REQUEST_TIMEOUT_MS
-              value: {{ .Values.requestTimeoutMs | quote }}
-            - name: KAFKA_CFG_HEARTBEAT_INTERVAL_MS
-              value: { { .Values.heartbeatIntervalMs | quote } }
-            - name: KAFKA_CFG_MAX_POLL_INTERVAL_MS
-              value: { { .Values.maxPollIntervalMs | quote } }
-            - name: KAFKA_CFG_MAX_POLL_RECORDS
-              value: { { .Values.maxPollRecords | quote } }
-            - name: KAFKA_CFG_SESSION_TIMEOUT_MS
-              value: { { .Values.sessionTimeoutMs | quote } }
-
             {{- if .Values.extraEnvVars }}
             {{ include "common.tplvalues.render" ( dict "value" .Values.extraEnvVars "context" $) | nindent 12 }}
             {{- end }}
