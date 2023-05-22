@@ -274,7 +274,7 @@ egov-pg-service:
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 egov-mdms-service:
-  heap: "-Xmx512m -Xms512m"
+  heap: "-Xmx256m -Xms256m"
   replicas: 1
   images:
     - egovio/egov-mdms-service
@@ -289,7 +289,7 @@ egov-mdms-service:
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 egov-mdms-create:
-  heap: "-Xmx512m -Xms512m"
+  heap: "-Xmx256m -Xms256m"
   replicas: 1
   images:
     - egovio/egov-mdms-create
