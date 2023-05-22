@@ -878,3 +878,11 @@ grafana:
       repo: "git@github.com:HCM-MOZ-IMPEL/health-campaign-config" #REPLACE with your configs repo
       branch: "DEV" #REPLACE with config repo branch name
   dashboardsFolder: /work-dir/health-campaign-config/monitoring-dashboards    
+project:
+  heap: "-Xmx1024m -Xms1024m"
+  memory_limits: "2Gi"
+  resources:
+    requests:
+      memory: "2Gi"
+    limits:
+      memory: "2Gi"
