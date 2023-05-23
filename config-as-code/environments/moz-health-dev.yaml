@@ -879,10 +879,11 @@ grafana:
       branch: "DEV" #REPLACE with config repo branch name
   dashboardsFolder: /work-dir/health-campaign-config/monitoring-dashboards    
 project:
-  heap: "-Xmx1024m -Xms1024m"
-  memory_limits: "2Gi"
+  replicas: 2
+  heap: "-Xmx512m -Xms512m"
+  memory_limits: "1Gi"
   resources:
     requests:
-      memory: "2Gi"
+      memory: "1Gi"
     limits:
-      memory: "2Gi"
+      memory: "1Gi"

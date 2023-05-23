@@ -142,3 +142,7 @@ cluster-configs:
     postgres:
       namespace: jenkins
       name: postgres
+    
+    hcm-moz-impl:
+      namespace: egov
+      name: hcm-moz-impl
