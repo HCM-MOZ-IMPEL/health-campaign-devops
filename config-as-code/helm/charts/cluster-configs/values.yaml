@@ -83,10 +83,6 @@ cluster-configs:
       namespace: egov
       name: kibana-infra-creds     
 
-    pgadmin: 
-      namespace: playground
-      name: pgadmin
-
     egov-si-microservice:
       namespace: egov
       name: egov-si-microservice
@@ -110,6 +106,10 @@ cluster-configs:
     egov-user-chatbot:
       namespace: egov
       name: egov-user-chatbot
+    
+    hcm-moz-impl:
+      namespace: egov
+      name: hcm-moz-impl
 
     oauth2-proxy:
       namespace: egov
@@ -142,7 +142,3 @@ cluster-configs:
     postgres:
       namespace: jenkins
       name: postgres
-    
-    hcm-moz-impl:
-      namespace: egov
-      name: hcm-moz-impl
