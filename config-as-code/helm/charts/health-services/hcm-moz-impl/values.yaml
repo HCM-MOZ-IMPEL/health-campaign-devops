@@ -120,7 +120,7 @@ env: |
   - name: EGOV_DHIS2_PAGE_SIZE
     value: "100"
   - name: EGOV_DHIS2_PAGE_PARTITION_SIZE
-    value: "50"
+    value: "10"
   - name: EGOV_DHIS2_USERS_ENDPOINT
     value: /api/users
   - name: EGOV_DHIS2_USERS_FIELDS
