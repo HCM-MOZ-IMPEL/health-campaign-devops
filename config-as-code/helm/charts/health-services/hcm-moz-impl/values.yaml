@@ -118,7 +118,7 @@ env: |
   - name: EGOV_DHIS2_HOST_PASSWORD
     value: Moz@m2022
   - name: EGOV_DHIS2_PAGE_SIZE
-    value: "100"
+    value: "50"
   - name: EGOV_DHIS2_PAGE_PARTITION_SIZE
     value: "10"
   - name: EGOV_DHIS2_USERS_ENDPOINT
