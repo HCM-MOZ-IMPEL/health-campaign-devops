@@ -17,7 +17,9 @@ cluster-configs:
         db-url: "jdbc:postgresql://moz-health-qa-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com:5432/mozhealthqa" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
         domain: "moz-health-qa.digit.org" ## Add your Domain Name
         egov-services-fqdn-name: "https://moz-health-qa.digit.org/" ## Add your Domain Name
-
+        aws-cluster-ip: "https://80CF42E0DAA992735D2FF7DD82E3875A.yl4.ap-south-1.eks.amazonaws.com"
+        aws-region: "ap-south-1"
+        aws-cluster-name: "arn:aws:eks:ap-south-1:680148267093:cluster/moz-health-qa"
         egov-state-level-tenant-id: "mz"
         s3-assets-bucket: "(pg-health-egov-assets|egov-health-playground-assets)"
         es-host: "elasticsearch-data-v1.es-cluster"
@@ -612,6 +614,15 @@ kafka-v2:
   replicationFactor: "2"
   minInsyncReplicas: "1"
   offsetsReplicationFactor: "3"
+  maxRequestSize: "20000000"
+  maxMessageBytes: "20000000"
+  maxReplicaFetchMaxBytes: "20000000"
+  maxPartitionFetchBytes: "20000000"
+  requestTimeoutMs: "600000"
+  heartbeatIntervalMs: "1000"
+  maxPollIntervalMs: "900000"
+  maxPollRecords: "100"
+  sessionTimeoutMs: "300000"
 
 ## kafka-v2 Azure <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 #kafka-v2:
@@ -864,8 +875,8 @@ oauth2-proxy:
   config:
     configFile: |-
       email_domains = [ "*" ]
-      github_org = "egovernments"
-      github_team = "micro-service-devops, health-dev"
+      github_org = "HCM-MOZ-IMPEL"
+      github_team = "hcm-moz-impl"
       upstreams = [ "file:///dev/null" ]
 
 grafana:
@@ -875,3 +886,12 @@ grafana:
       repo: "git@github.com:HCM-MOZ-IMPEL/health-campaign-config" #REPLACE with your configs repo
       branch: "QA" #REPLACE with config repo branch name
   dashboardsFolder: /work-dir/health-campaign-config/monitoring-dashboards    
+project:
+  replicas: 2
+  heap: "-Xmx512m -Xms512m"
+  memory_limits: "1Gi"
+  resources:
+    requests:
+      memory: "1Gi"
+    limits:
+      memory: "1Gi"
