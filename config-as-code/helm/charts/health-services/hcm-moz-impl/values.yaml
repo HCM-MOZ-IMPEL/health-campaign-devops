@@ -110,15 +110,15 @@ env: |
   - name: DHIS2_JOB_SEARCH_MAX_LIMIT
     value: "50"
   - name: EGOV_DHIS2_HOST_URL
-    value: "https://dev.ccumoz.com"
+    value: "http://15.206.208.120:8080"
   - name: EGOV_DHIS2_HOST_AUTH_KEY
     value: ZUdvdjpUZW1wQDQ5NA==
   - name: EGOV_DHIS2_HOST_USERNAME
-    value: eGov
+    value: admin
   - name: EGOV_DHIS2_HOST_PASSWORD
-    value: Moz@m2022
+    value: district
   - name: EGOV_DHIS2_PAGE_SIZE
-    value: "50"
+    value: "100"
   - name: EGOV_DHIS2_PAGE_PARTITION_SIZE
     value: "10"
   - name: EGOV_DHIS2_USERS_ENDPOINT
