@@ -215,6 +215,11 @@ env: |
     value: ADMIN
   - name: EGOV_BOUNDARY_HIERARCHY_NAME
     value: ADMIN
+  - name: PRODUCT_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: product
   - name: EGOV_KUBE_CONFIG
     valueFrom:
       secretKeyRef:
