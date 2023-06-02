@@ -169,7 +169,7 @@ env: |
   - name: MANAGEMENT_SECURITY_ENABLED
     value: "false"
   - name: EGOV_DHIS2_ORGANISATION_UNIT_PROVINCES
-    value: "SOFALA,TETE"
+    value: "SOFALA,NAMPULA"
   - name: EGOV_PROJECT_TYPE_ID
     value: dbd45c31-de9e-4e62-a9b6-abb818928fd1
   - name: EGOV_PROJECT_TYPE
@@ -196,6 +196,75 @@ env: |
     value: /project/v1/_create
   - name: EGOV_PROJECT_UPDATE_PATH
     value: /project/v1/_update
+  - name: EGOV_PROJECT_STAFF_SEARCH_PATH
+    value: /project/staff/v1/_search
+  - name: EGOV_PROJECT_STAFF_CREATE_PATH
+    value: /project/staff/v1/_create
+  - name: EGOV_PROJECT_STAFF_UPDATE_PATH
+    value: /project/staff/v1/_update
+  - name: EGOV_PROJECT_FACILITY_SEARCH_PATH
+    value: /project/facility/v1/_search
+  - name: EGOV_PROJECT_FACILITY_CREATE_PATH
+    value: /project/facility/v1/bulk/_create
+  - name: EGOV_PROJECT_FACILITY_UPDATE_PATH
+    value: /project/facility/v1/bulk/_update
+  - name: EGOV_PROJECT_BENEFICIARY_SEARCH_PATH
+    value: /project/beneficiary/v1/_search
+  - name: EGOV_PROJECT_BENEFICIARY_CREATE_PATH
+    value: /project/beneficiary/v1/bulk/_create
+  - name: EGOV_PROJECT_BENEFICIARY_UPDATE_PATH
+    value: /project/beneficiary/v1/bulk/_update
+  - name: EGOV_PROJECT_TASK_SEARCH_PATH
+    value: /project/task/v1/_search
+  - name: EGOV_PROJECT_TASK_CREATE_PATH
+    value: /project/task/v1/bulk/_create
+  - name: EGOV_PROJECT_TASK_UPDATE_PATH
+    value: /project/task/v1/bulk/_update
+  - name: EGOV_PROJECT_RESOURCE_SEARCH_PATH
+    value: /project/resource/v1/_search
+  - name: EGOV_PROJECT_RESOURCE_CREATE_PATH
+    value: /project/resource/v1/bulk/_create
+  - name: EGOV_PROJECT_RESOURCE_UPDATE_PATH
+    value: /project/resource/v1/bulk/_update
+  - name: EGOV_HOUSEHOLD_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: household
+  - name: EGOV_HOUSEHOLD_SEARCH_PATH
+    value: /household/v1/_search
+  - name: EGOV_HOUSEHOLD_CREATE_PATH
+    value: /household/v1/bulk/_create
+  - name: EGOV_HOUSEHOLD_UPDATE_PATH
+    value: /household/v1/bulk/_update
+  - name: EGOV_HOUSEHOLD_MEMBER_SEARCH_PATH
+    value: /household/member/v1/_search
+  - name: EGOV_HOUSEHOLD_MEMBER_CREATE_PATH
+    value: /household/member/v1/bulk/_create
+  - name: EGOV_HOUSEHOLD_MEMBER_UPDATE_PATH
+    value: /household/member/v1/bulk/_update
+  - name: EGOV_INDIVIDUAL_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: individual
+  - name: EGOV_INDIVIDUAL_SEARCH_PATH
+    value: /individual/v1/_search
+  - name: EGOV_INDIVIDUAL_CREATE_PATH
+    value: /individual/v1/bulk/_create
+  - name: EGOV_INDIVIDUAL_UPDATE_PATH
+    value: /individual/v1/bulk/_update
+  - name: EGOV_STOCK_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: individual
+  - name: EGOV_STOCK_SEARCH_PATH
+    value: /stock/v1/_search
+  - name: EGOV_STOCK_CREATE_PATH
+    value: /stock/v1/bulk/_create
+  - name: EGOV_STOCK_UPDATE_PATH
+    value: /stock/v1/bulk/_update
   - name: EGOV_BOUNDARY_NAME
     value: MOZAMBIQUE
   - name: EGOV_BOUNDARY_CODE
@@ -215,7 +284,7 @@ env: |
     value: ADMIN
   - name: EGOV_BOUNDARY_HIERARCHY_NAME
     value: ADMIN
-  - name: PRODUCT_HOST
+  - name: EGOV_PRODUCT_HOST
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
