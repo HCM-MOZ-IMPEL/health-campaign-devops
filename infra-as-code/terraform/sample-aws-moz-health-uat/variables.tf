@@ -26,7 +26,7 @@ variable "availability_zones" {
 
 variable "kubernetes_version" {
   description = "kubernetes version"
-  default = "1.22"
+  default = "1.23"
 }
 
 variable "instance_type" {
@@ -42,7 +42,7 @@ variable "override_instance_types" {
 
 variable "number_of_worker_nodes" {
   description = "eGov recommended below worker node counts as default"
-  default = "5" #REPLACE IF NEEDED
+  default = "3" #REPLACE IF NEEDED
 }
 
 variable "ssh_key_name" {
@@ -53,7 +53,7 @@ variable "ssh_key_name" {
 
 variable "db_name" {
   description = "RDS DB name. Make sure there are no hyphens or other special characters in the DB name. Else, DB creation will fail"
-  default = "mozhealthdev" #REPLACE
+  default = "mozhealthuat" #REPLACE
 }
 
 variable "db_username" {
