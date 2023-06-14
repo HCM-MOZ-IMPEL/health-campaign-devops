@@ -29,6 +29,7 @@ appType: "java-spring"
 tracing-enabled: true
 heap: "-Xmx192m -Xms192m"
 java-args: ""
+java-enable-debug: true
 persist-yml-path: "file:///work-dir/health-campaign-config/egov-persister/hcm-moz-impl-persister.yml"
 
 # Additional Container Envs
@@ -118,7 +119,7 @@ env: |
   - name: EGOV_DHIS2_HOST_PASSWORD
     value: district
   - name: EGOV_DHIS2_PAGE_SIZE
-    value: "100"
+    value: "200"
   - name: EGOV_DHIS2_PAGE_PARTITION_SIZE
     value: "10"
   - name: EGOV_DHIS2_USERS_ENDPOINT
@@ -259,6 +260,11 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: individual
+  - name: EGOV_SERVICE_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: service-request
   - name: EGOV_STOCK_SEARCH_PATH
     value: /stock/v1/_search
   - name: EGOV_STOCK_CREATE_PATH
