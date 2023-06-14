@@ -87,6 +87,21 @@ env: |
       configMapKeyRef:
         name: egov-config
         key: egov-services-fqdn-name
+  - name: EGOV_INDIVIDUAL_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: individual
+  - name: EGOV_HRMS_AUTO_GENERATE_PASSWORD
+    value: "false"
+  - name: EGOV_INDIVIDUAL_CREATE_ENDPOINT
+    value: /individual/v1/_create
+  - name: EGOV_INDIVIDUAL_UPDATE_ENDPOINT
+    value: /individual/v1/_update
+  - name: EGOV_INDIVIDUAL_SEARCH_ENDPOINT
+    value: /individual/v1/_search
+  - name: EGOV_HRMS_USER_SERVICE_QUALIFIER
+    value: defaultUserService
   - name: EGOV_USER_SEARCH_ENDPOINT
     value: /user/v1/_search
   - name: EGOV_USER_CREATE_ENDPOINT
