@@ -890,7 +890,7 @@ grafana:
   dashboardsFolder: /work-dir/health-campaign-config/monitoring-dashboards    
 project:
   replicas: 2
-  heap: "-Xmx512m -Xms512m"
+  heap: "-Xmx1024m -Xms1024m"
   memory_limits: "1Gi"
   resources:
     requests:

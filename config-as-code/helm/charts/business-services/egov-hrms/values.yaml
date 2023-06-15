@@ -100,6 +100,8 @@ env: |
     value: /individual/v1/_update
   - name: EGOV_INDIVIDUAL_SEARCH_ENDPOINT
     value: /individual/v1/_search
+  - name: EGOV_INDIVIDUAL_DELETE_ENDPOINT
+    value: /individual/v1/_delete
   - name: EGOV_HRMS_USER_SERVICE_QUALIFIER
     value: defaultUserService
   - name: EGOV_USER_SEARCH_ENDPOINT
