@@ -48,7 +48,7 @@ modules:
       - "core"
     services:
       - egovio/egf-master:v1.1.3-72f8a8f87b-15
-      - egovio/egov-hrms:v1.2.5-1715164454-6
+      - egovio/egov-hrms:v1.2.5-d93a120c25-61
   - name: "frontend"
     dependencies:
       - "business"
@@ -79,5 +79,5 @@ modules:
       - egovio/stock:dev-a922ad261c-39
       - egovio/household:dev-8d350429f4-48
       - egovio/project:v1.1.0-73167482a2-80
-      - egovio/hcm-moz-impl:develop-2f46c94-60
+      - egovio/hcm-moz-impl:develop-0a2a1fe-87
       - egovio/egov-mdms-create:develop-3a53c3b-3

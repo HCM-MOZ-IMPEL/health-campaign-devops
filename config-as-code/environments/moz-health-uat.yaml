@@ -150,6 +150,7 @@ cluster-configs:
         stock: "http://stock:8080/"
         facility: "http://facility:8080/"
         hcm-moz-impl: "http://hcm-moz-impl:8080/"
+        service-request: "http://service-request:8080/"
 
 #>>>>>> Frontend Servies >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 employee:
