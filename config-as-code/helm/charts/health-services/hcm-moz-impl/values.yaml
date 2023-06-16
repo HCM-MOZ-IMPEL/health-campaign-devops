@@ -119,7 +119,7 @@ env: |
   - name: EGOV_DHIS2_HOST_PASSWORD
     value: district
   - name: EGOV_DHIS2_PAGE_SIZE
-    value: "200"
+    value: "100"
   - name: EGOV_DHIS2_PAGE_PARTITION_SIZE
     value: "10"
   - name: EGOV_DHIS2_USERS_ENDPOINT
@@ -129,6 +129,10 @@ env: |
   - name: EGOV_DHIS2_ROLES_ENDPOINT
     value: /api/userRoles
   - name: EGOV_DHIS2_ROLES_FIELDS
+    value: :all
+  - name: EGOV_DHIS2_USER_GROUPS_ENDPOINT
+    value: /api/userGroups
+  - name: EGOV_DHIS2_USER_GROUPS_FIELDS
     value: :all
   - name: EGOV_DHIS2_PROGRAMS_ENDPOINT
     value: /api/programs
