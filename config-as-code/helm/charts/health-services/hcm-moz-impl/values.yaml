@@ -125,7 +125,7 @@ env: |
   - name: EGOV_DHIS2_USERS_ENDPOINT
     value: /api/users
   - name: EGOV_DHIS2_USERS_FIELDS
-    value: id,name,displayName,surname,firstName,userCredentials,organisationUnits
+    value: id,name,displayName,surname,firstName,userCredentials,organisationUnits,userGroups
   - name: EGOV_DHIS2_ROLES_ENDPOINT
     value: /api/userRoles
   - name: EGOV_DHIS2_ROLES_FIELDS
@@ -263,7 +263,7 @@ env: |
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: individual
+        key: stock
   - name: EGOV_SERVICE_REQUEST_HOST
     valueFrom:
       configMapKeyRef:
