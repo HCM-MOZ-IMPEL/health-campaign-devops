@@ -275,13 +275,13 @@ egov-pg-service:
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 egov-mdms-service:
-  heap: "-Xmx512m -Xms512m"
-  memory_limits: "512Mi"
+  heap: "-Xmx768m -Xms768m"
+  memory_limits: "768Mi"
   resources:
     requests:
-      memory: "512Mi"
+      memory: "768Mi"
     limits:
-      memory: "512Mi"
+      memory: "768Mi"
   replicas: 1
   images:
     - egovio/egov-mdms-service
