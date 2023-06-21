@@ -111,13 +111,22 @@ env: |
   - name: DHIS2_JOB_SEARCH_MAX_LIMIT
     value: "50"
   - name: EGOV_DHIS2_HOST_URL
-    value: "http://15.206.208.120:8080"
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: dhis2-host
   - name: EGOV_DHIS2_HOST_AUTH_KEY
     value: ZUdvdjpUZW1wQDQ5NA==
   - name: EGOV_DHIS2_HOST_USERNAME
-    value: admin
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: dhis2-user
   - name: EGOV_DHIS2_HOST_PASSWORD
-    value: district
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: dhis2-pass
   - name: EGOV_DHIS2_PAGE_SIZE
     value: "100"
   - name: EGOV_DHIS2_PAGE_PARTITION_SIZE
@@ -142,6 +151,14 @@ env: |
     value: /api/organisationUnits
   - name: EGOV_DHIS2_ORGANISATION_UNIT_FIELDS
     value: id,name,parent,path,level,children
+  - name: EGOV_DHIS2_ORGANISATION_UNIT_LEVEL_ENDPOINT
+    value: /api/organisationUnitLevels
+  - name: EGOV_DHIS2_ORGANISATION_UNIT_LEVEL_FIELDS
+    value: id,name,level
+  - name: EGOV_DHIS2_DATA_ELEMENT_ENDPOINT
+    value: /api/dataElements
+  - name: EGOV_DHIS2_DATA_ELEMENT_FIELDS
+    value: id,name,code
   - name: EGOV_DHIS2_ORGANISATION_UNIT_LEVEL_ENDPOINT
     value: /api/organisationUnitLevels
   - name: EGOV_DHIS2_ORGANISATION_UNIT_LEVEL_FIELDS
@@ -323,6 +340,11 @@ env: |
       configMapKeyRef:
         name: egov-config
         key: aws-cluster-name
+  - name: EGOV_ENV
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: egov-env
   - name: EGOV_AWS_REGION
     valueFrom:
       configMapKeyRef:

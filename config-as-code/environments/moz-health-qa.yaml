@@ -38,6 +38,10 @@ cluster-configs:
         spring-jpa-show-sql: "true"
         timezone: "Asia/Kolkata"
         tracer-errors-provideexceptionindetails: "true"
+        egov-env: "QA"
+        dhis2-host: "http://15.206.208.120:8080"
+        dhis2-user: "admin"
+        dhis2-pass: "district"
 
     egov-service-host:
       data:

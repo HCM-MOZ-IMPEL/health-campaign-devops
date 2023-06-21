@@ -38,6 +38,10 @@ cluster-configs:
         spring-jpa-show-sql: "true"
         timezone: "Asia/Kolkata"
         tracer-errors-provideexceptionindetails: "true"
+        egov-env: "UAT"
+        dhis2-host: "https://ccu.misau.gov.mz/"
+        dhis2-user: "eGov"
+        dhis2-pass: "Egov#2023"
 
     egov-service-host:
       data:
