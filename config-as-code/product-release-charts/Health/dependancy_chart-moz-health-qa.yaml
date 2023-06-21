@@ -78,6 +78,6 @@ modules:
       - egovio/transformer:dev-76eff9be26-46
       - egovio/stock:dev-a922ad261c-39
       - egovio/household:dev-8d350429f4-48
-      - egovio/project:v1.1.0-73167482a2-80
+      - egovio/project:v1.1.0-eb7d509db0-89
       - egovio/hcm-moz-impl:develop-dda2061-88
       - egovio/egov-mdms-create:develop-3a53c3b-3
