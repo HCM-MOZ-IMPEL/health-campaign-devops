@@ -909,7 +909,7 @@ project:
       memory: "2Gi"
 transformer:
   replicas: 1
-  heap: "-Xmx2g -Xms2g"
+  heap: "-Xmx1536m -Xms1536m"
   memory_limits: "2Gi"
   resources:
     requests:

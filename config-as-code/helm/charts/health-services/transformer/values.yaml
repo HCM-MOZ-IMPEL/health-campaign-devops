@@ -81,6 +81,11 @@ env: |
 
   - name: TRANSFORMER_CONSUMER_UPDATE_PROJECT_TOPIC
     value: "update-project"
+  - name: EGOV_SERVICEDEFINITION_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: service-request
   - name: EGOV_PROJECT_HOST
     valueFrom:
       configMapKeyRef:
