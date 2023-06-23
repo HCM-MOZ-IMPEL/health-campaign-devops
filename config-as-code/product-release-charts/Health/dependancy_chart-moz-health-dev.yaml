@@ -47,7 +47,7 @@ modules:
     dependencies:
       - "core"
     services:
-      - egovio/egov-hrms:v1.2.5-d93a120c25-61
+      - egovio/egov-hrms:HRMS-BUG-FIXES-0bc4bd9a7f-63
   - name: "frontend"
     dependencies:
       - "business"
