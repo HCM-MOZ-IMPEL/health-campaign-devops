@@ -74,7 +74,7 @@ modules:
       - egovio/facility:dev-e0ad908683-23
       - egovio/product:v1.0.0-a51bee1435-11
       - egovio/individual:v1.1.0-73167482a2-87
-      - egovio/transformer:dev-76eff9be26-46
+      - egovio/transformer:hlm-000-project-cache-issue-780d121a23-47
       - egovio/stock:dev-a922ad261c-39
       - egovio/household:dev-8d350429f4-48
       - egovio/project:v1.1.0-eb7d509db0-89
