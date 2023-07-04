@@ -48,7 +48,7 @@ modules:
       - "core"
     services:
       - egovio/egf-master:v1.1.3-72f8a8f87b-15
-      - egovio/egov-hrms:HRMS-BUG-FIXES-0bc4bd9a7f-63
+      - egovio/egov-hrms:health-moz-dev-0f3352d8ad-65
   - name: "frontend"
     dependencies:
       - "business"
@@ -74,7 +74,7 @@ modules:
       # - egovio/facility:v1.0.0-a51bee1435-19
       - egovio/facility:dev-e0ad908683-23
       - egovio/product:v1.0.0-a51bee1435-11
-      - egovio/individual:v1.1.0-73167482a2-87
+      - egovio/individual:v1.1.1-5af8bdc8d3-134
       - egovio/transformer:hlm-000-project-cache-issue-780d121a23-47
       - egovio/stock:dev-a922ad261c-39
       - egovio/household:dev-8d350429f4-48
