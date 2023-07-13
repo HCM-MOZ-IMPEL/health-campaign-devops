@@ -33,14 +33,13 @@ modules:
       - egovio/egov-notification-sms:v1.1.3-48a03ad7bb-10
       - egovio/egov-otp:v1.2.2-72f8a8f87b-12
       - egovio/egov-persister:v1.1.4-72f8a8f87b-6
-      - egovio/egov-searcher:v1.1.5-72f8a8f87b-16
       - egovio/egov-url-shortening:v1.1.2-1715164454-3
       - egovio/egov-user:health-digit-dev-f2ddde9-32
       - egovio/user-otp:health-digit-master-6865af2823-3
       - egovio/egov-workflow-v2:v1.2.1-df98ec3c35-2
       - egovio/report:v1.3.4-96b24b0d72-16
       - egovio/egov-document-uploader:v1.1.0-75d461a4d2-4
-      - egovio/service-request:v1.0.0-a51bee1435-7
+      - egovio/service-request:hlm-3186-service-value-issue-198c6d78f8-9
       - egovio/pgr-services:v1.1.7-f58e5abb0d-8
       - egovio/playground:1.0
   - name: business
@@ -55,7 +54,7 @@ modules:
     services:
       - egovio/citizen:v1.8.0-b078fa041d-97
       - egovio/employee:v1.8.0-2ac8314b2f-116
-      - egovio/digit-ui:hcm-moz-impl-f91407defd-16
+      - egovio/digit-ui:user-mgmt-customizations-4d1a48d131-36
   - name: m_dss   #dss
     dependencies:
       - "frontend"
