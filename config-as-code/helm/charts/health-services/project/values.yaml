@@ -233,3 +233,5 @@ env: |
     value: "ADMIN"
   - name: EGOV_LOCATION_CODE_QUERY_PARAM
     value: "code"
+  - name: EGOV_USER_ID_VALIDATOR
+    value: "egov-user"
