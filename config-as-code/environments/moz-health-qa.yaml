@@ -39,7 +39,7 @@ cluster-configs:
         timezone: "Asia/Kolkata"
         tracer-errors-provideexceptionindetails: "true"
         egov-env: "QA"
-        dhis2-host: "http://15.206.208.120:8080"
+        dhis2-host: "http://3.110.80.35:8080"
         dhis2-user: "admin"
         dhis2-pass: "district"
 
