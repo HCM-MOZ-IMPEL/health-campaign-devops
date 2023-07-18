@@ -248,6 +248,8 @@ env: |
     value: /project/resource/v1/bulk/_create
   - name: EGOV_PROJECT_RESOURCE_UPDATE_PATH
     value: /project/resource/v1/bulk/_update
+  - name: EGOV_SERVICE_REQUEST_PROJECTCODE
+    value: LLIN Massamba
   - name: EGOV_HOUSEHOLD_HOST
     valueFrom:
       configMapKeyRef:
