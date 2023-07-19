@@ -111,22 +111,13 @@ env: |
   - name: DHIS2_JOB_SEARCH_MAX_LIMIT
     value: "50"
   - name: EGOV_DHIS2_HOST_URL
-    valueFrom:
-      configMapKeyRef:
-        name: egov-config
-        key: dhis2-host
+    value: "http://3.110.80.35:8080"
   - name: EGOV_DHIS2_HOST_AUTH_KEY
     value: ZUdvdjpUZW1wQDQ5NA==
   - name: EGOV_DHIS2_HOST_USERNAME
-    valueFrom:
-      configMapKeyRef:
-        name: egov-config
-        key: dhis2-user
+    value: "admin"
   - name: EGOV_DHIS2_HOST_PASSWORD
-    valueFrom:
-      configMapKeyRef:
-        name: egov-config
-        key: dhis2-pass
+    value: "district"
   - name: EGOV_DHIS2_PAGE_SIZE
     value: "100"
   - name: EGOV_DHIS2_PAGE_PARTITION_SIZE
@@ -146,7 +137,7 @@ env: |
   - name: EGOV_DHIS2_PROGRAMS_ENDPOINT
     value: /api/programs
   - name: EGOV_DHIS2_EVENTS_ENDPOINT
-    value: /api/events
+    value: /api/tracker/events
   - name: EGOV_DHIS2_ORGANISATION_UNIT_ENDPOINT
     value: /api/organisationUnits
   - name: EGOV_DHIS2_ORGANISATION_UNIT_FIELDS
@@ -248,12 +239,15 @@ env: |
     value: /project/resource/v1/bulk/_create
   - name: EGOV_PROJECT_RESOURCE_UPDATE_PATH
     value: /project/resource/v1/bulk/_update
+  - name: EGOV_SERVICE_REQUEST_PROJECTCODE
+    value: LLIN Massamba
   - name: EGOV_HOUSEHOLD_HOST
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
         key: household
   - name: EGOV_HOUSEHOLD_SEARCH_PATH
+    value: /household/v1/_search
     value: /household/v1/_search
   - name: EGOV_HOUSEHOLD_CREATE_PATH
     value: /household/v1/bulk/_create
