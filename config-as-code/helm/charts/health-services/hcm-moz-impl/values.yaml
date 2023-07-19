@@ -111,13 +111,20 @@ env: |
   - name: DHIS2_JOB_SEARCH_MAX_LIMIT
     value: "50"
   - name: EGOV_DHIS2_HOST_URL
-    value: "http://3.110.80.35:8080"
-  - name: EGOV_DHIS2_HOST_AUTH_KEY
-    value: ZUdvdjpUZW1wQDQ5NA==
+    valueFrom:
+      configMapKeyRef:
+        name: hcm-moz-impl
+        key: dhis2-host
   - name: EGOV_DHIS2_HOST_USERNAME
-    value: "admin"
+    valueFrom:
+      secretKeyRef:
+        name: hcm-moz-impl
+        key: dhis2user
   - name: EGOV_DHIS2_HOST_PASSWORD
-    value: "district"
+    valueFrom:
+      secretKeyRef:
+        name: hcm-moz-impl
+        key: dhis2pass
   - name: EGOV_DHIS2_PAGE_SIZE
     value: "100"
   - name: EGOV_DHIS2_PAGE_PARTITION_SIZE
