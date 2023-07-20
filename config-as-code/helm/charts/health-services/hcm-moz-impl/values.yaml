@@ -127,7 +127,7 @@ env: |
         key: dhis2pass
   - name: EGOV_DHIS2_PAGE_SIZE
     value: "1000"
-  - name: EGOV_DHIS2_PAGE_PARTITION_SIZE
+  - name: EGOV_DIGIT_PAGE_SIZE
     value: "30"
   - name: EGOV_KAFKA_PAGE_SIZE
     value: "100"
