@@ -126,9 +126,11 @@ env: |
         name: hcm-moz-impl
         key: dhis2pass
   - name: EGOV_DHIS2_PAGE_SIZE
-    value: "100"
+    value: "1000"
   - name: EGOV_DHIS2_PAGE_PARTITION_SIZE
-    value: "10"
+    value: "30"
+  - name: EGOV_KAFKA_PAGE_SIZE
+    value: "100"
   - name: EGOV_DHIS2_USERS_ENDPOINT
     value: /api/users
   - name: EGOV_DHIS2_USERS_FIELDS
