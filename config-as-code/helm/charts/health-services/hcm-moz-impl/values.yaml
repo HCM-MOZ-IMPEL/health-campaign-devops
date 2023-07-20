@@ -113,18 +113,18 @@ env: |
   - name: EGOV_DHIS2_HOST_URL
     valueFrom:
       configMapKeyRef:
-        name: hcm-moz-impl
+        name: egov-config
         key: dhis2-host
   - name: EGOV_DHIS2_HOST_USERNAME
     valueFrom:
-      secretKeyRef:
-        name: hcm-moz-impl
-        key: dhis2user
+      configMapKeyRef:
+        name: egov-config
+        key: dhis2-user
   - name: EGOV_DHIS2_HOST_PASSWORD
     valueFrom:
-      secretKeyRef:
-        name: hcm-moz-impl
-        key: dhis2pass
+      configMapKeyRef:
+        name: egov-config
+        key: dhis2-pass
   - name: EGOV_DHIS2_PAGE_SIZE
     value: "1000"
   - name: EGOV_DHIS2_PAGE_PARTITION_SIZE
