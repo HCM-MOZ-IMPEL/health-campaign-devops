@@ -110,29 +110,33 @@ env: |
     value: "10"
   - name: DHIS2_JOB_SEARCH_MAX_LIMIT
     value: "50"
+  - name: DHIS2_DIGIT_SEARCH_MAX_RETRY
+    value: "100"
   - name: EGOV_DHIS2_HOST_URL
     valueFrom:
       configMapKeyRef:
-        name: hcm-moz-impl
+        name: egov-config
         key: dhis2-host
   - name: EGOV_DHIS2_HOST_USERNAME
     valueFrom:
-      secretKeyRef:
-        name: hcm-moz-impl
-        key: dhis2user
+      configMapKeyRef:
+        name: egov-config
+        key: dhis2-user
   - name: EGOV_DHIS2_HOST_PASSWORD
     valueFrom:
-      secretKeyRef:
-        name: hcm-moz-impl
-        key: dhis2pass
+      configMapKeyRef:
+        name: egov-config
+        key: dhis2-pass
   - name: EGOV_DHIS2_PAGE_SIZE
+    value: "1000"
+  - name: EGOV_DIGIT_PAGE_SIZE
+    value: "30"
+  - name: EGOV_KAFKA_PAGE_SIZE
     value: "100"
-  - name: EGOV_DHIS2_PAGE_PARTITION_SIZE
-    value: "10"
   - name: EGOV_DHIS2_USERS_ENDPOINT
     value: /api/users
   - name: EGOV_DHIS2_USERS_FIELDS
-    value: id,name,displayName,surname,firstName,userCredentials,organisationUnits,userGroups
+    value: id,name,displayName,surname,firstName,userCredentials%5Busername%5D,organisationUnits,userGroups,username
   - name: EGOV_DHIS2_ROLES_ENDPOINT
     value: /api/userRoles
   - name: EGOV_DHIS2_ROLES_FIELDS
@@ -162,7 +166,7 @@ env: |
   - name: EGOV_DHIS2_ORGANISATION_UNIT_LEVEL_FIELDS
     value: id,name,level
   - name: THREAD_CORE_POOL_SIZE
-    value: "10"
+    value: "20"
   - name: THREAD_MAX_POOL_SIZE
     value: "200"
   - name: EGOV_DIGIT_HOST_AUTH_KEY
@@ -266,6 +270,26 @@ env: |
     value: /household/member/v1/bulk/_create
   - name: EGOV_HOUSEHOLD_MEMBER_UPDATE_PATH
     value: /household/member/v1/bulk/_update
+  - name: EGOV_HCM_PROJECT_TASK_UPDATE_TOPIC
+    value: update-project-task-topic
+  - name: EGOV_HCM_PROJECT_TASK_CREATE_TOPIC
+    value: save-project-task-topic
+  - name: EGOV_HCM_PROJECT_BENEFICIARY_UPDATE_TOPIC
+    value: update-project-beneficiary-topic
+  - name: EGOV_HCM_PROJECT_BENEFICIARY_CREATE_TOPIC
+    value: save-project-beneficiary-topic
+  - name: EGOV_HCM_HOUSEHOLD_MEMBER_UPDATE_TOPIC
+    value: update-household-member-topic
+  - name: EGOV_HCM_HOUSEHOLD_MEMBER_CREATE_TOPIC
+    value: save-household-member-topic
+  - name: EGOV_HCM_HOUSEHOLD_UPDATE_TOPIC
+    value: update-household-topic
+  - name: EGOV_HCM_HOUSEHOLD_CREATE_TOPIC
+    value: save-household-topic
+  - name: EGOV_HCM_INDIVIDUAL_UPDATE_TOPIC
+    value: update-individual-topic
+  - name: EGOV_HCM_INDIVIDUAL_CREATE_TOPIC
+    value: save-individual-topic
   - name: EGOV_INDIVIDUAL_HOST
     valueFrom:
       configMapKeyRef:
@@ -341,11 +365,6 @@ env: |
       configMapKeyRef:
         name: egov-config
         key: aws-cluster-name
-  - name: EGOV_ENV
-    valueFrom:
-      configMapKeyRef:
-        name: egov-config
-        key: egov-env
   - name: EGOV_AWS_REGION
     valueFrom:
       configMapKeyRef:
