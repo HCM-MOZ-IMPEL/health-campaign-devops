@@ -39,9 +39,6 @@ cluster-configs:
         timezone: "Asia/Kolkata"
         tracer-errors-provideexceptionindetails: "true"
         egov-env: "UAT"
-        dhis2-host: "https://ccu.misau.gov.mz/"
-        dhis2-user: "eGov"
-        dhis2-pass: "Egov#2023"
 
     egov-service-host:
       data:
@@ -910,6 +907,16 @@ project:
 transformer:
   replicas: 1
   heap: "-Xmx1536m -Xms1536m"
+  memory_limits: "2Gi"
+  resources:
+    requests:
+      memory: "2Gi"
+    limits:
+      memory: "2Gi"
+hcm-moz-impl:
+  dhis2-host: "https://ccu.misau.gov.mz/"
+  replicas: 2
+  heap: "-Xmx1700m -Xms1700m"
   memory_limits: "2Gi"
   resources:
     requests:
