@@ -78,5 +78,5 @@ modules:
       - egovio/stock:dev-a922ad261c-39
       - egovio/household:dev-8d350429f4-48
       - egovio/project:v1.1.0-eb7d509db0-89
-      - egovio/hcm-moz-impl:develop-7f6159b-239
+      - egovio/hcm-moz-impl:develop-bd34cd0-241
       - egovio/egov-mdms-create:develop-3a53c3b-3
