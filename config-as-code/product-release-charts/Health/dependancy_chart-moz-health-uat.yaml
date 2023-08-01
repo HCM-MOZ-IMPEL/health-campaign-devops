@@ -39,8 +39,8 @@ modules:
       - egovio/egov-workflow-v2:v1.2.1-df98ec3c35-2
       - egovio/report:v1.3.4-96b24b0d72-16
       - egovio/egov-document-uploader:v1.1.0-75d461a4d2-4
-      - egovio/service-request:hlm-3186-service-value-issue-198c6d78f8-9
-      - egovio/pgr-services:v1.1.7-f58e5abb0d-8
+      - egovio/service-request:dev-198c6d78f8-10
+      - egovio/pgr-services:dev-8c1e0ba5e7-11
       - egovio/playground:1.0
   - name: business
     dependencies:
@@ -73,9 +73,9 @@ modules:
       # - egovio/facility:v1.0.0-a51bee1435-19
       - egovio/facility:dev-e0ad908683-23
       - egovio/product:v1.0.0-a51bee1435-11
-      - egovio/individual:v1.1.1-5af8bdc8d3-134
-      - egovio/transformer:hlm-000-project-cache-issue-642dee026d-50
-      - egovio/stock:dev-a922ad261c-39
+      - egovio/individual:dev-8ec2efd75a-144
+      - egovio/transformer:dev-642dee026d-51
+      - egovio/stock:dev-a922ad261c-43
       - egovio/household:dev-8d350429f4-48
       - egovio/project:v1.1.0-eb7d509db0-89
       - egovio/hcm-moz-impl:develop-2fa9cd3-181
