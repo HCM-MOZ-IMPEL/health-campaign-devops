@@ -73,7 +73,7 @@ modules:
       # - egovio/facility:v1.0.0-a51bee1435-19
       - egovio/facility:dev-e0ad908683-23
       - egovio/product:v1.0.0-a51bee1435-11
-      - egovio/individual:dev-8ec2efd75a-144
+      - egovio/individual:dev-7b368eb119-146
       - egovio/transformer:dev-642dee026d-51
       - egovio/stock:dev-a922ad261c-43
       - egovio/household:dev-8d350429f4-48
