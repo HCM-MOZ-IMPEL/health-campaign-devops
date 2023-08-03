@@ -270,6 +270,8 @@ env: |
     value: /household/member/v1/bulk/_create
   - name: EGOV_HOUSEHOLD_MEMBER_UPDATE_PATH
     value: /household/member/v1/bulk/_update
+  - name: EGOV_HCM_HOUSEHOLD_INDIVIDUAL_UPDATE_TOPIC
+    value: update-individual-topic
   - name: EGOV_HCM_PROJECT_TASK_UPDATE_TOPIC
     value: update-project-task-topic
   - name: EGOV_HCM_PROJECT_TASK_CREATE_TOPIC
