@@ -155,7 +155,7 @@ cluster-configs:
 
     hcm-moz-impl:
       data:
-        dhis2-host: "https://ccu.misau.gov.mz/"
+        dhis2-host: "https://ccu.misau.gov.mz"
 
 #>>>>>> Frontend Servies >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 employee:
@@ -910,7 +910,7 @@ project:
       memory: "2Gi"
 transformer:
   replicas: 1
-  heap: "-Xmx1536m -Xms1536m"
+  heap: "-Xmx2048m -Xms2048m"
   memory_limits: "2Gi"
   resources:
     requests:
