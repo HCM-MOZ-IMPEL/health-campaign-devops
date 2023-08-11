@@ -40,7 +40,7 @@ modules:
       - egovio/report:v1.3.4-96b24b0d72-16
       - egovio/egov-document-uploader:v1.1.0-75d461a4d2-4
       - egovio/service-request:dev-198c6d78f8-10
-      - egovio/pgr-services:dev-8c1e0ba5e7-11
+      - egovio/pgr-services:mdms-department-dependency-1fa94990cc-12
       - egovio/playground:1.0
   - name: business
     dependencies:
@@ -54,7 +54,7 @@ modules:
     services:
       - egovio/citizen:v1.8.0-b078fa041d-97
       - egovio/employee:v1.8.0-2ac8314b2f-116
-      - egovio/digit-ui:user-mgmt-customizations-307f1c9736-46
+      - egovio/digit-ui:user-mgmt-customizations-563e8280b1-63
   - name: m_dss   #dss
     dependencies:
       - "frontend"
