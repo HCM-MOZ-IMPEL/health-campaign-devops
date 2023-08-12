@@ -278,6 +278,13 @@ sw-services:
 egov-pg-service:
   axis: true
 
+audit-service:
+  persist-yml-path: "https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/egov-workflow-v2-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/facility-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/hcm-moz-impl-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/household-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/hrms-employee-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/individual-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/stock-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/service-request-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/project-task-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/project-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/product-persister.yml"
+  initContainers:
+    gitSync:
+      repo: "git@github.com:HCM-MOZ-IMPEL/health-campaign-config"
+      branch: "DEMO"
+
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 egov-mdms-service:
   heap: "-Xmx768m -Xms768m"
@@ -329,7 +336,7 @@ egov-persister:
   replicas: 1
   images:
     - egovio/egov-persister
-  persist-yml-path: "file:///work-dir/health-campaign-config/egov-persister/egov-user-event-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-workflow-v2-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hrms-employee-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pdf-generator.yml,file:///work-dir/health-campaign-config/egov-persister/product-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-persister.yml,file:///work-dir/health-campaign-config/egov-persister/individual-persister.yml,file:///work-dir/health-campaign-config/egov-persister/household-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-task-persister.yml,file:///work-dir/health-campaign-config/egov-persister/stock-persister.yml,file:///work-dir/health-campaign-config/egov-persister/facility-persister.yml,file:///work-dir/health-campaign-config/egov-persister/service-request-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pgr-services-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hcm-moz-impl-persister.yml"
+  persist-yml-path: "file:///work-dir/health-campaign-config/egov-persister/audit-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-user-event-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-workflow-v2-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hrms-employee-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pdf-generator.yml,file:///work-dir/health-campaign-config/egov-persister/product-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-persister.yml,file:///work-dir/health-campaign-config/egov-persister/individual-persister.yml,file:///work-dir/health-campaign-config/egov-persister/household-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-task-persister.yml,file:///work-dir/health-campaign-config/egov-persister/stock-persister.yml,file:///work-dir/health-campaign-config/egov-persister/facility-persister.yml,file:///work-dir/health-campaign-config/egov-persister/service-request-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pgr-services-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hcm-moz-impl-persister.yml"
   initContainers:
     gitSync:
       repo: "git@github.com:HCM-MOZ-IMPEL/health-campaign-config"      ##### Change repo url with Your fork Repo url
