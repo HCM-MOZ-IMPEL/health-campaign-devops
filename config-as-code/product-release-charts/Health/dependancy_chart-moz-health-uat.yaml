@@ -44,6 +44,7 @@ modules:
       - egovio/pgr-services:mdms-department-dependency-1fa94990cc-12
       - egovio/playground:1.0
       - audit-service:audit-heatlh-40b1a4018a-1
+      - error-handler:master-impel-dump-5022b7acff-1
   - name: business
     dependencies:
       - "core"
