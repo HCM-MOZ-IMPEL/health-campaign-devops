@@ -40,8 +40,8 @@ modules:
       - egovio/egov-workflow-v2:v1.2.1-df98ec3c35-2
       - egovio/report:v1.3.4-96b24b0d72-16
       - egovio/egov-document-uploader:v1.1.0-75d461a4d2-4
-      - egovio/service-request:dev-198c6d78f8-10
-      - egovio/pgr-services:mdms-department-dependency-1fa94990cc-12
+      - egovio/service-request:master-impel-198c6d78f8-11
+      - egovio/pgr-services:master-impel-afa361c92a-13
       - egovio/playground:1.0
   - name: business
     dependencies:
@@ -61,7 +61,7 @@ modules:
       - "core"
       - "business"
     services:
-      - egovio/dashboard-analytics:dev-cc2d97b4a7-35
+      - egovio/dashboard-analytics:master-impel-cc2d97b4a7-36
       - egovio/dashboard-ingest:v1.1.4-72f8a8f87b-10
       - egovio/dss-dashboard:v1.8.0-0d70d60e63-53
   - name: m_health
@@ -71,12 +71,12 @@ modules:
       - "core"
     services:
       # - egovio/facility:v1.0.0-a51bee1435-19
-      - egovio/facility:dev-e0ad908683-23
-      - egovio/product:v1.0.0-a51bee1435-11
-      - egovio/individual:dev-7b368eb119-146
-      - egovio/transformer:dev-642dee026d-51
-      - egovio/stock:dev-a922ad261c-43
-      - egovio/household:dev-8d350429f4-48
-      - egovio/project:v1.1.0-eb7d509db0-89
+      - egovio/facility:master-impel-73167482a2-31
+      - egovio/product:master-impel-73167482a2-15
+      - egovio/individual:master-impel-865e4dece5-152
+      - egovio/transformer:master-impel-642dee026d-52
+      - egovio/stock:master-impel-a922ad261c-44
+      - egovio/household:master-impel-73167482a2-61
+      - egovio/project:master-impel-ae170904f2-100
       - egovio/hcm-moz-impl:develop-c69d051-258
       - egovio/egov-mdms-create:develop-3a53c3b-3
