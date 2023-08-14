@@ -44,6 +44,7 @@ modules:
       - egovio/pgr-services:master-impel-afa361c92a-13
       - egovio/playground:1.0
       - audit-service:audit-heatlh-40b1a4018a-1
+      - error-handler:master-impel-dump-5022b7acff-1
   - name: business
     dependencies:
       - "core"
@@ -56,7 +57,7 @@ modules:
     services:
       - egovio/citizen:v1.8.0-b078fa041d-97
       - egovio/employee:v1.8.0-2ac8314b2f-116
-      - egovio/digit-ui:user-mgmt-customizations-563e8280b1-63
+      - egovio/digit-ui:master-impl-563e8280b1-64
   - name: m_dss   #dss
     dependencies:
       - "frontend"
@@ -80,5 +81,5 @@ modules:
       - egovio/stock:master-impel-a922ad261c-44
       - egovio/household:master-impel-73167482a2-61
       - egovio/project:master-impel-ae170904f2-100
-      - egovio/hcm-moz-impl:boundaries-excel-fix-4bb2cf3-253
+      - egovio/hcm-moz-impl:develop-c69d051-258
       - egovio/egov-mdms-create:develop-3a53c3b-3
