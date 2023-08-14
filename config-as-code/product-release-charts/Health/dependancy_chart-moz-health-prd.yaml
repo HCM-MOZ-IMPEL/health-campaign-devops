@@ -31,7 +31,7 @@ modules:
       - egovio/egov-mdms-service:v1.3.2-72f8a8f87b-12
       - egovio/egov-notification-mail:health-digit-master-6865af2823-2
       - egovio/egov-otp:v1.2.2-72f8a8f87b-12
-      - egovio/egov-persister:v1.1.4-72f8a8f87b-6
+      - egovio/egov-persister:v1.1.5-3371bc2-5
       - egovio/egov-url-shortening:v1.1.2-1715164454-3
       - egovio/egov-user:health-digit-dev-f2ddde9-32
       - egovio/user-otp:health-digit-master-6865af2823-3
@@ -41,6 +41,8 @@ modules:
       - egovio/service-request:dev-198c6d78f8-10
       - egovio/pgr-services:dev-8c1e0ba5e7-11
       - egovio/playground:1.0
+      - audit-service:audit-heatlh-40b1a4018a-1
+      - error-handler:master-impel-dump-5022b7acff-1
   - name: business
     dependencies:
       - "core"
