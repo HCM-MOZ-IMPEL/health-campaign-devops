@@ -132,11 +132,11 @@ env: |
   - name: EGOV_DIGIT_PAGE_SIZE
     value: "30"
   - name: EGOV_CAMPAIGN_STARTDATE
-    value: "09/08/2023"
+    value: "29/08/2023"
   - name: EGOV_CAMPAIGN_ENDDATE
-    value: "13/08/2023"
+    value: "02/09/2023"
   - name: EGOV_DIGIT_WAIT_TIMEOUT
-    value: "10"
+    value: "15"
   - name: EGOV_KAFKA_PAGE_SIZE
     value: "100"
   - name: EGOV_DHIS2_USERS_ENDPOINT
