@@ -155,7 +155,7 @@ cluster-configs:
 
     hcm-moz-impl:
       data:
-        dhis2-host: "https://ccu.misau.gov.mz"
+        dhis2-host: "https://ccu.misau.gov.mz/ccu"
 
 #>>>>>> Frontend Servies >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 employee:
