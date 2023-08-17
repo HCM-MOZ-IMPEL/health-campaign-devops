@@ -50,7 +50,7 @@ modules:
       - "core"
     services:
       - egovio/egf-master:v1.1.3-72f8a8f87b-15
-      - egovio/egov-hrms:health-moz-dev-9b46cc9d71-66
+      - egovio/egov-hrms:health-moz-dev-c04a453286-67
   - name: "frontend"
     dependencies:
       - "business"
@@ -81,5 +81,5 @@ modules:
       - egovio/stock:master-impel-a922ad261c-44
       - egovio/household:master-impel-73167482a2-61
       - egovio/project:master-impel-ae170904f2-100
-      - egovio/hcm-moz-impl:develop-c69d051-258
+      - egovio/hcm-moz-impl:develop-b2a4b97-263
       - egovio/egov-mdms-create:develop-3a53c3b-3
