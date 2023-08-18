@@ -97,7 +97,7 @@ env: |
   - name: EGOV_USER_MOBILE_PATTERN
     value: "(^$|[0-9]{9,10})"
   - name: EGOV_USER_PWD_PATTERN
-    value: ((?=.*\\d)(?=.*[a-z])(?=.*[@#$%])(?=\\S+$).*$)
+    value: "((?=.*\\d)(?=.*[a-z])(?=.*[@#$%])(?=\\S+$).*$)"
   - name: DECRYPTION_ABAC_ENABLED
     value: {{ index .Values "decryption-abac-enabled" | quote }}
   - name: KAFKA_TOPIC_AUDIT
