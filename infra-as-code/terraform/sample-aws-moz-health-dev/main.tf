@@ -12,7 +12,7 @@ module "db" {
   vpc_security_group_ids        = ["${module.network.rds_db_sg_id}"]
   availability_zone             = "${element(var.availability_zones, 0)}"
   instance_class                = "db.t3.medium"  ## postgres db instance type
-  engine_version                = "11.13"   ## postgres version
+  engine_version                = "11.19"   ## postgres version
   storage_type                  = "gp2"
   storage_gb                    = "100"     ## postgres disk size
   backup_retention_days         = "7"
@@ -115,6 +115,41 @@ module "kafka" {
   storage_sku = "gp2"
   disk_size_gb = "100"
   
+}
+
+module "kafka-infra" {
+
+source = "../modules/storage/aws"
+storage_count = 3
+environment = "${var.cluster_name}"
+disk_prefix = "kafka-infra"
+availability_zones = "${var.availability_zones}"
+storage_sku = "gp2"
+disk_size_gb = "100"
+
+}
+
+module "es-master-infra" {
+
+source = "../modules/storage/aws"
+storage_count = 3
+environment = "${var.cluster_name}"
+disk_prefix = "es-master-infra"
+availability_zones = "${var.availability_zones}"
+storage_sku = "gp2"
+disk_size_gb = "10"
+
+}
+module "es-data-infra-v1" {
+
+source = "../modules/storage/aws"
+storage_count = 3
+environment = "${var.cluster_name}"
+disk_prefix = "es-data-infra-v1"
+availability_zones = "${var.availability_zones}"
+storage_sku = "gp2"
+disk_size_gb = "100"
+
 }
 
 

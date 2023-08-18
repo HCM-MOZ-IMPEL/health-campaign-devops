@@ -1,0 +1,6 @@
+singleuser:
+  memory:
+    limit: 2G
+    guarantee: 2G
+proxy:
+  secretToken: 668822ac95a4b5551b07ae559ddc8ecd05cf9906c69224ef487fdc789e69eb3f
