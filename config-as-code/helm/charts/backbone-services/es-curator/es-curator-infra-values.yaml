@@ -28,7 +28,7 @@ env: |
     valueFrom:
       configMapKeyRef:
         name: egov-config
-        key: es-infra-host    
+        key: es-host    
   - name: ES_CLIENT_PORT
     value: "9200"
   - name: LOG_LEVEL
