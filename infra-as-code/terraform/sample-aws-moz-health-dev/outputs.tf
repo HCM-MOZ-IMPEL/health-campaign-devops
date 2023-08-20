@@ -34,9 +34,9 @@ output "zookeeper_volume_ids" {
   value = "${module.zookeeper.volume_ids}"
 }
 
-output "kafka_vol_ids" {
-  value = "${module.kafka.volume_ids}"
-}
+# output "kafka_vol_ids" {
+#   value = "${module.kafka.volume_ids}"
+# }
 
 # output "es_master_infra_volume_ids" {
 #   value = "${module.es-master-infra.volume_ids}"
