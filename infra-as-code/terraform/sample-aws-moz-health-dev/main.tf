@@ -129,27 +129,27 @@ disk_size_gb = "100"
 
 }
 
-module "es-master-infra" {
-
-source = "../modules/storage/aws"
-storage_count = 3
-environment = "${var.cluster_name}"
-disk_prefix = "es-master-infra"
-availability_zones = "${var.availability_zones}"
-storage_sku = "gp2"
-disk_size_gb = "10"
-
-}
-module "es-data-infra-v1" {
-
-source = "../modules/storage/aws"
-storage_count = 3
-environment = "${var.cluster_name}"
-disk_prefix = "es-data-infra-v1"
-availability_zones = "${var.availability_zones}"
-storage_sku = "gp2"
-disk_size_gb = "100"
-
-}
+# module "es-master-infra" {
+#
+# source = "../modules/storage/aws"
+# storage_count = 3
+# environment = "${var.cluster_name}"
+# disk_prefix = "es-master-infra"
+# availability_zones = "${var.availability_zones}"
+# storage_sku = "gp2"
+# disk_size_gb = "10"
+#
+# }
+# module "es-data-infra-v1" {
+#
+# source = "../modules/storage/aws"
+# storage_count = 3
+# environment = "${var.cluster_name}"
+# disk_prefix = "es-data-infra-v1"
+# availability_zones = "${var.availability_zones}"
+# storage_sku = "gp2"
+# disk_size_gb = "100"
+#
+# }
 
 

@@ -23,8 +23,8 @@ cluster-configs:
         aws-cluster-name: "arn:aws:eks:ap-south-1:680148267093:cluster/moz-health-qa"
         egov-state-level-tenant-id: "mz"
         s3-assets-bucket: "(pg-health-egov-assets|egov-health-playground-assets)"
-        es-host: "vpc-moz-qa-es-dp56apolj6kc5iqqq7ttmf6d5y.ap-south-1.es.amazonaws.com:443"
-        es-indexer-host: "https://vpc-moz-qa-es-dp56apolj6kc5iqqq7ttmf6d5y.ap-south-1.es.amazonaws.com/"
+        es-host: "elasticsearch-data-v1.es-cluster"
+        es-indexer-host: "http://elasticsearch-data-v1.es-cluster:9200/"
         flyway-locations: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa"
         kafka-brokers: "b-2.mozqamsk.ckw5e6.c2.kafka.ap-south-1.amazonaws.com:9092,b-1.mozqamsk.ckw5e6.c2.kafka.ap-south-1.amazonaws.com:9092"
         kafka-infra-brokers: "b-2.mozqamsk.ckw5e6.c2.kafka.ap-south-1.amazonaws.com:9092,b-1.mozqamsk.ckw5e6.c2.kafka.ap-south-1.amazonaws.com:9092"
@@ -83,7 +83,7 @@ cluster-configs:
         egov-data-uploader: "http://egov-data-uploader:8080/"
         egov-indexer: "http://egov-indexer:8080/"
         egov-hrms: "http://egov-hrms:8080/"
-        es-client: "https://vpc-moz-qa-es-dp56apolj6kc5iqqq7ttmf6d5y.ap-south-1.es.amazonaws.com"
+        es-client: "http://elasticsearch-data-v1.es-cluster:9200"
         hr-masters: "http://hr-masters:8080/"
         hr-employee: "http://hr-employee:8080/"
         hr-masters-v2: "http://hr-masters-v2:8080/"
@@ -527,8 +527,8 @@ kafka-config:
   kafka-brokers: "kafka-v2.kafka-cluster:9092"
 
 logging-config:
-  es-host: "vpc-moz-qa-es-dp56apolj6kc5iqqq7ttmf6d5y.ap-south-1.es.amazonaws.com"
-  es-port: "443"
+  es-host: "elasticsearch-client-v1.es-cluster"
+  es-port: "9200"
 
 jaeger:
   host: ""
@@ -886,7 +886,7 @@ es-curator:
   schedule: "45 18 * * *"
   images:
     - bobrik/curator:5.6.0
-  es-host: "vpc-moz-qa-es-dp56apolj6kc5iqqq7ttmf6d5y.ap-south-1.es.amazonaws.com:443"
+  es-host: "elasticsearch-client-v1.es-cluster"
   logs-cleanup-enabled: "true"
   jaeger-cleanup-enabled: "true"
   logs-to-retain: "7"
