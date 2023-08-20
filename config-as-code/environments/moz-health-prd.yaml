@@ -905,7 +905,7 @@ grafana:
     gitSync:
       enabled: true
       repo: "git@github.com:HCM-MOZ-IMPEL/health-campaign-config" #REPLACE with your configs repo
-      branch: "DEMO" #REPLACE with config repo branch name
+      branch: "PROD" #REPLACE with config repo branch name
   dashboardsFolder: /work-dir/health-campaign-config/monitoring-dashboards
 project:
   replicas: 2
@@ -934,4 +934,9 @@ hcm-moz-impl:
       memory: "2Gi"
     limits:
       memory: "2Gi"
+
+pgadmin:
+  dbUrl: "jdbc:postgresql://moz-health-prd-db.cls5uiey6qrs.af-south-1.rds.amazonaws.com:5432/mozhealthprd"
+  environment: "PROD"
+  serverBasePath: "/pgadmin"
 
