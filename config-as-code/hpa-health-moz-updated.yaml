@@ -62,7 +62,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: household
-  minReplicas: 3
+  minReplicas: 2
   maxReplicas: 12
   metrics:
   - type: Resource
@@ -88,7 +88,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: individual
-  minReplicas: 3
+  minReplicas: 2
   maxReplicas: 12
   metrics:
   - type: Resource
@@ -114,7 +114,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: facility
-  minReplicas: 3
+  minReplicas: 2
   maxReplicas: 12
   metrics:
   - type: Resource
@@ -166,7 +166,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: stock
-  minReplicas: 3
+  minReplicas: 2
   maxReplicas: 12
   metrics:
   - type: Resource
@@ -192,7 +192,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: service-request
-  minReplicas: 3
+  minReplicas: 2
   maxReplicas: 12
   metrics:
   - type: Resource
@@ -218,7 +218,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: egov-enc-service
-  minReplicas: 3
+  minReplicas: 2
   maxReplicas: 12
   metrics:
   - type: Resource
@@ -244,7 +244,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: error-handler
-  minReplicas: 3
+  minReplicas: 2
   maxReplicas: 12
   metrics:
   - type: Resource
@@ -270,7 +270,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: egov-location
-  minReplicas: 3
+  minReplicas: 2
   maxReplicas: 12
   metrics:
   - type: Resource
@@ -296,7 +296,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: egov-mdms-service
-  minReplicas: 3
+  minReplicas: 2
   maxReplicas: 12
   metrics:
   - type: Resource
@@ -322,7 +322,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: egov-user
-  minReplicas: 3
+  minReplicas: 2
   maxReplicas: 12
   metrics:
   - type: Resource
@@ -374,7 +374,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: digit-ui
-  minReplicas: 3
+  minReplicas: 2
   maxReplicas: 12
   metrics:
   - type: Resource
@@ -400,7 +400,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: employee
-  minReplicas: 3
+  minReplicas: 2
   maxReplicas: 12
   metrics:
   - type: Resource
