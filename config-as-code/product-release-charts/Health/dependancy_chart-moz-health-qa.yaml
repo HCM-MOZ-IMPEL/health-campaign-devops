@@ -77,7 +77,7 @@ modules:
       - egovio/facility:master-impel-73167482a2-31
       - egovio/product:master-impel-73167482a2-15
       - egovio/individual:master-impel-865e4dece5-152
-      - egovio/transformer:master-impel-d6d0f8777e-64
+      - egovio/transformer:master-impel-6fd7366dcf-72
       - egovio/stock:master-impel-a922ad261c-44
       - egovio/household:master-impel-73167482a2-61
       - egovio/project:master-impel-ae170904f2-100
