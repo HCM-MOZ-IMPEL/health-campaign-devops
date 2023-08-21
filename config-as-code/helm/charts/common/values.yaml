@@ -111,7 +111,7 @@ lifecycle:
             - "sleep 10"
 
 memory_limits: "512Mi"
-cpu_limits: "250m"
+cpu_limits: "200m"
 resources: |
   {{- if eq .Values.appType "java-spring" -}}
   requests:
