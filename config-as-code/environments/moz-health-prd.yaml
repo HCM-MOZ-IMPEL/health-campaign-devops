@@ -23,6 +23,7 @@ cluster-configs:
         egov-state-level-tenant-id: "mz"
         s3-assets-bucket: "(pg-health-egov-assets|egov-health-playground-assets)"
         es-host: "elasticsearch-data-v1.es-cluster"
+        es-infra-host: "elasticsearch-data-infra-v1.es-cluster-infra"
         es-indexer-host: "http://elasticsearch-data-v1.es-cluster:9200/"
         flyway-locations: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa"
         kafka-brokers: "kafka-v2.kafka-cluster:9092"
@@ -527,7 +528,7 @@ kafka-config:
   kafka-brokers: "kafka-v2.kafka-cluster:9092"
 
 logging-config:
-  es-host: "elasticsearch-client-v1.es-cluster"
+  es-host: "elasticsearch-data-infra-v1.es-cluster-infra"
   es-port: "9200"
 
 jaeger:
@@ -645,6 +646,37 @@ kafka-v2:
   maxPollRecords: "100"
   sessionTimeoutMs: "300000"
 
+
+# kafka-v2 AWS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+kafka-v2-infra:
+  persistence:
+    enabled: true
+    aws:
+      - volumeId: "vol-04835b02bd061b90c" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: af-south-1b            ## add your respective zone eg. af-south-1b
+      - volumeId: "vol-0c2928f6b5fffaa73" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: af-south-1b            ## add your respective zone eg. af-south-1b
+      - volumeId: "vol-02ef9c0cb7370e333" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: af-south-1b            ## add your respective zone eg. af-south-1b
+  zookeeperHosts: "zookeeper-v2-infra.zookeeper-cluster:2181/kafka-v2-infra"
+
+  heapOptions: "-Xms704M -Xmx704M"
+  memory_limits: 1408Mi
+  lingerMs: "250"
+  numberPartitions: "3"
+  replicationFactor: "2"
+  minInsyncReplicas: "1"
+  offsetsReplicationFactor: "3"
+  maxRequestSize: "20000000"
+  maxMessageBytes: "20000000"
+  maxReplicaFetchMaxBytes: "20000000"
+  maxPartitionFetchBytes: "20000000"
+  requestTimeoutMs: "600000"
+  heartbeatIntervalMs: "1000"
+  maxPollIntervalMs: "900000"
+  maxPollRecords: "100"
+  sessionTimeoutMs: "300000"
+
 ## kafka-v2 Azure <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 #kafka-v2:
 #  persistence:
@@ -697,6 +729,28 @@ zookeeper-v2:
       - volumeId: "vol-0204db4474a18f2d4" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: af-south-1b            ## add your respective zone eg. af-south-1b
       - volumeId: "vol-09bf466ca41283bd1" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: af-south-1b            ## add your respective zone eg. af-south-1b
+
+  ## Zookeeper JVM Heap Option
+  heapOptions: "-Xms256M -Xmx256M"
+  resources:
+    limits:
+      cpu: 300m
+      memory: 384Mi
+    requests:
+      cpu: 300m
+      memory: 384Mi
+
+# zookeeper-v2 AWS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+zookeeper-v2-infra:
+  persistence:
+    enabled: true
+    aws:
+      - volumeId: "vol-0624814f63ff91553" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: af-south-1b            ## add your respective zone eg. af-south-1b
+      - volumeId: "vol-01d81f2a60c6b693b" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: af-south-1b            ## add your respective zone eg. af-south-1b
+      - volumeId: "vol-032cd2a94a7f0cd47" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: af-south-1b            ## add your respective zone eg. af-south-1b
 
   ## Zookeeper JVM Heap Option
@@ -774,6 +828,27 @@ elasticsearch-data-v1:
       memory: "2Gi"
     limits:
       memory: "2Gi"
+
+# es-v1-cluster AWS >>>>>>>>>>>>>>>>>>>>>>>>>>>>
+elasticsearch-data-infra-v1:
+  image:
+    tag: 6.6.2
+  persistence:
+    enabled: true
+    aws:
+      - volumeId: "vol-0bcd385bc49cfdbc7" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: af-south-1b            ## add your respective zone eg. af-south-1b
+      - volumeId: "vol-0b17fe1cc91438880" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: af-south-1b            ## add your respective zone eg. af-south-1b
+      - volumeId: "vol-0e97f8e9e34e0aaad" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: af-south-1b            ## add your respective zone eg. af-south-1b
+
+  esJavaOpts: "-Xmx1g -Xms1g"
+  resources:
+    requests:
+      memory: "2Gi"
+    limits:
+      memory: "2Gi"
 ## es-data-v1 Azure >>>>>>>>>>>>>>>>>>>>>
 #elasticsearch-data-v1:
 #  image:
@@ -838,6 +913,28 @@ elasticsearch-master-v1:
       memory: "896Mi"
     limits:
       memory: "896Mi"
+### es-master-infra-v1 AWS >>>>>>>>>>>>>>>>>>>>
+
+elasticsearch-master-infra-v1:
+  replicas: 3
+  image:
+    tag: 6.6.2
+  persistence:
+    enabled: true
+    aws:
+      - volumeId: "vol-00b00fe48c990d08d" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: af-south-1b            ## add your respective zone eg. af-south-1b
+      - volumeId: "vol-01d0b00dde4c1b71d" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: af-south-1b            ## add your respective zone eg. af-south-1b
+      - volumeId: "vol-0c672c11c950e3d37" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: af-south-1b            ## add your respective zone eg. af-south-1b
+
+  esJavaOpts: "-Xmx448m -Xms448m"
+  resources:
+    requests:
+      memory: "896Mi"
+    limits:
+      memory: "896Mi"
 
 ## es-master-v1 Azure >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #elasticsearch-master-v1:
@@ -886,7 +983,17 @@ es-curator:
   schedule: "45 18 * * *"
   images:
     - bobrik/curator:5.6.0
-  es-host: "elasticsearch-client-v1.es-cluster"
+  es-host: "elasticsearch-data-v1.es-cluster"
+  logs-cleanup-enabled: "true"
+  jaeger-cleanup-enabled: "true"
+  logs-to-retain: "7"
+# <<<<<<<<<<<<<<<<<<<<<<<<
+
+es-curator-infra:
+  schedule: "45 18 * * *"
+  images:
+    - bobrik/curator:5.6.0
+  es-host: "elasticsearch-data-infra-v1.es-cluster-infra"
   logs-cleanup-enabled: "true"
   jaeger-cleanup-enabled: "true"
   logs-to-retain: "7"
@@ -905,7 +1012,7 @@ grafana:
     gitSync:
       enabled: true
       repo: "git@github.com:HCM-MOZ-IMPEL/health-campaign-config" #REPLACE with your configs repo
-      branch: "DEMO" #REPLACE with config repo branch name
+      branch: "PROD" #REPLACE with config repo branch name
   dashboardsFolder: /work-dir/health-campaign-config/monitoring-dashboards
 project:
   replicas: 2
@@ -934,4 +1041,9 @@ hcm-moz-impl:
       memory: "2Gi"
     limits:
       memory: "2Gi"
+
+pgadmin:
+  dbUrl: "jdbc:postgresql://moz-health-prd-db.cls5uiey6qrs.af-south-1.rds.amazonaws.com:5432/mozhealthprd"
+  environment: "PROD"
+  serverBasePath: "/pgadmin"
 
