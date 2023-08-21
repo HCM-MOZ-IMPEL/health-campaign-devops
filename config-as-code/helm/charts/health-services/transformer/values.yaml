@@ -152,7 +152,7 @@ env: |
   - name: EGOV_SEARCH_HOUSEHOLD_URL
     value: "/household/v1/_search"
   - name: EGOV_SEARCH_PROJECT_BENEFICIARY_URL
-    value: "/project/beneficiary/v1/_search
+    value: "/project/beneficiary/v1/_search"
   - name: EGOV_PROGRAM_MANDATE_COMMENT
     value: "Orientação nacional"
   - name: EGOV_PROGRAM_MANDATE_LIMIT
