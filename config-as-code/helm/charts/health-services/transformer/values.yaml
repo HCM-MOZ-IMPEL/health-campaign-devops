@@ -158,4 +158,4 @@ env: |
   - name: EGOV_PROGRAM_MANDATE_LIMIT
     value: "3"
   - name: EGOV_PROGRAM_MANDATE_DIVIDING_FACTOR
-    value: 1.8"
+    value: "1.8"
