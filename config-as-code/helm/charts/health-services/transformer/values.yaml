@@ -144,3 +144,18 @@ env: |
     value: "save-service"
   - name: TRANSFORMER_PRODUCER_SERVICE_TASK_INDEX_V1_TOPIC
     value: "transformer-producer-service-request-index-v1-topic"
+  - name: EGOV_HOUSEHOLD_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: household
+  - name: EGOV_SEARCH_HOUSEHOLD_URL
+    value: "/household/v1/_search"
+  - name: EGOV_SEARCH_PROJECT_BENEFICIARY_URL
+    value: "/project/beneficiary/v1/_search
+  - name: EGOV_PROGRAM_MANDATE_COMMENT
+    value: "Orientação nacional"
+  - name: EGOV_PROGRAM_MANDATE_LIMIT
+    value: "3"
+  - name: EGOV_PROGRAM_MANDATE_DIVIDING_FACTOR
+    value: 1.8"
