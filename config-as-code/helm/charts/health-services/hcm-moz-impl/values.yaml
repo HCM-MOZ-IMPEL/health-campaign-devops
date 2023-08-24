@@ -134,7 +134,7 @@ env: |
   - name: EGOV_CAMPAIGN_STARTDATE
     value: "29/08/2023"
   - name: EGOV_CAMPAIGN_ENDDATE
-    value: "02/09/2023"
+    value: "03/09/2023"
   - name: EGOV_DIGIT_WAIT_TIMEOUT
     value: "15"
   - name: EGOV_KAFKA_PAGE_SIZE
