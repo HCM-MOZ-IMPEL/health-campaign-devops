@@ -11,4 +11,3 @@ creation_rules:
           
         - path: environments/moz-health-prd-secrets.yaml
           kms: 'arn:aws:kms:af-south-1:564518252813:key/f5879514-6726-4c0f-998d-c089ace867e2'
-   
