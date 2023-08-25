@@ -1,10 +1,10 @@
 # creation rules are evaluated sequentially, the first match wins
 creation_rules:
-  - path: environments/moz-health-dev-secrets.yaml
+  - path_regex: environments/moz\-health\-dev\-secrets\.yaml$
     kms: 'arn:aws:kms:ap-south-1:680148267093:key/ec32f7c0-a68c-4a8c-a35c-2ae00c0e93d2'
-  - path: environments/moz-health-qa-secrets.yaml
+  - path_regex: environments/moz\-health\-qa\-secrets\.yaml$
     kms: 'arn:aws:kms:ap-south-1:680148267093:key/ec32f7c0-a68c-4a8c-a35c-2ae00c0e93d2'
-  - path: environments/moz-health-uat-secrets.yaml
+  - path_regex: environments/moz\-health\-uat\-secrets\.yaml$
     kms: 'arn:aws:kms:ap-south-1:680148267093:key/ec32f7c0-a68c-4a8c-a35c-2ae00c0e93d2'
   - path: environments/moz-health-prd-secrets.yaml
     kms: 'arn:aws:kms:af-south-1:564518252813:key/f5879514-6726-4c0f-998d-c089ace867e2'
