@@ -36,7 +36,7 @@ modules:
       - egovio/egov-persister:v1.1.5-3371bc2-5
       - egovio/egov-url-shortening:v1.1.2-1715164454-3
       - egovio/egov-user:health-digit-dev-f2ddde9-32
-      - egovio/user-otp:health-digit-master-6865af2823-3
+      - egovio/user-otp:health-digit-master-dca3efde85-7
       - egovio/egov-workflow-v2:v1.2.1-df98ec3c35-2
       - egovio/report:v1.3.4-96b24b0d72-16
       - egovio/egov-document-uploader:v1.1.0-75d461a4d2-4
@@ -77,7 +77,7 @@ modules:
       - egovio/facility:master-impel-73167482a2-31
       - egovio/product:master-impel-73167482a2-15
       - egovio/individual:master-impel-865e4dece5-152
-      - egovio/transformer:master-impel-6fd7366dcf-72
+      - egovio/transformer:master-impel-36161744b9-74
       - egovio/stock:master-impel-a922ad261c-44
       - egovio/household:master-impel-73167482a2-61
       - egovio/project:master-impel-ae170904f2-100
