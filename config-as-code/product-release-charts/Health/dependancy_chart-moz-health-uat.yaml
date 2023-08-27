@@ -14,7 +14,7 @@ modules:
       - redis
       - ingress-nginx
       - cert-manager
-      - zuul:v1.3.1-96b24b0d72-39
+      - zuul:master-moz-impel-ratelimiter-1760f3be7b-1
   - name: core
     dependencies:
       - "backbone"
