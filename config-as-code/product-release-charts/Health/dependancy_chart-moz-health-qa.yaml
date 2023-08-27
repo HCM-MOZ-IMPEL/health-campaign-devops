@@ -14,7 +14,7 @@ modules:
       - redis
       - ingress-nginx
       - cert-manager
-      - zuul:v1.3.1-96b24b0d72-39
+      - zuul:master-moz-impel-ratelimiter-1760f3be7b-1
   - name: core
     dependencies:
       - "backbone"
@@ -43,8 +43,8 @@ modules:
       - egovio/service-request:master-impel-198c6d78f8-11
       - egovio/pgr-services:master-impel-afa361c92a-13
       - egovio/playground:1.0
-      - audit-service:audit-heatlh-40b1a4018a-1
-      - error-handler:master-impel-dump-5022b7acff-1
+      - egovio/audit-service:audit-heatlh-40b1a4018a-1
+      - egovio/error-handler:master-impel-dump-5022b7acff-1
   - name: business
     dependencies:
       - "core"
