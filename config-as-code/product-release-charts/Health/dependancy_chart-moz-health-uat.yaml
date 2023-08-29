@@ -64,7 +64,7 @@ modules:
       - "core"
       - "business"
     services:
-      - egovio/dashboard-analytics:master-impel-d21cc31cb9-37
+      - egovio/dashboard-analytics:master-impel-24f235cca3-42
       - egovio/dashboard-ingest:v1.1.4-72f8a8f87b-10
       - egovio/dss-dashboard:v1.8.0-0d70d60e63-53
   - name: m_health
