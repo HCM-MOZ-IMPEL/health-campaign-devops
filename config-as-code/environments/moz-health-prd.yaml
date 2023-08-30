@@ -360,6 +360,8 @@ egov-searcher:
 
 dashboard-analytics:
   config-schema-paths: "file:///work-dir/health-campaign-config/egov-dss-dashboards/dashboard-analytics/*.json"
+  memory_limit: 2Gi
+  heap: "-Xmx1580m -Xms1024m"
   initContainers:
     gitSync:
       repo: "git@github.com:HCM-MOZ-IMPEL/health-campaign-config"      ##### Change repo url with Your fork Repo url
@@ -825,12 +827,12 @@ elasticsearch-data-v1:
       - volumeId: "vol-0b8fdb65f721539e7" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: af-south-1b            ## add your respective zone eg. af-south-1b
 
-  esJavaOpts: "-Xmx1g -Xms1g"
+  esJavaOpts: "-Xmx2.5g -Xms2.5g"
   resources:
     requests:
-      memory: "2Gi"
+      memory: "3Gi"
     limits:
-      memory: "2Gi"
+      memory: "3Gi"
 
 # es-v1-cluster AWS >>>>>>>>>>>>>>>>>>>>>>>>>>>>
 elasticsearch-data-infra-v1:
