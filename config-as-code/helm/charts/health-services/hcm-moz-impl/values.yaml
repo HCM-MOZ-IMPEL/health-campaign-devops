@@ -31,6 +31,8 @@ heap: "-Xmx192m -Xms192m"
 java-args: ""
 java-enable-debug: true
 persist-yml-path: "file:///work-dir/health-campaign-config/egov-persister/hcm-moz-impl-persister.yml"
+startDate: "28/08/2023"
+endDate: "02/09/2023"
 
 # Additional Container Envs
 env: |
@@ -132,9 +134,9 @@ env: |
   - name: EGOV_DIGIT_PAGE_SIZE
     value: "30"
   - name: EGOV_CAMPAIGN_STARTDATE
-    value: "28/08/2023"
+    value: {{ index .Values "startDate" | quote }}
   - name: EGOV_CAMPAIGN_ENDDATE
-    value: "04/09/2023"
+    value: {{ index .Values "endDate" | quote }}
   - name: EGOV_DIGIT_WAIT_TIMEOUT
     value: "15"
   - name: EGOV_KAFKA_PAGE_SIZE
