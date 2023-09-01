@@ -930,7 +930,7 @@ hcm-moz-impl:
   heap: "-Xmx1024m -Xms1024m"
   memory_limits: "2Gi"
   startDate: "28/08/2023"
-  endDate: "02/09/2023"
+  endDate: "09/09/2023"
   resources:
     requests:
       memory: "2Gi"
