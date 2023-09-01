@@ -81,5 +81,5 @@ modules:
       - egovio/stock:master-impel-a922ad261c-44
       - egovio/household:master-impel-73167482a2-61
       - egovio/project:master-impel-ae170904f2-100
-      - egovio/hcm-moz-impl:develop-25378fd-284
+      - egovio/hcm-moz-impl:develop-389fa2c-285
       - egovio/egov-mdms-create:develop-3a53c3b-3
