@@ -74,12 +74,12 @@ modules:
       - "core"
     services:
       # - egovio/facility:v1.0.0-a51bee1435-19
-      - egovio/facility:master-impel-0e18b470fb-36
-      - egovio/product:master-impel-0e18b470fb-17
-      - egovio/individual:master-impel-0e18b470fb-158
-      - egovio/transformer:master-impel-d37514430c-78
-      - egovio/stock:master-impel-0e18b470fb-51
-      - egovio/household:master-impel-0e18b470fb-65
-      - egovio/project:master-impel-9b4c829fb9-111
+      - egovio/facility:master-impel-8f3dbc23ec-40
+      - egovio/product:master-impel-8f3dbc23ec-18
+      - egovio/individual:master-impel-88d3378eb1-160
+      - egovio/transformer:master-impel-d063de60df-79
+      - egovio/stock:master-impel-88d3378eb1-53
+      - egovio/household:master-impel-0beeacd4b5-70
+      - egovio/project:master-impel-0beeacd4b5-118
       - egovio/hcm-moz-impl:develop-66239ad-288
       - egovio/egov-mdms-create:develop-3a53c3b-3
