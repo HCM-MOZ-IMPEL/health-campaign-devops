@@ -154,7 +154,7 @@ env: |
   - name: EGOV_SEARCH_PROJECT_BENEFICIARY_URL
     value: "/project/beneficiary/v1/_search"
   - name: EGOV_PROGRAM_MANDATE_COMMENT
-    value: "Orientação nacional"
+    value: "Mais de 6 agregados familiares"
   - name: EGOV_PROGRAM_MANDATE_LIMIT
     value: "3"
   - name: EGOV_PROGRAM_MANDATE_DIVIDING_FACTOR
