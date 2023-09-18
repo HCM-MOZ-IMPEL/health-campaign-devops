@@ -57,14 +57,14 @@ modules:
     services:
       - egovio/citizen:v1.8.0-b078fa041d-97
       - egovio/employee:v1.8.0-2ac8314b2f-116
-      - egovio/digit-ui:master-impl-2c4548233f-74
+      - egovio/digit-ui:master-impl-318d4a66d7-86
   - name: m_dss   #dss
     dependencies:
       - "frontend"
       - "core"
       - "business"
     services:
-      - egovio/dashboard-analytics:master-impel-24f235cca3-42
+      - egovio/dashboard-analytics:master-impel-47640b6456-44
       - egovio/dashboard-ingest:v1.1.4-72f8a8f87b-10
       - egovio/dss-dashboard:v1.8.0-0d70d60e63-53
   - name: m_health
