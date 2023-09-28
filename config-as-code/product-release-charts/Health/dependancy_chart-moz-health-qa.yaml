@@ -57,7 +57,7 @@ modules:
     services:
       - egovio/citizen:v1.8.0-b078fa041d-97
       - egovio/employee:v1.8.0-2ac8314b2f-116
-      - egovio/digit-ui:master-impl-964e173528-94
+      - egovio/digit-ui:master-impl-e419f23a58-101
   - name: m_dss   #dss
     dependencies:
       - "frontend"
