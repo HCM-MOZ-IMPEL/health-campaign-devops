@@ -139,3 +139,5 @@ env: |
   - name: TRACER_OPENTRACING_ENABLED
     value: "true" 
   {{- end }}
+  - name: EGOV_PERSISTER_BULK_PROCESSING_ENABLED
+    value: "false"
