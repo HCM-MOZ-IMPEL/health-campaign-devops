@@ -131,3 +131,5 @@ env: |
         key: project
   - name: EGOV_SEARCH_PROJECT_FACILITY_URL
     value: "/project/facility/v1/_search"
+  - name: EGOV_PERSISTER_BULK_PROCESSING_ENABLED
+    value: "false"

@@ -235,3 +235,5 @@ env: |
     value: "code"
   - name: EGOV_USER_ID_VALIDATOR
     value: "egov-user"
+  - name: EGOV_PERSISTER_BULK_PROCESSING_ENABLED
+    value: "false"
