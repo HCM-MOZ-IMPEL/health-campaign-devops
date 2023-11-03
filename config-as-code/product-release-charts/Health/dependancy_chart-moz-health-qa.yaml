@@ -84,3 +84,4 @@ modules:
       - egovio/hcm-moz-impl:develop-66239ad-288
       - egovio/egov-mdms-create:develop-3a53c3b-3
       - egovio/referralmanagement:master-impel-523cc26c16-14
+      - sreejithk1903/sunbird-rc-digit

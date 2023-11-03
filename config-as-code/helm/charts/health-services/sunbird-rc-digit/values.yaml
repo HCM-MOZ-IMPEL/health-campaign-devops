@@ -1,0 +1,168 @@
+# Common Labels
+labels:
+  app: "sunbird-rc-digit"
+  group: "health"
+
+# Ingress Configs
+ingress:
+  enabled: true
+  zuul: true
+  context: "sunbird-rc-digit"
+
+# Init Containers Configs
+initContainers:
+  dbMigration:
+    enabled: true
+    schemaTable: "sunbird-rc-digit_schema"
+    image:
+      repository: "sunbird-rc-digit-db"
+
+# Container Configs
+image:
+  repository: "sreejithk1903/sunbird-rc-digit"
+replicas: "1"
+healthChecks:
+  enabled: true
+  livenessProbePath: "/sunbird-rc-digit/health"
+  readinessProbePath: "/sunbird-rc-digit/health"
+appType: "java-spring"
+tracing-enabled: true
+heap: "-Xmx192m -Xms192m"
+java-args: ""
+persist-yml-path: "file:///work-dir/health-campaign-config/egov-persister/sunbird-rc-digit-persister.yml"
+
+# Additional Container Envs
+env: |
+  - name: SPRING_KAFKA_CONSUMER_GROUP_ID
+    value: sunbird
+  - name: KAFKA_CONFIG_BOOTSTRAP_SERVER_CONFIG
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: kafka-brokers
+  - name: SPRING_KAFKA_PRODUCER_KEY_SERIALIZER
+    value: org.apache.kafka.common.serialization.StringSerializer
+  - name: SPRING_KAFKA_PRODUCER_VALUE_SERIALIZER
+    value: org.springframework.kafka.support.serializer.JsonSerializer       
+  - name: SPRING_KAFKA_CONSUMER_VALUE_DESERIALIZER
+    value: org.egov.tracer.kafka.deserializer.HashMapDeserializer
+  - name: SPRING_KAFKA_CONSUMER_KEY_DESERIALIZER
+    value: org.apache.kafka.common.serialization.StringDeserializer
+  - name: SPRING.DATASOURCE.URL
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: db-url
+  - name: SPRING_DATASOURCE_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: db
+        key: username
+  - name: SPRING_DATASOURCE_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: db
+        key: password    
+  - name: SPRING_FLYWAY_ENABLED
+    value: "true"
+  - name: SPRING.FLYWAY.URL
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: db-url
+  - name: SPRING_FLYWAY_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: db
+        key: username
+  - name: SPRING_FLYWAY_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: db
+        key: password    
+  - name: EGOV_HOUSEHOLD_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: household
+  - name: EGOV_SEARCH_HOUSEHOLD_URL
+    value: "/household/v1/_search"
+  - name: EGOV_SEARCH_HOUSEHOLD_MEMBER_URL 
+    value: "/household/member/v1/_search"
+  - name: EGOV_INDIVIDUAL_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: individual
+  - name: EGOV_SEARCH_INDIVIDUAL_URL
+    value: "/individual/v1/_search"
+  - name: EGOV_PROJECT_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: project
+  - name: EGOV_SEARCH_PROJECT_URL
+    value: "/project/v1/_search"
+  - name: EGOV_SEARCH_PROJECT_BENEFICIARY_URL
+    value: "/project/beneficiary/v1/_search"
+  - name: SPRING_REDIS_HOST
+    value: redis.backbone
+  - name: SPRING_REDIS_PORT
+    value: "6379"
+  - name: SPRING_CACHE_TYPE
+    value: "redis"
+  - name: SPRING_CACHE_REDIS_TIME-TO-LIVE
+    value: "60"
+  - name: SPRING_CACHE_AUTOEXPIRY
+    value: "true"
+  - name: SERVER_PORT
+    value: "8080"
+  - name: APP_TIMEZONE
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: timezone      
+  - name: TRANSFORMER_CONSUMER_VC_CREATE_SERVICEDELIVERY_TASK_TOPIC
+    value: "save-vc-service-delivery-topic"
+  - name: TRANSFORMER_CONSUMER_VC_UPDATE_SERVICEDELIVERY_TASK_TOPIC
+    value: "update-vc-service-delivery-topic"
+  - name: TRANSFORMER_CONSUMER_BULK_CREATE_PROJECT_TASK_TOPIC
+    value: "save-project-task-topic"
+  - name: TRANSFORMER_CONSUMER_BULK_UPDATE_PROJECT_TASK_TOPIC
+    value: "save-project-task-topic"
+  - name: TRANSFORMER_CONSUMER_BULK_CREATE_INDIVIDUAL_TOPIC
+    value: "save-individual-topic"
+  - name: TRANSFORMER_CONSUMER_BULK_UPDATE_INDIVIDUAL_TOPIC
+    value: "update-individual-topic"
+  - name: TRANSFORMER_CONSUMER_BULK_UPDATE_INDIVIDUAL_TOPIC
+    value: "update-individual-topic"
+  - name: SUNBIRD_REGISTRY_HOST
+     valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: sunbird-registry
+  - name: SUNBIRD_REGISTRY_SERVICEDELIVERY_CREATE
+    value: "/api/v1/ServiceDelivery"
+  - name: SUNBIRD_REGISTRY_SERVICEDELIVERY_SEARCH
+    value: "/api/v1/ServiceDelivery/search"
+  - name: SUNBIRD_REGISTRY_ELOCKER_SEND
+    value: "/api/v1/send"
+  - name: SUNBIRD_REGISTRY_ELOCKER_USER
+    value: "/api/v1/User"
+  - name: SUNBIRD_REGISTRY_ELOCKER_USER_INVITE
+    value: "/api/v1/User/invite"
+  - name: SUNBIRD_REGISTRY_ELOCKER_USER_SEARCH
+    value: "/api/v1/User/search"
+  - name: SEARCH_API_LIMIT
+    value: "1000"
+  - name: SUNBIRD_KEYCLOAK_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: sunbird-keycloak-auth
+  - name: SUNBIRD_KEYCLOAK_TOKENURI
+    value: "/realms/sunbird-rc/protocol/openid-connect/token"
+  - name: SUNBIRD_KEYCLOAK_CLIENTID
+    value: "registry-frontend"
+  - name: SUNBIRD_KEYCLOAK_USER_DEFAULT_PASSWORD
+    value: "abcd@123"

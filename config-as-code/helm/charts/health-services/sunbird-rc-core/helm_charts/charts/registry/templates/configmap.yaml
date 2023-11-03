@@ -1,0 +1,21 @@
+{{- $schemas := .Files.Glob "schemas/*" }}
+{{ if $schemas }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-schemas
+  namespace: {{ .Values.namespace }}
+data:
+{{ (.Files.Glob "schemas/*").AsConfig | indent 2 }}
+{{ end }}
+---
+{{- $templates := .Files.Glob "schemas/templates/*" }}
+{{ if $templates }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-schema-templates
+  namespace: {{ .Values.namespace }}
+data:
+{{ (.Files.Glob "schemas/templates/*").AsConfig | indent 2 }}
+{{ end }}

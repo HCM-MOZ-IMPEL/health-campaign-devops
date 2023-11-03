@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "ServiceDelivery": {
+      "$ref": "#/definitions/ServiceDelivery"
+    }
+  },
+  "required": [
+    "ServiceDelivery"
+  ],
+  "title": "ServiceDelivery",
+  "definitions": {
+    "ServiceDelivery": {
+      "$id": "#/properties/ServiceDelivery",
+      "type": "object",
+      "title": "The Service Delivery Schema",
+      "required": ["serviceDeliveryId", "beneficiary", "benefitsDelivered"],
+      "properties": {
+        "serviceDeliveryId": {
+          "type": "string",
+          "title": "Task ID"
+        },
+        "beneficiary": {
+          "$ref": "Common.json/#/definitions/Beneficiary"
+        },
+        "benefitsDelivered": {
+          "type": "array",
+          "items": {
+            "$ref": "Common.json/#/definitions/Resource"
+          }
+        }
+      }
+    }
+  },
+  "_osConfig": {
+    "enableSearch": "true",
+    "enableLogin": "false",
+    "indexFields": ["serviceDeliveryId"],
+    "uniqueIndexFields": ["serviceDeliveryId"],
+    "systemFields": [
+      "osCreatedAt",
+      "osUpdatedAt",
+      "osCreatedBy",
+      "osUpdatedBy"
+    ],
+    "credentialTemplate": {
+      "@context": [
+        "https://www.w3.org/2018/credentials/v1",
+        "https://raw.githubusercontent.com/Sunbird-RC/demo-digit-hcm-registry/main/context/DIGITContext.json"
+      ],
+      "type": [
+        "VerifiableCredential",
+        "DIGITServiceDeliveryEvent"
+      ],
+      "id": "https://digit.org/servicedelivery/{{osid}}",
+      "issuer": "https://digit.org",
+      "issuanceDate": "{{osUpdatedAt}}",
+      "credentialSubject": {
+        "type": "ServiceDelivery",
+        "id": "did:digit/servicedelivery/{{serviceDeliveryId}}",
+        "serviceDeliveryId": "{{serviceDeliveryId}}",
+        "beneficiaryId": "{{beneficiary.beneficiaryId}}",
+        "beneficiaryType": "{{beneficiary.beneficiaryType}}",
+        "tenantId": "{{beneficiary.tenantId}}",
+        "projectId": "{{beneficiary.projectId}}",
+        "registrationDate": "{{beneficiary.registrationDate}}",
+        "benefits": "{{benefitsDelivered}}"
+      }
+    },
+    "inviteRoles": [
+      "anonymous"
+    ],
+    "roles": [
+      "anonymous"
+    ],
+    "ownershipAttributes": [],
+    "certificateTemplates": {
+      "html": "https://raw.githubusercontent.com/Sreejit-K/demo-digit-hcm-registry/develop/imports/schema/templates/ServiceDelivery.html"
+    }
+  }
+}
