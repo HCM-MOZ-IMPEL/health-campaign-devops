@@ -1,0 +1,10 @@
+{
+  "issuers": {
+    "default": {
+      "publicKey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAk6zvt3VntHNj6SFTUGYqWIixTVoHunKwEFLMPHpcF/m8AuRjcy0wV922crllSwxEoNDTwykYZ1Zz1As94Ubx9Yh9oaPmqMuS0HlTQ7y6TVg9URRoU22qw0bI8Cv1yk197VbEIjG0Fv5hpzgT3d5rs0riWhMXDGaUbAPxFhRcL/MOYSDDtz4HjTd/Hw9Dlz9sLO+6ocEtgVkd2DCQakKr1gjlL1kC21ravjbdz6hvYRzOXxkAk88qvPPRmm1GUAq2G5Uzkrc78OYMdXFIUMWEGx3f7j1cWcgfig3tMg8Jt36gnN925MmXB8DVFPPZlnvK2ldwKzu0mK7ncSv26UO41wIDAQAB\n-----END PUBLIC KEY-----\n",
+      "signatureType": "RSA",
+      "verificationMethod": "did:india",
+      "$comment": "The above are test keys and it needs to be replaced before going to production"
+    }
+  }
+}

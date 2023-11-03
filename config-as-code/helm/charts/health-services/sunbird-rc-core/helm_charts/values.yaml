@@ -1,0 +1,57 @@
+global:
+  host: "moz-health-qa.digit.org"
+  database:
+    host: "moz-health-qa-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com"
+    user: "mozhealthqa"
+    port: "5432"
+    vendor: "postgres"
+  keycloak:
+    database: "mozhealthqa"
+    admin:
+      username: "admin"
+    proxy_forwarding: true
+  registry:
+    database: "mozhealthqa"
+    search_provider: "dev.sunbirdrc.registry.service.ElasticSearchService"
+    authentication_enabled: true
+    claims_enabled: true
+    certificate_enabled: true
+    encryption_enabled: false
+    opa_enabled: false
+    opa_allow_key_name: authorized
+    sso:
+      realm: "sunbird-rc"
+      admin_client_id: "admin-api"
+      client_id: "registry-frontend"
+    signature_enabled: true
+    keycloak_user_set_password: false
+    filestorage_enabled: true
+    base_apis_enabled: false
+    log_level: INFO
+    enable_external_templates: true
+    enable_async: false
+    enable_authentication: true
+    enable_webhook: false
+    webhook_url: http://localhost:5001/api/v1/callback
+    manager_type: DefinitionsManager
+  minio:
+    url: http://s3.amazonaws.com
+    access_key: AKIAZ4W766BK7M3CR24N
+    bucket_key: sunbird-moz-health-qa
+  elastic_search:
+    url: "http://elasticsearch-data-v1.es-cluster:9200/"
+    auth_enabled: false
+    username: ""
+  kafka:
+    url: "http://kafka-v2.kafka-cluster:9092"
+  redis:
+    host: redis.backbone
+    port: 6379
+  secrets:
+    DB_PASSWORD: bW96aGVhbHRocWE=
+    ELASTIC_SEARCH_PASSWORD: ""
+    KEYCLOAK_ADMIN_CLIENT_SECRET: Yjg3ZjYzYjYtOTQwNi00MmI1LThhOTAtNDlhZmE1NWU4Zjcx
+    KEYCLOAK_ADMIN_PASSWORD: YWRtaW4xMjM=
+    KEYCLOAK_DEFAULT_USER_PASSWORD: YWRtaW5AMTIz
+    MINIO_SECRET_KEY: MFpnYkdSVmFaNXJLN3FwWVRsbFc5ZFRsZ0VkaDFHZ0xnRTcxS29sdg==
+    
