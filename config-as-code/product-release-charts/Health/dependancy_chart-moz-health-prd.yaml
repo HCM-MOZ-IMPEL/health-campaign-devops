@@ -27,7 +27,7 @@ modules:
       - egovio/egov-localization:v1.1.3-72f8a8f87b-6
       - egovio/egov-idgen:v1.2.3-72f8a8f87b-7
       - egovio/egov-indexer:v1.1.7-f52184e6ba-25
-      - egovio/egov-location:v1.1.5-f9271c8-7
+      - egovio/egov-location:master-impel-c9d6b10bcd-3
       - egovio/egov-mdms-service:v1.3.2-72f8a8f87b-12
       - egovio/egov-notification-mail:health-digit-master-6865af2823-2
       - egovio/egov-otp:v1.2.2-72f8a8f87b-12
