@@ -1044,7 +1044,7 @@ hcm-moz-impl:
   heap: "-Xmx1700m -Xms1700m"
   memory_limits: "2Gi"
   startDate: "28/08/2023"
-  endDate: "27/09/2023"
+  endDate: "25/11/2023"
   cpu_limits: "250m"
   resources:
     requests:
