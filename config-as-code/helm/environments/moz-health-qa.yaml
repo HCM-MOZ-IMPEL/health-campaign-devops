@@ -908,7 +908,7 @@ grafana:
       branch: "QA" #REPLACE with config repo branch name
   dashboardsFolder: /work-dir/health-campaign-config/monitoring-dashboards    
 project:
-  replicas: 2
+  replicas: 1
   heap: "-Xmx2g -Xms2g"
   memory_limits: "2Gi"
   resources:
