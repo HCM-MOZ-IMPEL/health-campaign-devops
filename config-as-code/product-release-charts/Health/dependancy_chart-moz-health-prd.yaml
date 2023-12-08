@@ -75,9 +75,9 @@ modules:
       - egovio/facility:master-impel-d2baf0d40f-45
       - egovio/product:master-impel-9e32e9c097-22
       - egovio/individual:master-impel-73d2b66a68-168
-      - egovio/transformer:master-impel-fc5511c087-102
-      - egovio/stock:master-impel-73d2b66a68-67
-      - egovio/household:master-impel-1ed64672a6-100
-      - egovio/project:master-impel-1e193d80c4-163
+      - egovio/transformer:master-impel-3e6561a7aa-104
+      - egovio/stock:master-impel-9ebd806fe1-71
+      - egovio/household:master-impel-1ed64672a6-104
+      - egovio/project:master-impel-9ebd806fe1-177
       - egovio/hcm-moz-impl:develop-93b909d-292
       - egovio/egov-mdms-create:develop-3a53c3b-3
