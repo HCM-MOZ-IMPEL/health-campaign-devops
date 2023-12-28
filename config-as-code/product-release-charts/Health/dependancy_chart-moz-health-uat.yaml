@@ -8,6 +8,9 @@ modules:
       - kafka-connect-restart-tasks
       - elasticsearch-data-v1
       - elasticsearch-master-v1
+      - esearch8-master
+      - esearch8-data
+      - kibana8-v1
       - kibana-v1
   - name: authn-authz
     services:
