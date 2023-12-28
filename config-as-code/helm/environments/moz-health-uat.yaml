@@ -22,8 +22,8 @@ cluster-configs:
         aws-cluster-name: "arn:aws:eks:ap-south-1:680148267093:cluster/moz-health-uat1"
         egov-state-level-tenant-id: "mz"
         s3-assets-bucket: "(pg-health-egov-assets|egov-health-playground-assets)"
-        es-host: "elasticsearch-data-v1.es-cluster"
-        es-indexer-host: "http://elasticsearch-data-v1.es-cluster:9200/"
+        es-host: "esearch8-data.es-cluster-v8"
+        es-indexer-host: "http://esearch8-data.es-cluster-v8:9200/"
         flyway-locations: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa"
         kafka-brokers: "kafka-v2.kafka-cluster:9092"
         kafka-infra-brokers: "kafka-v2-infra.kafka-cluster:9092"
@@ -81,7 +81,7 @@ cluster-configs:
         egov-data-uploader: "http://egov-data-uploader:8080/"
         egov-indexer: "http://egov-indexer:8080/"
         egov-hrms: "http://egov-hrms:8080/"
-        es-client: "http://elasticsearch-data-v1.es-cluster:9200"
+        es-client: "http://esearch8-data.es-cluster-v8:9200"
         hr-masters: "http://hr-masters:8080/"
         hr-employee: "http://hr-employee:8080/"
         hr-masters-v2: "http://hr-masters-v2:8080/"
@@ -776,6 +776,27 @@ elasticsearch-data-v1:
       memory: "2Gi"
     limits:
       memory: "2Gi"
+
+esearch8-data:
+  namespace: es-cluster-v8
+  image:
+    tag: 8.5.1
+  persistence:
+    enabled: true
+    aws:
+      - volumeId: "vol-006a20b89957e0acb" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
+      - volumeId: "vol-0d0272e3eecd01160" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
+      - volumeId: "vol-0989a3146be8ca8fe" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
+
+  esJavaOpts: "-Xmx1g -Xms1g"
+  resources:
+    requests:
+      memory: "2Gi"
+    limits:
+      memory: "2Gi"
 ## es-data-v1 Azure >>>>>>>>>>>>>>>>>>>>>
 #elasticsearch-data-v1:
 #  image:
@@ -832,6 +853,28 @@ elasticsearch-master-v1:
       - volumeId: "vol-067df04ba4216ae52" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
       - volumeId: "vol-00c7afc95ec4cb9e6" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
+
+  esJavaOpts: "-Xmx448m -Xms448m"
+  resources:
+    requests:
+      memory: "896Mi"
+    limits:
+      memory: "896Mi"
+
+esearch8-master:
+  namespace: es-cluster-v8
+  replicas: 3
+  image:
+    tag: 8.5.1
+  persistence:
+    enabled: true
+    aws:
+      - volumeId: "vol-0018096316045284d" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
+      - volumeId: "vol-04301a472604418e3" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
+      - volumeId: "vol-077ef0c3589605f62" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
 
   esJavaOpts: "-Xmx448m -Xms448m"
