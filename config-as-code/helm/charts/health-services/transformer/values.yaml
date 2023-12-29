@@ -135,7 +135,10 @@ env: |
     value: "transformer-producer-household-index-v1-topic"
   - name: EGOV_LOCATION_ENDPOINT
     value: "/egov-location/location/v11/boundarys/_search"
-  
+  - name: TRANSFORMER_PRODUCER_SERVICE_INDEX_V2_TOPIC
+    value: "transformer-producer-service-index-v2-topic"
+  - name: REFERRAL_SERVICE_CHECKLIST_NAME
+    value: "SMCMozambique.REFERRAL.HEALTH_FACILITY_SUPERVISOR"
   - name: TRANSFORMER_CONSUMER_BULK_CREATE_STOCK_TOPIC
     value: "save-stock-topic"
   - name: TRANSFORMER_CONSUMER_BULK_UPDATE_STOCK_TOPIC
