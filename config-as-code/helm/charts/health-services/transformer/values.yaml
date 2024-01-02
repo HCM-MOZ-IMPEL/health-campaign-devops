@@ -107,10 +107,38 @@ env: |
     value: "/egov-mdms-service/v1/_search"
   - name: PROJECT_MDMS_MODULE
     value: "HCM-PROJECT-TYPES"
-  
+  - name: EGOV_INDIVIDUAL_HOST
+    valueFrom:
+      configMapKeyRef:
+       name: egov-service-host
+       key: individual
+  - name: EGOV_SEARCH_INDIVIDUAL_URL
+    value: "/individual/v1/_search"
+  - name: EGOV_PRODUCT_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: product
+  - name: EGOV_SEARCH_PRODUCT_VARIANT_URL
+    value: "/product/variant/v1/_search"
+  - name: TRANSFORMER_CONSUMER_SAVE_HOUSEHOLD_MEMBER_TOPIC
+    value: "save-household-member-topic"
+  - name: TRANSFORMER_CONSUMER_UPDATE_HOUSEHOLD_MEMBER_TOPIC
+    value: "update-household-member-topic"
+  - name: TRANSFORMER_PRODUCER_HOUSEHOLD_MEMBER_INDEX_V1_TOPIC
+    value: "transformer-producer-household-member-index-v1-topic"
+  - name: TRANSFORMER_CONSUMER_CREATE_HOUSEHOLD_TOPIC
+    value: "save-household-topic"
+  - name: TRANSFORMER_CONSUMER_UPDATE_HOUSEHOLD_TOPIC
+    value: "update-household-topic"
+  - name: TRANSFORMER_PRODUCER_HOUSEHOLD_INDEX_V1_TOPIC
+    value: "transformer-producer-household-index-v1-topic"
   - name: EGOV_LOCATION_ENDPOINT
     value: "/egov-location/location/v11/boundarys/_search"
-  
+  - name: TRANSFORMER_PRODUCER_SERVICE_INDEX_V2_TOPIC
+    value: "transformer-producer-service-index-v2-topic"
+  - name: REFERRAL_SERVICE_CHECKLIST_NAME
+    value: "SMCMozambique.REFERRAL.HEALTH_FACILITY_SUPERVISOR"
   - name: TRANSFORMER_CONSUMER_BULK_CREATE_STOCK_TOPIC
     value: "save-stock-topic"
   - name: TRANSFORMER_CONSUMER_BULK_UPDATE_STOCK_TOPIC
