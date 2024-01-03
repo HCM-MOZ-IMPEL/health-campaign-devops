@@ -52,10 +52,12 @@ extraEnvs:
 #    value: "2"
   - name: gateway.recover_after_data_nodes
     value: "1"
-  - name: xpack.security.enabled
-    value: "false"
-  - name: xpack.security.audit.enabled
-    value: "false"
+#  - name: xpack.security.enabled
+#    value: "false"
+#  - name: xpack.security.audit.enabled
+#    value: "false"
+
+createCert: true
 
 # Allows you to load environment variables from kubernetes secret or config map
 envFrom: []
@@ -176,9 +178,12 @@ nodeAffinity: {}
 # the same time when bootstrapping the cluster
 podManagementPolicy: "Parallel"
 
-protocol: http
+protocol: https
 httpPort: 9200
 transportPort: 9300
+
+secret:
+  enabled: true
 
 service:
   labels: {}
