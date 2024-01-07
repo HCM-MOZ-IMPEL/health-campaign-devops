@@ -17,7 +17,7 @@ initContainers: {}
 # Container Configs
 image:
   repository: "docker.elastic.co/kibana/kibana"
-  tag: 8.5.1
+  tag: 8.11.1
 replicas: "1"
 httpPort: 5601
 elasticsearchHosts: "http://esearch8-data.es-cluster-v8:9200"

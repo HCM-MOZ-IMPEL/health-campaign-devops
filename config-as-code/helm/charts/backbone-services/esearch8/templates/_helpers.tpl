@@ -18,13 +18,13 @@
 Generate certificates when the secret doesn't exist
 */}}
 {{- define "elasticsearch.gen-certs" -}}
-{{- $certs := lookup "v1" "Secret" .Release.Namespace ( printf "%s-certs" (include "name" . ) ) -}}
+{{- $certs := lookup "v1" "Secret" "es-cluster-v8" ( printf "%s-certs" (include "name" . ) ) -}}
 {{- if $certs -}}
 tls.crt: {{ index $certs.data "tls.crt" }}
 tls.key: {{ index $certs.data "tls.key" }}
 ca.crt: {{ index $certs.data "ca.crt" }}
 {{- else -}}
-{{- $altNames := list ( include "elasticsearch.masterService" . ) ( printf "%s.%s" (include "elasticsearch.masterService" .) .Release.Namespace ) ( printf "%s.%s.svc" (include "elasticsearch.masterService" .) .Release.Namespace ) -}}
+{{- $altNames := list ( include "elasticsearch.masterService" . ) ( printf "%s.es-cluster-v8" (include "elasticsearch.masterService" .) ) ( printf "%s.es-cluster-v8.svc" (include "elasticsearch.masterService" .) ) -}}
 {{- $ca := genCA "elasticsearch-ca" 365 -}}
 {{- $cert := genSignedCert ( include "elasticsearch.masterService" . ) nil $altNames 365 $ca -}}
 tls.crt: {{ $cert.Cert | toString | b64enc }}
@@ -65,7 +65,7 @@ ca.crt: {{ $ca.Cert | toString | b64enc }}
   {{- if and (contains "docker.elastic.co/elasticsearch/elasticsearch" .Values.image.repository) (not (eq $version 0)) -}}
 {{ $version }}
   {{- else -}}
-7
+8
   {{- end -}}
 {{- end -}}
 {{- end -}}
