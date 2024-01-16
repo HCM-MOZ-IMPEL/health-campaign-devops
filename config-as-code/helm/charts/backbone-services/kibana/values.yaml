@@ -63,7 +63,7 @@ protocol: http
 serverHost: "0.0.0.0"
 
 healthCheckPath: "/kibana-upgrade/app/kibana"
-serverBasePath: /kibana
+serverBasePath: /kibana-upgrade
 
 # Allows you to add any config files in /usr/share/kibana/config/
 # such as kibana.yml
