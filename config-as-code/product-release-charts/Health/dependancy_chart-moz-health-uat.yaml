@@ -10,8 +10,11 @@ modules:
       - elasticsearch-master-v1
       - esearch8-master
       - esearch8-data
+      - elasticsearch-master
+      - elasticsearch-data
       - kibana8-v1
       - kibana-v1
+      - kibana
   - name: authn-authz
     services:
       - redis

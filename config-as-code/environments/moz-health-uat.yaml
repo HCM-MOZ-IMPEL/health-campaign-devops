@@ -797,6 +797,27 @@ esearch8-data:
       memory: "2Gi"
     limits:
       memory: "2Gi"
+
+elasticsearch-data:
+  namespace: es-cluster-v8
+  image:
+    tag: 8.11.1
+  persistence:
+    enabled: true
+    aws:
+      - volumeId: "vol-006a20b89957e0acb" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
+      - volumeId: "vol-0d0272e3eecd01160" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
+      - volumeId: "vol-0989a3146be8ca8fe" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
+
+  esJavaOpts: "-Xmx1g -Xms1g"
+  resources:
+    requests:
+      memory: "2Gi"
+    limits:
+      memory: "2Gi"
 ## es-data-v1 Azure >>>>>>>>>>>>>>>>>>>>>
 #elasticsearch-data-v1:
 #  image:
@@ -863,6 +884,21 @@ elasticsearch-master-v1:
       memory: "896Mi"
 
 esearch8-master:
+  namespace: es-cluster-v8
+  replicas: 3
+  image:
+    tag: 8.11.1
+  persistence:
+    enabled: true
+    aws:
+      - volumeId: "vol-0018096316045284d" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
+      - volumeId: "vol-04301a472604418e3" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
+      - volumeId: "vol-077ef0c3589605f62" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
+
+elasticsearch-master:
   namespace: es-cluster-v8
   replicas: 3
   image:
