@@ -780,7 +780,7 @@ elasticsearch-data-v1:
 esearch8-data:
   namespace: es-cluster-v8
   image:
-    tag: 8.5.1
+    tag: 8.11.1
   persistence:
     enabled: true
     aws:
@@ -866,7 +866,7 @@ esearch8-master:
   namespace: es-cluster-v8
   replicas: 3
   image:
-    tag: 8.5.1
+    tag: 8.11.1
   persistence:
     enabled: true
     aws:
