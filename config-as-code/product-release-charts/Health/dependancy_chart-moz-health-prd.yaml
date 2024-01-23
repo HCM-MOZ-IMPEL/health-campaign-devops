@@ -29,14 +29,14 @@ modules:
       - egovio/egov-filestore:v1.2.4-72f8a8f87b-10
       - egovio/egov-localization:v1.1.3-72f8a8f87b-6
       - egovio/egov-idgen:v1.2.3-72f8a8f87b-7
-      - egovio/egov-indexer:v1.1.7-f52184e6ba-25
-      - egovio/egov-location:v1.1.5-f9271c8-7
+      - egovio/egov-indexer:master-impel-4e1c6763cf-45
+      - egovio/egov-location:master-impel-60bd931a97-6
       - egovio/egov-mdms-service:v1.3.2-72f8a8f87b-12
       - egovio/egov-notification-mail:health-digit-master-6865af2823-2
       - egovio/egov-otp:v1.2.2-72f8a8f87b-12
       - egovio/egov-persister:v1.1.5-3371bc2-5
       - egovio/egov-url-shortening:v1.1.2-1715164454-3
-      - egovio/egov-user:health-digit-dev-f2ddde9-32
+      - egovio/egov-user:health-digit-master-c7e4f3147b-7
       - egovio/user-otp:health-digit-master-dca3efde85-7
       - egovio/egov-workflow-v2:v1.2.1-df98ec3c35-2
       - egovio/report:v1.3.4-96b24b0d72-16
@@ -75,12 +75,12 @@ modules:
       - "core"
     services:
       # - egovio/facility:v1.0.0-a51bee1435-19
-      - egovio/facility:master-impel-d2baf0d40f-45
+      - egovio/facility:master-impel-82abd11612-46
       - egovio/product:master-impel-9e32e9c097-22
-      - egovio/individual:master-impel-73d2b66a68-168
-      - egovio/transformer:master-impel-3e6561a7aa-104
+      - egovio/individual:master-impel-94bad42079-183
+      - egovio/transformer:master-impel-07f75f6e89-130
       - egovio/stock:master-impel-9ebd806fe1-71
-      - egovio/household:master-impel-1ed64672a6-104
-      - egovio/project:master-impel-9ebd806fe1-177
-      - egovio/hcm-moz-impl:develop-93b909d-292
+      - egovio/household:master-impel-fc710d7583-110
+      - egovio/project:master-impel-82abd11612-195
+      - egovio/hcm-moz-impl:develop-6a0adc0-323
       - egovio/egov-mdms-create:develop-3a53c3b-3

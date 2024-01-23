@@ -1114,15 +1114,15 @@ transformer:
 hcm-moz-impl:
   replicas: 2
   heap: "-Xmx1700m -Xms1700m"
-  memory_limits: "2Gi"
-  startDate: "28/08/2023"
-  endDate: "25/11/2023"
+  memory_limits: "3Gi"
+  startDate: "01/02/2024"
+  endDate: "10/03/2024"
   cpu_limits: "250m"
   resources:
     requests:
-      memory: "2Gi"
+      memory: "3Gi"
     limits:
-      memory: "2Gi"
+      memory: "3Gi"
 
 pgadmin:
   dbUrl: "jdbc:postgresql://moz-health-prd-db.cls5uiey6qrs.af-south-1.rds.amazonaws.com:5432/mozhealthprd"
