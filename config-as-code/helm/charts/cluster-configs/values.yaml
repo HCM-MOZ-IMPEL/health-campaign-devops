@@ -146,3 +146,7 @@ cluster-configs:
     postgres:
       namespace: jenkins
       name: postgres
+
+    elastic:
+      namespace: egov
+      name: elastic
