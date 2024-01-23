@@ -167,6 +167,14 @@ ingress:
    - secretName: moz-health-uat.digit.org-tls-certs
      hosts:
        - moz-health-uat.digit.org
+#  hosts:
+#    - host: salama.digit.org
+#      paths:
+#        - path: /de3c60e0-47a4-46b3-94a5-bb15b8608bfa
+#  tls:
+#   - secretName: salama.digit.org-tls-certs
+#     hosts:
+#       - salama.digit.org
 
 readinessProbe:
   failureThreshold: 3

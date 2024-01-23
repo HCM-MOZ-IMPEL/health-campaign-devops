@@ -977,16 +977,18 @@ elasticsearch-master:
     limits:
       memory: "896Mi"
 
-#kibana:
-#  ingress:
-#    hosts:
-#      - host: salama.digit.org
-#        paths:
-#          - path: /kibana-upgrade
-#    tls:
-#      - secretName: salama.digit.org-tls-certs
-#        hosts:
-#          - salama.digit.org
+kibana:
+  healthCheckPath: "/de3c60e0-47a4-46b3-94a5-bb15b8608bfa/app/kibana"
+  serverBasePath: /de3c60e0-47a4-46b3-94a5-bb15b8608bfa
+  ingress:
+    hosts:
+      - host: salama.digit.org
+        paths:
+          - path: /de3c60e0-47a4-46b3-94a5-bb15b8608bfa
+    tls:
+      - secretName: salama.digit.org-tls-certs
+        hosts:
+          - salama.digit.org
 
 ### es-master-infra-v1 AWS >>>>>>>>>>>>>>>>>>>>
 
