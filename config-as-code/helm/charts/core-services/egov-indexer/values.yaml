@@ -65,3 +65,16 @@ env: |
       configMapKeyRef:
         name: egov-config
         key: egov-state-level-tenant-id
+  - name: EGOV_INDEXER_ES_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: elastic
+        key: username
+  - name: EGOV_INDEXER_ES_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: elastic
+        key: password
+  - name: EGOV_INFRA_INDEXER_LEGACY_VERSION
+    value: "false"
+  
