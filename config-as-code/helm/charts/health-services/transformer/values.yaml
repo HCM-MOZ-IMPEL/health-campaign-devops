@@ -192,6 +192,10 @@ env: |
     value: transformer-save-pgr-request
   - name: TRANSFORMER_PRODUCER_BULK_HOUSEHOLD_INDEX_V1_TOPIC
     value: transformer-producer-household-index-v1-topic
+  - name: TRANSFORMER_LOCALIZATIONS_MDMS_MODULE
+    value: HCM-TRANSFORMER-LOCALIZATIONS
+  - name: TRANSFORMER_CONSUMER_UPDATE_PGR_TOPIC
+    value: update-pgr-request
   - name: EGOV_HOUSEHOLD_HOST
     valueFrom:
       configMapKeyRef:
