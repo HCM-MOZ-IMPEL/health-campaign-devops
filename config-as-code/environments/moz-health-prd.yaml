@@ -855,12 +855,12 @@ elasticsearch-data:
       - volumeId: "vol-016bc0ba277198a63" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: af-south-1b            ## add your respective zone eg. af-south-1b
 
-  esJavaOpts: "-Xmx2g -Xms2g"
+  esJavaOpts: "-Xmx3500M -Xms3500M"
   resources:
     requests:
-      memory: "2.5Gi"
+      memory: "4Gi"
     limits:
-      memory: "2.5Gi"
+      memory: "4Gi"
 
 # es-v1-cluster AWS >>>>>>>>>>>>>>>>>>>>>>>>>>>>
 elasticsearch-data-infra-v1:
