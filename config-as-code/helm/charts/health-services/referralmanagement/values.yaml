@@ -185,7 +185,6 @@ env: |
     value: "update-hfreferral-bulk-topic"
   - name: REFERRALMANAGEMENT.HFREFERRAL.CONSUMER.BULK.DELETE.TOPIC
     value: "delete-hfreferral-bulk-topic"
-  
   - name: SEARCH_API_LIMIT
     value: "1000"
   - name: REFERRALMANAGEMENT.DOCUMENT.ID.VERIFICATION.REQUIRED
