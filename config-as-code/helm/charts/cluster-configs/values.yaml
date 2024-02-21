@@ -150,3 +150,7 @@ cluster-configs:
     elastic:
       namespace: egov
       name: elastic
+
+    jupyter:
+      namespace: jupyter
+      name: jupyter
