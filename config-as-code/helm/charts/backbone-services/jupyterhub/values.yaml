@@ -39,9 +39,9 @@ hub:
   config:
    Authenticator:
      admin_users:
-       - reports
+       - secrets
    DummyAuthenticator:
-     password: eGov@4321
+     password: secrets
    JupyterHub:
      authenticator_class: dummy
   service:
