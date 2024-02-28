@@ -45,15 +45,9 @@ env: |
   - name: SERVER_PORT
     value: "8080" 
   - name: SERVICES_ESINDEXER_HOST
-    valueFrom:
-      configMapKeyRef:
-        name: egov-config
-        key: es-indexer-host
+    value: http://elasticsearch-data-v1.es-cluster:9200/
   - name: SERVICES_ESINDEXER_HOST_NAME
-    valueFrom:
-      configMapKeyRef:
-        name: egov-config
-        key: es-indexer-host  
+    value: http://elasticsearch-data-v1.es-cluster:9200/
   - name: SERVICES_ESINDEXER_HOST_PORT
     value: "9200"  
   - name: ES_INDEX_NAME
