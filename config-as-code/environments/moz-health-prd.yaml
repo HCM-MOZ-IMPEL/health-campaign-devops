@@ -15,6 +15,7 @@ cluster-configs:
         db-host: "moz-health-prd-db.cls5uiey6qrs.af-south-1.rds.amazonaws.com" ## Add db-host name eg: egov-demo.database.azure.com
         db-name: "mozhealthprd" ## Add db-name
         db-url: "jdbc:postgresql://moz-health-prd-db.cls5uiey6qrs.af-south-1.rds.amazonaws.com:5432/mozhealthprd" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
+        db-read-url: "jdbc:postgresql://moz-health-prd-replica-db.cls5uiey6qrs.af-south-1.rds.amazonaws.com:5432/mozhealthprd" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
         domain: "salama.digit.org" ## Add your Domain Name
         egov-services-fqdn-name: "https://salama.digit.org/" ## Add your Domain Name
         aws-cluster-ip: "https://2DF082542B59C28B32513742FE7BD8C6.sk1.af-south-1.eks.amazonaws.com"
@@ -147,9 +148,12 @@ cluster-configs:
         health-registration-service: "http://health-registration-service:8080/"
         health-delivery-service: "http://health-delivery-service:8080/"
         project: "http://project:8080/"
+        project-referral: "http://project-referral:8080/"
         product: "http://product:8080/"
         household: "http://household:8080/"
+        household-referral: "http://household-referral:8080/"
         individual: "http://individual:8080/"
+        individual-referral: "http://individual-referral:8080/"
         stock: "http://stock:8080/"
         facility: "http://facility:8080/"
         hcm-moz-impl: "http://hcm-moz-impl:8080/"

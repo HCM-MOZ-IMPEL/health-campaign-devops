@@ -15,6 +15,7 @@ cluster-configs:
         db-host: "moz-health-uat1-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com" ## Add db-host name eg: egov-demo.database.azure.com
         db-name: "mozhealthuat" ## Add db-name
         db-url: "jdbc:postgresql://moz-health-uat1-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com:5432/mozhealthuat" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
+        db-read-url: "jdbc:postgresql://read-moz-health-uat1-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com:5432/mozhealthuat" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
         domain: "moz-health-uat.digit.org" ## Add your Domain Name
         egov-services-fqdn-name: "https://moz-health-uat.digit.org/" ## Add your Domain Name
         aws-cluster-ip: "https://E17032D622F099B2A0B72B508FD7E7AE.gr7.ap-south-1.eks.amazonaws.com"
@@ -145,9 +146,12 @@ cluster-configs:
         health-registration-service: "http://health-registration-service:8080/"
         health-delivery-service: "http://health-delivery-service:8080/"
         project: "http://project:8080/"
+        project-referral: "http://project-referral:8080/"
         product: "http://product:8080/"
         household: "http://household:8080/"
+        household-referral: "http://household-referral:8080/"
         individual: "http://individual:8080/"
+        individual-referral: "http://individual-referral:8080/"
         stock: "http://stock:8080/"
         facility: "http://facility:8080/"
         hcm-moz-impl: "http://hcm-moz-impl:8080/"
@@ -989,7 +993,7 @@ grafana:
       branch: "DEMO" #REPLACE with config repo branch name
   dashboardsFolder: /work-dir/health-campaign-config/monitoring-dashboards    
 project:
-  replicas: 2
+  replicas: 1
   heap: "-Xmx2g -Xms2g"
   memory_limits: "2Gi"
   cpu_limits: "250m"
