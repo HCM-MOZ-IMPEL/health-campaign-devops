@@ -169,6 +169,18 @@ env: |
     value: "update-referral-bulk-topic"
   - name: REFERRALMANAGEMENT.REFERRAL.CONSUMER.BULK.DELETE.TOPIC
     value: "delete-referral-bulk-topic"
+  - name: REFERRALMANAGEMENT.HFREFERRAL.KAFKA.CREATE.TOPIC
+    value: "save-hfreferral-topic"
+  - name: REFERRALMANAGEMENT.HFREFERRAL.KAFKA.UPDATE.TOPIC
+    value: "update-hfreferral-topic"
+  - name: REFERRALMANAGEMENT.HFREFERRAL.KAFKA.DELETE.TOPIC
+    value: "delete-hfreferral-topic"
+  - name: REFERRALMANAGEMENT.HFREFERRAL.CONSUMER.BULK.CREATE.TOPIC
+    value: "save-hfreferral-bulk-topic"
+  - name: REFERRALMANAGEMENT.HFREFERRAL.CONSUMER.BULK.UPDATE.TOPIC
+    value: "update-hfreferral-bulk-topic"
+  - name: REFERRALMANAGEMENT.HFREFERRAL.CONSUMER.BULK.DELETE.TOPIC
+    value: "delete-hfreferral-bulk-topic"
   - name: SEARCH_API_LIMIT
     value: "1000"
   - name: REFERRALMANAGEMENT.DOCUMENT.ID.VERIFICATION.REQUIRED
