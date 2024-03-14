@@ -80,8 +80,8 @@ modules:
       - egovio/individual:master-impel-94bad42079-183
       - egovio/transformer:master-impel-1a5c631f82-164
       - egovio/stock:master-impel-9ebd806fe1-71
-      - egovio/household:master-impel-fc710d7583-110
+      - egovio/household:hh-address-change-899fa0cb27-121
       - egovio/project:master-impel-82abd11612-195
       - egovio/hcm-moz-impl:develop-869b688-347
       - egovio/egov-mdms-create:develop-3a53c3b-3
-      - egovio/referralmanagement:master-impel-4d19e9e614-97
+      - egovio/referralmanagement:master-impel-c3367d8067-116

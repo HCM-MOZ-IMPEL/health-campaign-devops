@@ -15,7 +15,6 @@ cluster-configs:
         db-host: "moz-health-uat1-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com" ## Add db-host name eg: egov-demo.database.azure.com
         db-name: "mozhealthuat" ## Add db-name
         db-url: "jdbc:postgresql://moz-health-uat1-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com:5432/mozhealthuat" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
-        db-read-url: "jdbc:postgresql://read-moz-health-uat1-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com:5432/mozhealthuat" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
         domain: "moz-health-uat.digit.org" ## Add your Domain Name
         egov-services-fqdn-name: "https://moz-health-uat.digit.org/" ## Add your Domain Name
         aws-cluster-ip: "https://E17032D622F099B2A0B72B508FD7E7AE.gr7.ap-south-1.eks.amazonaws.com"
@@ -26,8 +25,8 @@ cluster-configs:
         es-host: "elasticsearch-data.es-cluster-v8"
         es-indexer-host: "https://elasticsearch-data.es-cluster-v8:9200/"
         flyway-locations: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa"
-        kafka-brokers: "b-1.mozhealthuat1.36pa8c.c2.kafka.ap-south-1.amazonaws.com:9092,b-3.mozhealthuat1.36pa8c.c2.kafka.ap-south-1.amazonaws.com:9092,b-2.mozhealthuat1.36pa8c.c2.kafka.ap-south-1.amazonaws.com:9092"
-        kafka-infra-brokers: "b-1.mozhealthuat1.36pa8c.c2.kafka.ap-south-1.amazonaws.com:9092,b-3.mozhealthuat1.36pa8c.c2.kafka.ap-south-1.amazonaws.com:9092,b-2.mozhealthuat1.36pa8c.c2.kafka.ap-south-1.amazonaws.com:9092"
+        kafka-brokers: "kafka-v2.kafka-cluster:9092"
+        kafka-infra-brokers: "kafka-v2.kafka-cluster:9092"
         logging-level-jdbc: "DEBUG"
         mobile-validation-workaround: "true"
         serializers-timezone-in-ist: "true"
@@ -146,12 +145,9 @@ cluster-configs:
         health-registration-service: "http://health-registration-service:8080/"
         health-delivery-service: "http://health-delivery-service:8080/"
         project: "http://project:8080/"
-        project-referral: "http://project-referral:8080/"
         product: "http://product:8080/"
         household: "http://household:8080/"
-        household-referral: "http://household-referral:8080/"
         individual: "http://individual:8080/"
-        individual-referral: "http://individual-referral:8080/"
         stock: "http://stock:8080/"
         facility: "http://facility:8080/"
         hcm-moz-impl: "http://hcm-moz-impl:8080/"
@@ -781,27 +777,6 @@ elasticsearch-data-v1:
     limits:
       memory: "2Gi"
 
-esearch8-data:
-  namespace: es-cluster-v8
-  image:
-    tag: 8.11.1
-  persistence:
-    enabled: true
-    aws:
-      - volumeId: "vol-006a20b89957e0acb" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-0d0272e3eecd01160" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-0989a3146be8ca8fe" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-
-  esJavaOpts: "-Xmx1g -Xms1g"
-  resources:
-    requests:
-      memory: "2Gi"
-    limits:
-      memory: "2Gi"
-
 elasticsearch-data:
   namespace: es-cluster-v8
   image:
@@ -886,21 +861,6 @@ elasticsearch-master-v1:
       memory: "896Mi"
     limits:
       memory: "896Mi"
-
-esearch8-master:
-  namespace: es-cluster-v8
-  replicas: 3
-  image:
-    tag: 8.11.1
-  persistence:
-    enabled: true
-    aws:
-      - volumeId: "vol-0018096316045284d" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-04301a472604418e3" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-077ef0c3589605f62" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
 
 elasticsearch-master:
   namespace: es-cluster-v8
