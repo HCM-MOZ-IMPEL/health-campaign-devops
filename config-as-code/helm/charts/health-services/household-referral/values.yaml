@@ -7,7 +7,7 @@ labels:
 ingress:
   enabled: true
   zuul: true
-  context: "household"
+  context: "household-referral"
 
 # Init Containers Configs
 initContainers:
@@ -23,8 +23,8 @@ image:
 replicas: "1"
 healthChecks:
   enabled: true
-  livenessProbePath: "/household/health"
-  readinessProbePath: "/household/health"
+  livenessProbePath: "/household-referral/health"
+  readinessProbePath: "/household-referral/health"
 appType: "java-spring"
 tracing-enabled: true
 heap: "-Xmx1024m -Xms192m"
@@ -36,6 +36,8 @@ indexer-yml-path: "file:///work-dir/health-campaign-config/egov-persister/househ
 env: |
   - name: SPRING_KAFKA_CONSUMER_GROUP_ID
     value: health-household
+  - name: SERVER_SERVLET_CONTEXT_PATH
+    value: /household-referral
   - name: SPRING_KAFKA_PRODUCER_KEY_SERIALIZER
     value: org.apache.kafka.common.serialization.StringSerializer
   {{- if index .Values "global" "tracer-errors-provideexceptionindetails" }}
