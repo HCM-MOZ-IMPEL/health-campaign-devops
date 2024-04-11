@@ -58,7 +58,7 @@ modules:
     services:
       - egovio/citizen:v1.8.0-b078fa041d-97
       - egovio/employee:v1.8.0-2ac8314b2f-116
-      - egovio/digit-ui:master-impl-47f8f3e6be-152
+      - egovio/digit-ui:master-impl-8fa035ad79-160
   - name: m_dss   #dss
     dependencies:
       - "frontend"
@@ -78,7 +78,7 @@ modules:
       - egovio/facility:master-impel-82abd11612-46
       - egovio/product:master-impel-9e32e9c097-22
       - egovio/individual:master-impel-94bad42079-183
-      - egovio/transformer:master-impel-1a5c631f82-164
+      - egovio/transformer:master-impel-1c43e0eeaa-179
       - egovio/stock:master-impel-9ebd806fe1-71
       - egovio/household:hh-address-change-899fa0cb27-121
       - egovio/project:master-impel-82abd11612-195
