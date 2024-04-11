@@ -1105,6 +1105,16 @@ project:
       memory: "2Gi"
     limits:
       memory: "2Gi"
+project-referral:
+  replicas: 2
+  heap: "-Xmx2g -Xms2g"
+  memory_limits: "2Gi"
+  cpu_limits: "250m"
+  resources:
+    requests:
+      memory: "2Gi"
+    limits:
+      memory: "2Gi"
 transformer:
   replicas: 2
   heap: "-Xmx1536m -Xms1536m"
