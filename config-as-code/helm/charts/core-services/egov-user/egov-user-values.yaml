@@ -49,7 +49,10 @@ env: |
   - name: SERVER_PORT
     value: "8080"
   - name: SPRING_REDIS_HOST
-    value: redis.backbone
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: redis-host
   - name: SPRING_REDIS_PORT
     value: "6379"
   - name: EGOV_OTP_HOST

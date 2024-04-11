@@ -16,6 +16,7 @@ cluster-configs:
         db-name: "mozhealthuat" ## Add db-name
         db-url: "jdbc:postgresql://moz-health-uat1-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com:5432/mozhealthuat" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
         domain: "moz-health-uat.digit.org" ## Add your Domain Name
+        redis-host: "redis-nc-uat-001.9bp7mc.0001.aps1.cache.amazonaws.com"
         egov-services-fqdn-name: "https://moz-health-uat.digit.org/" ## Add your Domain Name
         aws-cluster-ip: "https://E17032D622F099B2A0B72B508FD7E7AE.gr7.ap-south-1.eks.amazonaws.com"
         aws-region: "ap-south-1"

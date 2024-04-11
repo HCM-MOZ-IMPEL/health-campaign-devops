@@ -65,7 +65,10 @@ env: |
   - name: IDGEN.PROJECT.BENEFICIARY.ID.FORMAT
     value: "project.beneficiary.id"
   - name: SPRING_REDIS_HOST
-    value: redis.backbone
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: redis-host
   - name: SPRING_REDIS_PORT
     value: "6379"
   - name: SPRING_CACHE_TYPE
