@@ -5,7 +5,7 @@ global:
 cluster-configs:
   namespaces:
     create: true
-    values: [ backbone, cert-manager, egov, es-cluster, kafka-cluster, logging, monitoring, playground, zookeeper-cluster ]
+    values: [ backbone, cert-manager, egov, es-cluster, kafka-cluster, logging, monitoring, playground, zookeeper-cluster, es-cluster-v8 ]
 
   root-ingress:
     cert-issuer: letsencrypt-prod
@@ -830,6 +830,49 @@ elasticsearch-master-v1:
       - volumeId: "vol-0d92e243c04440ddd" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
       - volumeId: "vol-0b9c0d0e7b8de503e" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
+
+  esJavaOpts: "-Xmx448m -Xms448m"
+  resources:
+    requests:
+      memory: "896Mi"
+    limits:
+      memory: "896Mi"
+
+elasticsearch-data:
+  namespace: es-cluster-v8
+  image:
+    tag: 8.11.1
+  persistence:
+    enabled: true
+    aws:
+      - volumeId: "vol-006a20b89957e0acb" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
+      - volumeId: "vol-0d0272e3eecd01160" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
+      - volumeId: "vol-0989a3146be8ca8fe" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
+
+  esJavaOpts: "-Xmx1g -Xms1g"
+  resources:
+    requests:
+      memory: "2Gi"
+    limits:
+      memory: "2Gi"
+
+elasticsearch-master:
+  namespace: es-cluster-v8
+  replicas: 3
+  image:
+    tag: 8.11.1
+  persistence:
+    enabled: true
+    aws:
+      - volumeId: "vol-04d8ed941c11c5b84" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
+      - volumeId: "vol-084fbbe013c5005e0" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
+      - volumeId: "vol-0518f7cbe62ac7420" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
 
   esJavaOpts: "-Xmx448m -Xms448m"
