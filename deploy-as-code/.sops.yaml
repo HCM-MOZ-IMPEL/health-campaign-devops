@@ -4,6 +4,8 @@ creation_rules:
     kms: 'arn:aws:kms:ap-south-1:680148267093:key/ec32f7c0-a68c-4a8c-a35c-2ae00c0e93d2'
   - path: environments/moz-health-qa-secrets.yaml
     kms: 'arn:aws:kms:ap-south-1:680148267093:key/ec32f7c0-a68c-4a8c-a35c-2ae00c0e93d2'
+  - path: environments/unified-moz-health-qa-training-secrets.yaml
+    kms: 'arn:aws:kms:ap-south-1:680148267093:key/ec32f7c0-a68c-4a8c-a35c-2ae00c0e93d2'
   - path: environments/moz-health-uat-secrets.yaml
     kms: 'arn:aws:kms:ap-south-1:680148267093:key/ec32f7c0-a68c-4a8c-a35c-2ae00c0e93d2'
   - path: environments/moz-health-prd-secrets.yaml
