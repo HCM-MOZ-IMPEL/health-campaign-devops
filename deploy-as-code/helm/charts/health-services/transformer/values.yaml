@@ -61,26 +61,26 @@ env: |
   {{- end }}
   
   - name: TRANSFORMER_CONSUMER_BULK_CREATE_PROJECT_TASK_TOPIC
-    value: "save-project-task-topic"
+    value: "save-project-task-training-topic"
   - name: TRANSFORMER_CONSUMER_BULK_UPDATE_PROJECT_TASK_TOPIC
-    value: "update-project-task-topic"
+    value: "update-project-task-training-topic"
   - name: TRANSFORMER_PRODUCER_BULK_PROJECT_TASK_INDEX_V1_TOPIC
-    value: "transformer-producer-bulk-project-task-index-v1-topic"
+    value: "transformer-producer-bulk-project-task-index-v1-training-topic"
   
   - name: TRANSFORMER_CONSUMER_BULK_CREATE_PROJECT_STAFF_TOPIC
-    value: "save-project-staff-topic"
+    value: "save-project-staff-training-topic"
   - name: TRANSFORMER_CONSUMER_BULK_UPDATE_PROJECT_STAFF_TOPIC
-    value: "update-project-staff-topic"
+    value: "update-project-staff-training-topic"
   - name: TRANSFORMER_PRODUCER_BULK_PROJECT_STAFF_INDEX_V1_TOPIC
-    value: "transformer-producer-bulk-project-staff-index-v1-topic"
+    value: "transformer-producer-bulk-project-staff-index-v1-training-topic"
   
   - name: TRANSFORMER_PRODUCER_BULK_PROJECT_INDEX_V1_TOPIC
-    value: "transformer-producer-bulk-project-index-v1-topic"
+    value: "transformer-producer-bulk-project-index-v1-training-topic"
   - name: TRANSFORMER_CONSUMER_CREATE_PROJECT_TOPIC
-    value: "save-project"
+    value: "save-project-training"
 
   - name: TRANSFORMER_CONSUMER_UPDATE_PROJECT_TOPIC
-    value: "update-project"
+    value: "update-project-training"
   - name: EGOV_SERVICEDEFINITION_HOST
     valueFrom:
       configMapKeyRef:
@@ -122,29 +122,29 @@ env: |
   - name: EGOV_SEARCH_PRODUCT_VARIANT_URL
     value: "/product/variant/v1/_search"
   - name: TRANSFORMER_CONSUMER_SAVE_HOUSEHOLD_MEMBER_TOPIC
-    value: "save-household-member-topic"
+    value: "save-household-member-training-topic"
   - name: TRANSFORMER_CONSUMER_UPDATE_HOUSEHOLD_MEMBER_TOPIC
-    value: "update-household-member-topic"
+    value: "update-household-member-training-topic"
   - name: TRANSFORMER_PRODUCER_HOUSEHOLD_MEMBER_INDEX_V1_TOPIC
-    value: "transformer-producer-household-member-index-v1-topic"
+    value: "transformer-producer-household-member-index-v1-training-topic"
   - name: TRANSFORMER_CONSUMER_CREATE_HOUSEHOLD_TOPIC
-    value: "save-household-topic"
+    value: "save-household-training-topic"
   - name: TRANSFORMER_CONSUMER_UPDATE_HOUSEHOLD_TOPIC
-    value: "update-household-topic"
+    value: "update-household-training-topic"
   - name: TRANSFORMER_PRODUCER_HOUSEHOLD_INDEX_V1_TOPIC
-    value: "transformer-producer-household-index-v1-topic"
+    value: "transformer-producer-household-index-v1-training-topic"
   - name: EGOV_LOCATION_ENDPOINT
     value: "/egov-location/location/v11/boundarys/_search"
   - name: TRANSFORMER_PRODUCER_SERVICE_INDEX_V2_TOPIC
-    value: "transformer-producer-service-index-v2-topic"
+    value: "transformer-producer-service-index-v2-training-topic"
   - name: REFERRAL_SERVICE_CHECKLIST_NAME
     value: "SMCMozambique.REFERRAL.HEALTH_FACILITY_SUPERVISOR"
   - name: TRANSFORMER_CONSUMER_BULK_CREATE_STOCK_TOPIC
-    value: "save-stock-topic"
+    value: "save-stock-training-topic"
   - name: TRANSFORMER_CONSUMER_BULK_UPDATE_STOCK_TOPIC
-    value: "update-stock-topic"
+    value: "update-stock-training-topic"
   - name: TRANSFORMER_PRODUCER_BULK_STOCK_INDEX_V1_TOPIC
-    value: "transformer-producer-bulk-stock-index-v1-topic"
+    value: "transformer-producer-bulk-stock-index-v1-training-topic"
   - name: EGOV_FACILITY_HOST
     valueFrom:
       configMapKeyRef:
@@ -153,9 +153,13 @@ env: |
   - name: EGOV_SEARCH_FACILITY_URL
     value: "/facility/v1/_search"
   - name: TRANSFORMER_CONSUMER_CREATE_FACILITY_TOPIC
-    value: "save-facility-topic"
+    value: "save-facility-training-topic"
   - name: TRANSFORMER_CONSUMER_UPDATE_FACILITY_TOPIC
-    value: "update-facility-topic"
+    value: "update-facility-training-topic"
+  - name: TRANSFORMER_CONSUMER_BULK_CREATE_FACILITY_TOPIC
+    value: "save-facility-training-topic"
+  - name: TRANSFORMER_CONSUMER_BULK_UPDATE_FACILITY_TOPIC
+    value: "update-facility-training-topic"  
   - name: BOUNDARY_LABEL_NAME_PROVINCE
     value: "Provincia"
   - name: BOUNDARY_LABEL_NAME_DISTRICT
@@ -169,33 +173,47 @@ env: |
   - name: EGOV_SEARCH_SERVICEDEFINITION_URL
     value: "/service-request/service/definition/v1/_search"
   - name: TRANSFORMER_CONSUMER_CREATE_SERVICE_TOPIC
-    value: "save-service"
+    value: "save-service-training"
   - name: TRANSFORMER_PRODUCER_SERVICE_TASK_INDEX_V1_TOPIC
-    value: "transformer-producer-service-request-index-v1-topic"
+    value: "transformer-producer-service-request-index-v1-training-topic"
   - name: TRANSFORMER_CONSUMER_CREATE_REFERRAL_TOPIC
-    value: save-referral-topic
+    value: save-referral-training-topic
   - name: TRANSFORMER_CONSUMER_UPDATE_REFERRAL_TOPIC
-    value: update-referral-topic
+    value: update-referral-training-topic
   - name: TRANSFORMER_PRODUCER_REFERRAL_INDEX_V1_TOPIC
-    value: transformer-producer-referral-index-v1-topic
+    value: transformer-producer-referral-index-v1-training-topic
   - name: EGOV_SEARCH_PROJECT_TASK_URL
     value: /project/task/v1/_search
   - name: TRANSFORMER_CONSUMER_CREATE_SIDE_EFFECT_TOPIC
-    value: save-side-effect-topic
+    value: save-side-effect-training-topic
   - name: TRANSFORMER_CONSUMER_UPDATE_SIDE_EFFECT_TOPIC
-    value: update-side-effect-topic
+    value: update-side-effect-training-topic
   - name: TRANSFORMER_PRODUCER_SIDE_EFFECT_INDEX_V1_TOPIC
-    value: transformer-producer-side-effect-index-v1-topic
+    value: transformer-producer-side-effect-index-v1-training-topic
   - name: TRANSFORMER_CONSUMER_CREATE_PGR_TOPIC
-    value: save-pgr-request
+    value: save-pgr-request-training
   - name: TRANSFORMER_PRODUCER_CREATE_PGR_TOPIC
-    value: transformer-save-pgr-request
+    value: transformer-save-pgr-request-training
   - name: TRANSFORMER_PRODUCER_BULK_HOUSEHOLD_INDEX_V1_TOPIC
     value: transformer-producer-household-index-v1-topic
-  - name: TRANSFORMER_LOCALIZATIONS_MDMS_MODULE
+  - name: TRANSFORMER_CONSUMER_STOCK_RECONCILIATION_CREATE_TOPIC
+    value: save-stock-reconciliation-training-topic
+  - name: TRANSFORMER_CONSUMER_STOCK_RECONCILIATION_UPDATE_TOPIC
+    value: update-stock-reconciliation-topic
+  - name: TRANSFORMER_PRODUCER_STOCK_RECONCILIATION_INDEX_V1_TOPIC
+    value: transformer-producer-stock-recon-index-v1-training-topic
+  - name: TRANSFORMER_LOCALIZATIONS_MDMS_MODULEX
     value: HCM-TRANSFORMER-LOCALIZATIONS
   - name: TRANSFORMER_CONSUMER_UPDATE_PGR_TOPIC
-    value: update-pgr-request
+    value: update-pgr-request-training
+  - name: TRANSFORMER_CONSUMER_SAVE_ATTENDANCE_LOG_TOPIC
+    value: save-attendance-log-training
+  - name: TRANSFORMER_CONSUMER_UPDATE_ATTENDANCE_LOG_TOPIC
+    value: update-attendance-log-training
+  - name: TRANSFORMER_PRODUCER_ATTENDANCE_LOG_INDEX_V1_TOPIC
+    value: transformer-save-attendance-log-training
+  - name: TRANSFORMER_PRODUCER_ATTENDANCE_REGISTER_INDEX_V1_TOPIC
+    value: transformer-save-attendance-register-training
   - name: EGOV_HOUSEHOLD_HOST
     valueFrom:
       configMapKeyRef:

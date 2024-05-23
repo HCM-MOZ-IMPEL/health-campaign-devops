@@ -117,11 +117,13 @@ env: |
   - name: SPRING_KAFKA_PRODUCER_VALUE_SERIALIZER
     value: org.springframework.kafka.support.serializer.JsonSerializer
   - name: KAFKA_TOPICS_SAVE_SERVICE
-    value: save-hrms-employee
+    value: save-hrms-employee-training
   - name: KAFKA_TOPICS_UPDATE_SERVICE
-    value: update-hrms-employee
+    value: update-hrms-employee-training
   - name: KAFKA_TOPICS_NOTIFICATION_SMS
     value: egov.core.notification.sms
+  - name: KAFKA_TOPICS_HRMS_UPDATEDATA
+    value: egov-hrms-update-training
   - name: JAVA_OPTS
     value: {{ index .Values "heap" | quote }}
   - name: SERVER_PORT

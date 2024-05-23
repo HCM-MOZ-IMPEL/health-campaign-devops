@@ -90,25 +90,33 @@ env: |
   - name: SPRING_CACHE_AUTOEXPIRY
     value: "true"
   - name: DHIS2_RECORD_KAFKA_CREATE_TOPIC
-    value: create-dhis2-record
+    value: create-dhis2-record-training
   - name: DHIS2_RECORD_KAFKA_UPDATE_TOPIC
-    value: update-dhis2-record
+    value: update-dhis2-record-training
   - name: DHIS2_DIGIT_MAPPING_KAFKA_CREATE_TOPIC
-    value: create-dhis2-digit-mapping
+    value: create-dhis2-digit-mapping-training
   - name: DHIS2_DIGIT_MAPPING_KAFKA_UPDATE_TOPIC
-    value: update-dhis2-digit-mapping
+    value: update-dhis2-digit-mapping-training
   - name: BOUNDARY_DATA_KAFKA_CREATE_TOPIC
-    value: create-boundary-data
+    value: create-boundary-data-training
   - name: DHIS2_RECORD_DEFAULT_OFFSET
     value: "0"
+  - name: DIGIT_RECORD_KAFKA_CREATE_TOPIC
+    value: create-digit-record-training
+  - name: DIGIT_RECORD_KAFKA_UPDATE_TOPIC
+    value: update-digit-record-training
+  - name: DIGIT_DHIS2_MAPPING_KAFKA_CREATE_TOPIC
+    value: create-digit-dhis2-mapping-training
+  - name: DIGIT_DHIS2_MAPPING_KAFKA_UPDATE_TOPIC
+    value: update-digit-dhis2-mapping-training  
   - name: DHIS2_RECORD_DEFAULT_LIMIT
     value: "10"
   - name: DHIS2_RECORD_SEARCH_MAX_LIMIT
     value: "50"
   - name: DHIS2_JOB_KAFKA_CREATE_TOPIC
-    value: create-dhis2-job
+    value: create-dhis2-job-training
   - name: DHIS2_JOB_KAFKA_UPDATE_TOPIC
-    value: update-dhis2-job
+    value: update-dhis2-job-training
   - name: DHIS2_JOB_DEFAULT_OFFSET
     value: "0"
   - name: DHIS2_JOB_DEFAULT_LIMIT
@@ -282,11 +290,13 @@ env: |
   - name: EGOV_HOUSEHOLD_MEMBER_UPDATE_PATH
     value: /household/member/v1/bulk/_update
   - name: EGOV_HCM_HOUSEHOLD_INDIVIDUAL_UPDATE_TOPIC
-    value: update-individual-topic
+    value: update-individual-training-topic
+  - name: EGOV_HCM_PROJECT_TASK_DELETE_TOPIC
+    value: t1
   - name: EGOV_HCM_PROJECT_TASK_UPDATE_TOPIC
-    value: update-project-task-topic
+    value: update-project-task-training-topic
   - name: EGOV_HCM_PROJECT_TASK_CREATE_TOPIC
-    value: save-project-task-topic
+    value: save-project-task-training-topic
   - name: EGOV_HCM_PROJECT_BENEFICIARY_UPDATE_TOPIC
     value: update-project-beneficiary-topic
   - name: EGOV_HCM_PROJECT_BENEFICIARY_CREATE_TOPIC
@@ -303,8 +313,20 @@ env: |
     value: update-individual-topic
   - name: EGOV_HCM_INDIVIDUAL_CREATE_TOPIC
     value: save-individual-topic
+  - name: EGOV_HCM_SERVICE_TASK_UPDATE_TOPIC
+    value: update-service-training
+  - name: EGOV_HCM_SERVICE_TASK_CREATE_TOPIC
+    value: save-service-training
+  - name: EGOV_HCM_SERVICE_TASK_DELETE_TOPIC
+    value: t2
+  - name: EGOV_HCM_STOCK_UPDATE_TOPIC
+    value: update-stock-topic-training
+  - name: EGOV_HCM_STOCK_CREATE_TOPIC
+    value: save-stock-topic-training
+  - name: KAFKA_TOPICS_RECEIPT_CREATE
+    value: dss-collection-training
   - name: BOUNDARY_DATA_KAFKA_CREATE_TOPIC_CSV
-    value: create-boundaryCSV-data
+    value: create-boundaryCSV-data-training
   - name: EGOV_MDMS_PROJECT_MASTER_NAME
     value: projectTypes
   - name: EGOV_MDMS_PROJECT_MODULE_NAME
