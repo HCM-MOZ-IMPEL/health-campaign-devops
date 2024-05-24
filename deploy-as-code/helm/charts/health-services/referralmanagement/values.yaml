@@ -59,10 +59,7 @@ env: |
   - name: REFERRALMANAGEMENT.REFERRAL.IDGEN.ID.FORMAT
     value: "referralmanagement.referral.id"
   - name: SPRING_REDIS_HOST
-    valueFrom:
-      configMapKeyRef:
-        name: egov-config
-        key: redis-host
+    value: redis.backbone
   - name: SPRING_REDIS_PORT
     value: "6379"
   - name: SPRING_CACHE_TYPE
