@@ -34,5 +34,13 @@ env: |
     value: {{ index .Values "java-args" | quote }}
   - name: SERVER_PORT
     value: "8080"
+  - name: KAFKA_TOPICS_CREATE_MESSAGE
+    value: "egov-message-create-training"
+  - name: TRACER_ERRORSTOPIC
+    value: "egov-persister-deadletter-training"
+  - name: AUDIT_PERSIST_KAFKA_TOPIC
+    value: "audit-create-training"
+  - name: AUDIT_GENERATE_KAFKA_TOPIC
+    value: "process-audit-records-training"
   - name: JAEGER_SAMPLER_PARAM
     value: "1"

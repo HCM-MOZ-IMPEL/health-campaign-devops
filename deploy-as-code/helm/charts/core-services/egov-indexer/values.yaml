@@ -60,6 +60,40 @@ env: |
     value: "false"  
   - name: MANAGEMENT_SECURITY_ENABLED
     value: "false"
+  - name: EGOV_INDEXER_DSS_COLLECTIONINDEX_TOPIC
+    value: "dss-collection-update-training"
+  - name: EGOV_INDEXER_PERSISTER_CREATE_TOPIC
+    value: "save-index-jobs-training"  
+  - name: EGOV_INDEXER_PERSISTER_UPDATE_TOPIC
+    value: "update-index-jobs-training"
+  - name: EGOV_INDEXER_PGR_CREATE_TOPIC_NAME
+    value: "save-pgr-index-service-training"
+  - name: EGOV_INDEXER_PGR_UPDATE_TOPIC_NAME
+    value: "update-pgr-index-service-training"  
+  - name: EGOV_INDEXER_PGR_LEGACYINDEX_TOPIC_NAME
+    value: "pgr-service-legacyindex-training"
+
+  - name: PGR_CREATE_TOPIC_NAME
+    value: "stateb-save-pgr-request-training"
+  - name: PGR_UPDATE_TOPIC_NAME
+    value: "stateb-update-pgr-request-training"  
+  - name: PGR_LEGACY_TOPIC_NAME
+    value: "pgr-services-legacyIndex-training"
+  - name: PGR_BATCH_CREATE_TOPIC_NAME
+    value: "stateb-save-pgr-request-batch-training"
+  - name: EGOV_INDEXER_PT_CREATE_TOPIC_NAME
+    value: "save-pt-property-training"  
+  - name: EGOV_INDEXER_PT_UPDATE_TOPIC_NAME
+    value: "update-pt-property-training"  
+
+  - name: EGOV_INDEXER_PT_LEGACYINDEX_TOPIC_NAME
+    value: "pt-property-legacyindex-training"
+  - name: EGOV_INDEXER_BPA_CREATE_TOPIC_NAME
+    value: "save-bpa-buildingplan-training"
+  - name: EGOV_INDEXER_BPA_UPDATE_TOPIC_NAME
+    value: "update-bpa-buildingplan-training"  
+  - name: EGOV_INDEXER_BPA_UPDATE_WORKFLOW_TOPIC_NAME
+    value: "update-bpa-workflow-training" 
   - name: EGOV_STATELEVEL_TENANTID
     valueFrom:
       configMapKeyRef:

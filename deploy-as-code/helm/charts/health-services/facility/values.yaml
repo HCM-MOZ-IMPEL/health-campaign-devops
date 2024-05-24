@@ -85,16 +85,18 @@ env: |
   - name: TRACER_OPENTRACING_ENABLED
     value: "true" 
   {{- end }}
-  
+
+  - name: KAFKA.TOPICS.CONSUMER
+    value: "facility-consumer-topic-training"
   - name: FACILITY.KAFKA.CREATE.TOPIC
-    value: "save-facility-topic"
+    value: "save-facility-training-topic"
   - name: FACILITY.KAFKA.UPDATE.TOPIC
-    value: "update-facility-topic"
+    value: "update-facility-training-topic"
   - name: FACILITY.KAFKA.DELETE.TOPIC
-    value: "delete-facility-topic"
+    value: "delete-facility-training-topic"
   - name: FACILITY.CONSUMER.BULK.DELETE.TOPIC
-    value: "delete-facility-bulk-topic"
+    value: "delete-facility-bulk-training-topic"
   - name: FACILITY.CONSUMER.BULK.CREATE.TOPIC
-    value: "create-facility-bulk-topic"
+    value: "create-facility-bulk-training-topic"
   - name: FACILITY.CONSUMER.BULK.UPDATE.TOPIC
-    value: "update-facility-bulk-topic"
+    value: "update-facility-bulk-training-topic"
