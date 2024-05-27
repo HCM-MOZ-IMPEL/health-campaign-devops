@@ -10,7 +10,7 @@ spec:
     kind: Deployment
     name: audit-service
   minReplicas: 1
-  maxReplicas: 12
+  maxReplicas: 2
   metrics:
   - type: Resource
     resource:
@@ -36,8 +36,8 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: transformer
-  minReplicas: 2
-  maxReplicas: 12
+  minReplicas: 3
+  maxReplicas: 5
   metrics:
   - type: Resource
     resource:
@@ -55,6 +55,32 @@ spec:
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
+  name: indexer
+  namespace: egov
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: indexer
+  minReplicas: 3
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 80
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
   name: household
   namespace: egov
 spec:
@@ -62,8 +88,8 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: household
-  minReplicas: 2
-  maxReplicas: 12
+  minReplicas: 3
+  maxReplicas: 5
   metrics:
   - type: Resource
     resource:
@@ -88,8 +114,8 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: individual
-  minReplicas: 2
-  maxReplicas: 12
+  minReplicas: 3
+  maxReplicas: 5
   metrics:
   - type: Resource
     resource:
@@ -114,8 +140,8 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: facility
-  minReplicas: 2
-  maxReplicas: 12
+  minReplicas: 3
+  maxReplicas: 5
   metrics:
   - type: Resource
     resource:
@@ -140,8 +166,8 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: product
-  minReplicas: 2
-  maxReplicas: 12
+  minReplicas: 1
+  maxReplicas: 2
   metrics:
   - type: Resource
     resource:
@@ -159,6 +185,32 @@ spec:
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
+  name: project
+  namespace: egov
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: project
+  minReplicas: 3
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 80
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
   name: stock
   namespace: egov
 spec:
@@ -166,8 +218,8 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: stock
-  minReplicas: 2
-  maxReplicas: 12
+  minReplicas: 1
+  maxReplicas: 2
   metrics:
   - type: Resource
     resource:
@@ -192,8 +244,8 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: service-request
-  minReplicas: 2
-  maxReplicas: 12
+  minReplicas: 1
+  maxReplicas: 2
   metrics:
   - type: Resource
     resource:
@@ -219,7 +271,7 @@ spec:
     kind: Deployment
     name: egov-enc-service
   minReplicas: 2
-  maxReplicas: 12
+  maxReplicas: 2
   metrics:
   - type: Resource
     resource:
@@ -245,7 +297,7 @@ spec:
     kind: Deployment
     name: error-handler
   minReplicas: 2
-  maxReplicas: 12
+  maxReplicas: 2
   metrics:
   - type: Resource
     resource:
@@ -271,7 +323,7 @@ spec:
     kind: Deployment
     name: egov-location
   minReplicas: 2
-  maxReplicas: 12
+  maxReplicas: 3
   metrics:
   - type: Resource
     resource:
@@ -297,7 +349,7 @@ spec:
     kind: Deployment
     name: egov-mdms-service
   minReplicas: 2
-  maxReplicas: 12
+  maxReplicas: 5
   metrics:
   - type: Resource
     resource:
@@ -323,7 +375,7 @@ spec:
     kind: Deployment
     name: egov-user
   minReplicas: 2
-  maxReplicas: 12
+  maxReplicas: 5
   metrics:
   - type: Resource
     resource:
@@ -374,8 +426,8 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: digit-ui
-  minReplicas: 2
-  maxReplicas: 12
+  minReplicas: 1
+  maxReplicas: 2
   metrics:
   - type: Resource
     resource:
@@ -401,7 +453,7 @@ spec:
     kind: Deployment
     name: employee
   minReplicas: 2
-  maxReplicas: 12
+  maxReplicas: 3
   metrics:
   - type: Resource
     resource:
@@ -427,7 +479,7 @@ spec:
     kind: Deployment
     name: pgr-services
   minReplicas: 1
-  maxReplicas: 12
+  maxReplicas: 2
   metrics:
   - type: Resource
     resource:
@@ -442,3 +494,28 @@ spec:
         type: Utilization
         averageUtilization: 80
 ---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: referralmanagement
+  namespace: egov
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: referralmanagement
+  minReplicas: 5
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 80
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80

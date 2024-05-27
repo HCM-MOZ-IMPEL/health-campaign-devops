@@ -23,8 +23,8 @@ cluster-configs:
         aws-cluster-name: "arn:aws:eks:ap-south-1:680148267093:cluster/moz-health-qa"
         egov-state-level-tenant-id: "mz"
         s3-assets-bucket: "(pg-health-egov-assets|egov-health-playground-assets)"
-        es-host: "elasticsearch-data-v1.es-cluster"
-        es-indexer-host: "http://elasticsearch-data-v1.es-cluster:9200/"
+        es-host: "elasticsearch-data.es-cluster-v8"
+        es-indexer-host: "https://elasticsearch-data.es-cluster-v8:9200/"
         flyway-locations: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa"
         kafka-brokers: "kafka-v2.kafka-cluster:9092"
         kafka-infra-brokers: "kafka-v2.kafka-cluster:9092"
@@ -83,7 +83,7 @@ cluster-configs:
         egov-data-uploader: "http://egov-data-uploader:8080/"
         egov-indexer: "http://egov-indexer:8080/"
         egov-hrms: "http://egov-hrms:8080/"
-        es-client: "http://elasticsearch-data-v1.es-cluster:9200"
+        es-client: "https://elasticsearch-data.es-cluster-v8:9200"
         hr-masters: "http://hr-masters:8080/"
         hr-employee: "http://hr-employee:8080/"
         hr-masters-v2: "http://hr-masters-v2:8080/"
@@ -620,11 +620,11 @@ kafka-v2:
   persistence:
     enabled: true
     aws:
-      - volumeId: "vol-0953400e222ffd973" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-0bc13f4de5f9053b2" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-00647119b3367ad22" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-0a2332498f4f8046e" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-0c422c8504cfe618a" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-0ab130805502995fb" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
   zookeeperHosts: "zookeeper-v2.zookeeper-cluster:2181/kafka-v2"
 
@@ -846,11 +846,11 @@ elasticsearch-data:
   persistence:
     enabled: true
     aws:
-      - volumeId: "vol-006a20b89957e0acb" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-075928cb74ffb2a83" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-0d0272e3eecd01160" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-0bce8b969b75199b3" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-0989a3146be8ca8fe" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-078b097f573aeee51" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
 
   esJavaOpts: "-Xmx1g -Xms1g"
@@ -868,11 +868,11 @@ elasticsearch-master:
   persistence:
     enabled: true
     aws:
-      - volumeId: "vol-04d8ed941c11c5b84" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-02e7a0a3937f7ea04" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-084fbbe013c5005e0" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-0e5bcfdf36edbf511" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-0518f7cbe62ac7420" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-0e687f428816b3f45" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
 
   esJavaOpts: "-Xmx448m -Xms448m"

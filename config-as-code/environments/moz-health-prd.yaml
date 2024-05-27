@@ -17,7 +17,7 @@ cluster-configs:
         db-url: "jdbc:postgresql://moz-health-prd-db.cls5uiey6qrs.af-south-1.rds.amazonaws.com:5432/mozhealthprd" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
         db-read-url: "jdbc:postgresql://moz-health-prd-replica-db.cls5uiey6qrs.af-south-1.rds.amazonaws.com:5432/mozhealthprd" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
         domain: "salama.digit.org" ## Add your Domain Name
-        redis-host: "redis.backbone"
+        redis-host: "moz-health-prd-digit.xhaglj.ng.0001.afs1.cache.amazonaws.com"
         egov-services-fqdn-name: "https://salama.digit.org/" ## Add your Domain Name
         aws-cluster-ip: "https://2DF082542B59C28B32513742FE7BD8C6.sk1.af-south-1.eks.amazonaws.com"
         aws-region: "af-south-1"
@@ -28,7 +28,7 @@ cluster-configs:
         es-infra-host: "elasticsearch-data-infra-v1.es-cluster-infra"
         es-indexer-host: "https://elasticsearch-data.es-cluster-v8:9200/"
         flyway-locations: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa"
-        kafka-brokers: "kafka-v2.kafka-cluster:9092"
+        kafka-brokers: "b-1.mozhealthprd.qp1klr.c4.kafka.af-south-1.amazonaws.com:9092,b-2.mozhealthprd.qp1klr.c4.kafka.af-south-1.amazonaws.com:9092,b-3.mozhealthprd.qp1klr.c4.kafka.af-south-1.amazonaws.com:9092"
         kafka-infra-brokers: "kafka-v2.kafka-cluster:9092"
         logging-level-jdbc: "DEBUG"
         mobile-validation-workaround: "true"

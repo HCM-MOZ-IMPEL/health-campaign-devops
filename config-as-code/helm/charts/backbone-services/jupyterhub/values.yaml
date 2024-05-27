@@ -76,7 +76,7 @@ hub:
       selector: {}
       accessModes:
         - ReadWriteOnce
-      storage: 1Gi
+      storage: 1Gi #todo: 10Gi for prod
       subPath:
       storageClassName:
     url:
@@ -371,7 +371,7 @@ singleuser:
     static:
       pvcName:
       subPath: '{username}'
-    capacity: 2Gi
+    capacity: 2Gi #20Gi for Prod
     homeMountPath: /home/jovyan
     dynamic:
       pvcNameTemplate: claim-{username}{servername}

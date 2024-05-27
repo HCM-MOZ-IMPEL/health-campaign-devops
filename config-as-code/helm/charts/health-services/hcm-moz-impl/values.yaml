@@ -77,10 +77,7 @@ env: |
   - name: EGOV_IDGEN_INTEGRATION_ENABLED
     value: "true"
   - name: SPRING_REDIS_HOST
-    valueFrom:
-      configMapKeyRef:
-        name: egov-config
-        key: redis-host
+    value: "redis.backbone"
   - name: SPRING_REDIS_PORT
     value: "6379"
   - name: SPRING_CACHE_TYPE

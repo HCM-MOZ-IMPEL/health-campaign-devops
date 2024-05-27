@@ -6,9 +6,9 @@ modules:
       - kafka-v2
       - kafka-connect
       - kafka-connect-restart-tasks
-      - elasticsearch-data-v1
-      - elasticsearch-master-v1
-      - kibana-v1
+      - elasticsearch-master
+      - elasticsearch-data
+      - kibana
   - name: authn-authz
     services:
       - redis

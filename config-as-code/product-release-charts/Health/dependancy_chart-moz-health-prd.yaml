@@ -78,10 +78,10 @@ modules:
       - egovio/facility:master-impel-82abd11612-46
       - egovio/product:master-impel-9e32e9c097-22
       - egovio/individual:master-impel-94bad42079-183
-      - egovio/transformer:master-impel-1c43e0eeaa-179
+      - egovio/transformer:hf-referral-transformation-6374410835-194
       - egovio/stock:master-impel-9ebd806fe1-71
       - egovio/household:hh-address-change-899fa0cb27-121
       - egovio/project:master-impel-82abd11612-195
       - egovio/hcm-moz-impl:develop-869b688-347
       - egovio/egov-mdms-create:develop-3a53c3b-3
-      - egovio/referralmanagement:inc-downsync-impel-31ff41b430-137
+      - egovio/referralmanagement:redis-cache-inc-downsync-nohouseholdbeneficiary-433e191842-142

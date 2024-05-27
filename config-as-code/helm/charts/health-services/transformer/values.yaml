@@ -196,6 +196,16 @@ env: |
     value: HCM-TRANSFORMER-LOCALIZATIONS
   - name: TRANSFORMER_CONSUMER_UPDATE_PGR_TOPIC
     value: update-pgr-request
+  - name: TRANSFORMER_CONSUMER_CREATE_HFREFERRAL_TOPIC
+    value: save-hfreferral-topic
+  - name: TRANSFORMER_CONSUMER_UPDATE_HFREFERRAL_TOPIC
+    value: update-hfreferral-topic
+  - name: TRANSFORMER_PRODUCER_HFREFERRAL_INDEX_V1_TOPIC
+    value: transformer-producer-hfreferral-index-v1-topic
+  - name: TRANSFORMER_PRODUCER_HFREFERRAL_SERVICE_INDEX_TOPIC
+    value: transformer-producer-hfreferral-service-index-topic
+  - name: HFREFERRAL_FEVER_SERVICE_CHECKLIST_NAME
+    value: SMCMozambique.HF_RF_FEVER.HEALTH_FACILITY_SUPERVISOR
   - name: EGOV_HOUSEHOLD_HOST
     valueFrom:
       configMapKeyRef:
