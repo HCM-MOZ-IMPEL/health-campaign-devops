@@ -90,3 +90,4 @@ modules:
       - egovio/hcm-moz-impl:develop-6a0adc0-323
       - egovio/egov-mdms-create:develop-3a53c3b-3
       - egovio/referralmanagement:inc-downsync-impel-31ff41b430-137
+      - egovio/attendance:master-impel-ea8682f3-55
