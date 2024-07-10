@@ -24,7 +24,7 @@ module "db" {
   vpc_security_group_ids        = ["${module.network.rds_db_sg_id}"]
   availability_zone             = "${element(var.availability_zones, 0)}"
   instance_class                = "db.t3.medium"  ## postgres db instance type
-  engine_version                = "11.22"   ## postgres version
+  engine_version                = "14.11"   ## postgres version
   storage_type                  = "gp2"
   storage_gb                    = "10"     ## postgres disk size
   backup_retention_days         = "7"
@@ -109,7 +109,15 @@ module "eks" {
   }"
 }
 
+#resource "kubernetes_service_account" "ebs_csi_controller_sa" {
+#  metadata {
+#    name      = "ebs-csi-controller-sa"
+#    namespace = "kube-system"
+#  }
+#}
+
 resource "kubernetes_annotations" "example" {
+#  depends_on = [kubernetes_service_account.ebs_csi_controller_sa]
   api_version = "v1"
   kind        = "ServiceAccount"
   metadata {
@@ -160,6 +168,7 @@ resource "aws_eks_addon" "core_dns" {
 resource "aws_eks_addon" "aws_ebs_csi_driver" {
   cluster_name      = data.aws_eks_cluster.cluster.name
   addon_name        = "aws-ebs-csi-driver"
+  addon_version     = "v1.23.0-eksbuild.1"
   resolve_conflicts = "OVERWRITE"
 }
 
@@ -184,30 +193,6 @@ module "es-data-v1" {
   storage_sku = "gp2"
   disk_size_gb = "25"
   
-}
-
-
-module "esv8-master" {
-
-source = "../modules/storage/aws"
-storage_count = 3
-environment = "${var.cluster_name}"
-disk_prefix = "es-master"
-availability_zones = "${var.availability_zones}"
-storage_sku = "gp2"
-disk_size_gb = "2"
-
-}
-module "esv8-data-v1" {
-
-source = "../modules/storage/aws"
-storage_count = 3
-environment = "${var.cluster_name}"
-disk_prefix = "es-data-v1"
-availability_zones = "${var.availability_zones}"
-storage_sku = "gp2"
-disk_size_gb = "25"
-
 }
 
 module "zookeeper" {

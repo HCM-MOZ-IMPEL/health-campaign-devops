@@ -30,15 +30,6 @@ output "es_data_volume_ids" {
   value = "${module.es-data-v1.volume_ids}"
 }
 
-
-output "esv8_master_volume_ids" {
-  value = "${module.esv8-master.volume_ids}"
-}
-
-output "esv8_data_volume_ids" {
-  value = "${module.esv8-data-v1.volume_ids}"
-}
-
 output "zookeeper_volume_ids" {
   value = "${module.zookeeper.volume_ids}"
 }
