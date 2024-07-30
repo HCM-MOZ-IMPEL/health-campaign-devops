@@ -57,10 +57,7 @@ env: |
   - name: IDGEN.INDIVIDUAL.ID.FORMAT
     value: "individual.id"
   - name: SPRING_REDIS_HOST
-    valueFrom:
-      configMapKeyRef:
-        name: egov-config
-        key: redis-host
+    value: redis.backbone
   - name: SPRING_REDIS_PORT
     value: "6379"
   - name: SPRING_CACHE_TYPE
@@ -93,15 +90,27 @@ env: |
     value: "false"  
   - name: MANAGEMENT_SECURITY_ENABLED
     value: "false" 
+  - name: EGOV_STATE_LEVEL_TENANT_ID
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: egov-state-level-tenant-id
   - name: STATE_LEVEL_TENANT_ID
-    value: "mz"
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: egov-state-level-tenant-id
   - name: EGOV_MDMS_HOST
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
         key: egov-mdms-service
   - name: EGOV_MDMS_SEARCH_ENDPOINT
-    value: "/egov-mdms-service/v1/_search"
+    value: "/mdms-v2/v1/_search"
+  - name: EGOV_MDMS_PATH
+    value: "/mdms-v2/v1/_search"
+  - name: MDMS_PATH
+    value: "/mdms-v2/v1/_search"
   - name: EGOV_ENC_HOST
     valueFrom:
       configMapKeyRef:
@@ -111,6 +120,15 @@ env: |
     value: "/egov-enc-service/crypto/v1/_encrypt"
   - name: EGOV_ENC_DECRYPT_ENDPOINT
     value: "/egov-enc-service/crypto/v1/_decrypt"
+  - name: EGOV_BOUNDARY_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: boundary-service
+  - name: EGOV_BOUNDARY_SEARCH_URL
+    value: "/boundary-service/boundary/_search"
+  - name: EGOV_BOUNDARY_HIERARCHY_NAME
+    value: "ADMIN"
   - name: AADHAAR_PATTERN
     value: "\\d{12}"
   - name: MOBILE_PATTERN
@@ -142,5 +160,3 @@ env: |
   - name: TRACER_OPENTRACING_ENABLED
     value: "true" 
   {{- end }}
-  - name: EGOV_PERSISTER_BULK_PROCESSING_ENABLED
-    value: "false"

@@ -63,10 +63,7 @@ env: |
   - name: IDGEN.PROJECT.BENEFICIARY.ID.FORMAT
     value: "project.beneficiary.id"
   - name: SPRING_REDIS_HOST
-    valueFrom:
-      configMapKeyRef:
-        name: egov-config
-        key: redis-host
+    value: redis.backbone
   - name: SPRING_REDIS_PORT
     value: "6379"
   - name: SPRING_CACHE_TYPE
@@ -90,8 +87,6 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: egov-user-egov
-  - name: EGOV_USER_CONTEXT_PATH
-    value: "/user/users"
   - name: EGOV_SEARCH_USER_URL
     value: "/user/_search"
   - name: EGOV_USER_INTEGRATION_ENABLED
@@ -117,7 +112,11 @@ env: |
         name: egov-service-host
         key: egov-mdms-service
   - name: EGOV_MDMS_SEARCH_ENDPOINT
-    value: "/egov-mdms-service/v1/_search"
+    value: "/mdms-v2/v1/_search"
+  - name: EGOV_MDMS_PATH
+    value: "/mdms-v2/v1/_search"
+  - name: MDMS_PATH
+    value: "/mdms-v2/v1/_search"
   - name: EGOV_MDMS_INTEGRATION_ENABLED
     value: "true"
   - name: EGOV_MDMS_MASTER_NAME
@@ -223,6 +222,8 @@ env: |
     value: "create-project-facility-bulk-topic"
   - name: PROJECT.FACILITY.CONSUMER.BULK.UPDATE.TOPIC
     value: "update-project-facility-bulk-topic"
+  - name: EGOV.USER.ID.VALIDATOR
+    value: egov-user
   - name: EGOV_FACILITY_HOST
     valueFrom:
       configMapKeyRef:
@@ -235,8 +236,13 @@ env: |
   - name: EGOV_LOCATION_HIERARCHY_TYPE
     value: "ADMIN"
   - name: EGOV_LOCATION_CODE_QUERY_PARAM
-    value: "codes"
-  - name: EGOV_USER_ID_VALIDATOR
-    value: "egov-user"
-  - name: EGOV_PERSISTER_BULK_PROCESSING_ENABLED
-    value: "false"
+    value: "code"
+  - name: EGOV_BOUNDARY_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: boundary-service
+  - name: EGOV_BOUNDARY_SEARCH_URL
+    value: "/boundary-service/boundary/_search"
+  - name: EGOV_BOUNDARY_HIERARCHY_NAME
+    value: "ADMIN"
