@@ -4,11 +4,13 @@ modules:
     services:
       - zookeeper-v2
       - kafka-v2
+      - kafka-kraft
       - kafka-connect
       - kafka-connect-restart-tasks
       - elasticsearch-master
       - elasticsearch-data
       - kibana
+      - redis-new
   - name: authn-authz
     services:
       - redis
@@ -34,6 +36,7 @@ modules:
       - egovio/egov-otp:v1.2.2-72f8a8f87b-12
 #      - egovio/egov-persister:v1.1.4-72f8a8f87b-6
       - egovio/egov-persister:v1.1.5-3371bc2-5
+      - egovio/mdms-v2:MDMS-v2-2.9LTS-fc6b868dce-47
       - egovio/egov-url-shortening:v1.1.2-1715164454-3
       - egovio/egov-user:health-digit-dev-f2ddde9-32
       - egovio/user-otp:health-digit-master-dca3efde85-7
