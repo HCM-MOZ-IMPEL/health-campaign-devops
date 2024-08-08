@@ -98,13 +98,23 @@ env: |
         key: egov-location
   - name: EGOV_SEARCH_PROJECT_URL
     value: "/project/v1/_search"
+  - name: EGOV_SEARCH_PROJECT_URL
+    value: "/project/v1/_search"
+  - name: EGOV_SEARCH_PROJECT_URL
+    value: "/project/v1/_search"
+  - name: EGOV_SEARCH_PROJECT_URL
+    value: "/project/v1/_search"
   - name: EGOV_MDMS_HOST
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
         key: egov-mdms-service
   - name: EGOV_MDMS_SEARCH_ENDPOINT
-    value: "/egov-mdms-service/v1/_search"
+    value: "/mdms-v2/v1/_search"
+  - name: EGOV_MDMS_PATH
+    value: "/mdms-v2/v1/_search"
+  - name: MDMS_PATH
+    value: "/mdms-v2/v1/_search"
   - name: PROJECT_MDMS_MODULE
     value: "HCM-PROJECT-TYPES"
   - name: EGOV_INDIVIDUAL_HOST
@@ -172,3 +182,80 @@ env: |
     value: "save-service"
   - name: TRANSFORMER_PRODUCER_SERVICE_TASK_INDEX_V1_TOPIC
     value: "transformer-producer-service-request-index-v1-topic"
+  - name: TRANSFORMER_CONSUMER_CREATE_REFERRAL_TOPIC
+    value: save-referral-topic
+  - name: TRANSFORMER_CONSUMER_UPDATE_REFERRAL_TOPIC
+    value: update-referral-topic
+  - name: TRANSFORMER_PRODUCER_REFERRAL_INDEX_V1_TOPIC
+    value: transformer-producer-referral-index-v1-topic
+  - name: EGOV_SEARCH_PROJECT_TASK_URL
+    value: /project/task/v1/_search
+  - name: TRANSFORMER_CONSUMER_CREATE_SIDE_EFFECT_TOPIC
+    value: save-side-effect-topic
+  - name: TRANSFORMER_CONSUMER_UPDATE_SIDE_EFFECT_TOPIC
+    value: update-side-effect-topic
+  - name: TRANSFORMER_PRODUCER_SIDE_EFFECT_INDEX_V1_TOPIC
+    value: transformer-producer-side-effect-index-v1-topic
+  - name: TRANSFORMER_CONSUMER_CREATE_PGR_TOPIC
+    value: save-pgr-request
+  - name: TRANSFORMER_PRODUCER_CREATE_PGR_TOPIC
+    value: transformer-save-pgr-request
+  - name: TRANSFORMER_PRODUCER_BULK_HOUSEHOLD_INDEX_V1_TOPIC
+    value: transformer-producer-household-index-v1-topic
+  - name: TRANSFORMER_LOCALIZATIONS_MDMS_MODULE
+    value: HCM-TRANSFORMER-LOCALIZATIONS
+  - name: TRANSFORMER_CONSUMER_UPDATE_PGR_TOPIC
+    value: update-pgr-request
+  - name: TRANSFORMER_CONSUMER_CREATE_HFREFERRAL_TOPIC
+    value: save-hfreferral-topic
+  - name: TRANSFORMER_CONSUMER_UPDATE_HFREFERRAL_TOPIC
+    value: update-hfreferral-topic
+  - name: TRANSFORMER_PRODUCER_HFREFERRAL_INDEX_V1_TOPIC
+    value: transformer-producer-hfreferral-index-v1-topic
+  - name: TRANSFORMER_PRODUCER_HFREFERRAL_SERVICE_INDEX_TOPIC
+    value: transformer-producer-hfreferral-service-index-topic
+  - name: HFREFERRAL_FEVER_SERVICE_CHECKLIST_NAME
+    value: SMCMozambique.HF_RF_FEVER.HEALTH_FACILITY_SUPERVISOR
+  - name: EGOV_HOUSEHOLD_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: household
+  - name: EGOV_ATTENDANCE_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: attendance-service
+  - name: EGOV_USER_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-user
+  - name: EGOV_SEARCH_USER_URL
+    value: /user/_search
+  - name: EGOV_LOCALIZATION_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-localization
+  - name: EGOV_BOUNDARY_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: boundary-service
+  - name: EGOV_BOUNDARY_SEARCH_URL
+    value: "/boundary-service/boundary/_search"
+  - name: EGOV_BOUNDARY_HIERARCHY_NAME
+    value: "ADMIN"
+  - name: PROJECT_STAFF_ROLE_MDMS_MODULE
+    value: HCM-PROJECT-STAFF-ROLES
+  - name: EGOV_SEARCH_HOUSEHOLD_URL
+    value: "/household/v1/_search"
+  - name: EGOV_SEARCH_PROJECT_BENEFICIARY_URL
+    value: "/project/beneficiary/v1/_search"
+  - name: EGOV_PROGRAM_MANDATE_COMMENT
+    value: "Mais de 6 agregados familiares"
+  - name: EGOV_PROGRAM_MANDATE_LIMIT
+    value: "3"
+  - name: EGOV_PROGRAM_MANDATE_DIVIDING_FACTOR
+    value: "1.8"

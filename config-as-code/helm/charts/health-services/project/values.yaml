@@ -250,7 +250,7 @@ env: |
   - name: EGOV_LOCATION_HIERARCHY_TYPE
     value: "ADMIN"
   - name: EGOV_LOCATION_CODE_QUERY_PARAM
-    value: "codes"
+    value: "code"
   - name: EGOV_USER_ID_VALIDATOR
     value: "egov-user"
   - name: EGOV_PERSISTER_BULK_PROCESSING_ENABLED

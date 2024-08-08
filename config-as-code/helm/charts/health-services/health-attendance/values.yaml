@@ -16,11 +16,11 @@ initContainers:
     enabled: true
     schemaTable: "attendance_schema"
     image:
-      repository: "attendance-db"
+      repository: "health-attendance-db"
 
 # Container Configs
 image:
-  repository: "attendance"
+  repository: "health-attendance"
 replicas: "1"
 healthChecks:
   enabled: true
@@ -110,7 +110,10 @@ env: |
   - name: PROJECT.STAFF.ATTENDANCE.TOPIC
     value: "project-staff-attendance-topic"
   - name: SPRING_REDIS_HOST
-    value: redis.backbone
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: redis-host
   - name: SPRING_REDIS_PORT
     value: "6379"
   - name: SPRING_CACHE_TYPE
