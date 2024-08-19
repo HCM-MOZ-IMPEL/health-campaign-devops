@@ -5,7 +5,7 @@
 
 variable "cluster_name" {
   description = "Name of the Kubernetes cluster"
-  default = "moz-health-uat" #REPLACE
+  default = "moz-health-uat1" #REPLACE
 }
 
 variable "vpc_cidr_block" {
@@ -26,28 +26,28 @@ variable "availability_zones" {
 
 variable "kubernetes_version" {
   description = "kubernetes version"
-  default = "1.23"
+  default = "1.29"
 }
 
 variable "instance_type" {
   description = "eGov recommended below instance type as a default"
-  default = "m4.xlarge"
+  default = "r5ad.xlarge"
 }
 
 variable "override_instance_types" {
   description = "Arry of instance types for SPOT instances"
-  default = ["r5a.large", "r5ad.large", "r5d.large", "m4.xlarge"]
+  default = ["r5a.xlarge", "r5ad.xlarge", "r5d.xlarge"]
   
 }
 
 variable "number_of_worker_nodes" {
   description = "eGov recommended below worker node counts as default"
-  default = "3" #REPLACE IF NEEDED
+  default = "4" #REPLACE IF NEEDED
 }
 
 variable "ssh_key_name" {
   description = "ssh key name, not required if your using spot instance types"
-  default = "moz-impel" #REPLACE
+  default = "moz-impl" #REPLACE
 }
 
 
@@ -65,14 +65,11 @@ variable "db_username" {
 variable "db_password" {}
 
 variable "public_key" {
-  default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCnlDWZx+BNCam1Oktz8qq6/LVxWAS/IiphPSxYYbiRwoXsDtmMsYg2bqdpdJZpJLL5usvjF3YP7Gs0ILT5CvAW5f2lR4MfR6HR1u4OpT8R+sNmP0eUBu/v9tOzHJca7oe8jQkD/LUErUuvWCgvLAgYMOBw1x1x831PgxT22XJ3seS8SFgFf9pNag3zAy8mQ2fvf7MN+FTyrsH1Ya/7ZuxtcXkT4otocKZoudP1cX8NJqA9I/prs8q1nj5uCqIYEdqY4o1XaWQXHnRzjR2W2z6ZCJGYljK7DujHxmxZVbL87tk3b3lBDJJhO1nkvyt5OEWIm7DHJ2HQ6IViybjzaQ88E6kADmisJnxdvdwb2RAWhya3fDk9AWKW4lUSn/TYAo3tl+t7vLp3y5ls39F8aQ1qV3UgzPJLvfsy2KrGoePMhq6BUFTdNwcfqKLiDuGpR6xoIO2yj+CN7ZT3/IvfbwvYnZbzq4uoRqt8SWrjxjvlL51BN+a/uKg7vmMcbrXvTD0FT0p9ByY/kS2v6ZVPOz7m1frC6/FITIhc+D7KGAJ7WF4Q00yAok6Freh4/ZbfaMoRNL0zwZ5SlirW15QhpkAETIc/t6lXtFQFW6JykfRqpVUMuWdh4h+NJ112UiNGFejspSChuTJTXM5kh07yyJu9pJ5fTF5w9kWPuLsQLY9kPQ== prasanna@prasanna-Latitude-3420" 
+  default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCnlDWZx+BNCam1Oktz8qq6/LVxWAS/IiphPSxYYbiRwoXsDtmMsYg2bqdpdJZpJLL5usvjF3YP7Gs0ILT5CvAW5f2lR4MfR6HR1u4OpT8R+sNmP0eUBu/v9tOzHJca7oe8jQkD/LUErUuvWCgvLAgYMOBw1x1x831PgxT22XJ3seS8SFgFf9pNag3zAy8mQ2fvf7MN+FTyrsH1Ya/7ZuxtcXkT4otocKZoudP1cX8NJqA9I/prs8q1nj5uCqIYEdqY4o1XaWQXHnRzjR2W2z6ZCJGYljK7DujHxmxZVbL87tk3b3lBDJJhO1nkvyt5OEWIm7DHJ2HQ6IViybjzaQ88E6kADmisJnxdvdwb2RAWhya3fDk9AWKW4lUSn/TYAo3tl+t7vLp3y5ls39F8aQ1qV3UgzPJLvfsy2KrGoePMhq6BUFTdNwcfqKLiDuGpR6xoIO2yj+CN7ZT3/IvfbwvYnZbzq4uoRqt8SWrjxjvlL51BN+a/uKg7vmMcbrXvTD0FT0p9ByY/kS2v6ZVPOz7m1frC6/FITIhc+D7KGAJ7WF4Q00yAok6Freh4/ZbfaMoRNL0zwZ5SlirW15QhpkAETIc/t6lXtFQFW6JykfRqpVUMuWdh4h+NJ112UiNGFejspSChuTJTXM5kh07yyJu9pJ5fTF5w9kWPuLsQLY9kPQ== prasanna@prasanna-Latitude-3420"
   description = "ssh key"
 }
 
 ## change ssh key_name eg. digit-quickstart_your-name
 
-variable "key_name" {
-  default = "moz-impel"  
-  description = "ssh key name"
-}
+
 

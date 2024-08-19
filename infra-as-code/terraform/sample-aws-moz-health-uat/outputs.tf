@@ -21,15 +21,6 @@ output "kubectl_config" {
   value       = module.eks.kubeconfig
 }
 
-
-output "es_master_volume_ids" {
-  value = "${module.es-master.volume_ids}"
-}
-
-output "es_data_volume_ids" {
-  value = "${module.es-data-v1.volume_ids}"
-}
-
 output "zookeeper_volume_ids" {
   value = "${module.zookeeper.volume_ids}"
 }
@@ -57,4 +48,13 @@ output "db_instance_username" {
 output "db_instance_port" {
   description = "The database port"
   value       = module.db.db_instance_port
+}
+
+output "zone" {
+  value = var.availability_zones
+}
+
+output "worker_security_group_id" {
+  description = "The security group id of worker nodes"
+  value       = module.eks.worker_security_group_id
 }
