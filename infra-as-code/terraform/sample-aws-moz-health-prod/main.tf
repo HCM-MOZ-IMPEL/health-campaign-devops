@@ -23,9 +23,9 @@ module "db" {
   subnet_ids                    = "${module.network.private_subnets}"
   vpc_security_group_ids        = ["${module.network.rds_db_sg_id}"]
   availability_zone             = "${element(var.availability_zones, 0)}"
-  instance_class                = "db.m5.large"  ## postgres db instance type
+  instance_class                = "db.m6g.large"  ## postgres db instance type
   engine_version                = "12.17"   ## postgres version
-  storage_type                  = "gp2"
+  storage_type                  = "gp3"
   storage_gb                    = "250"     ## postgres disk size
   backup_retention_days         = "7"
   administrator_login           = "${var.db_username}"
@@ -91,7 +91,7 @@ module "eks" {
   worker_groups = [
     {
       name                          = "spot"
-      ami_id                        = "ami-0ae8d042a19256905"
+      ami_id                        = "ami-08fdf22cde041c7ce"
       subnets                       = "${concat(slice(module.network.private_subnets, 0, length(var.availability_zones)))}"
       instance_type                 = "${var.instance_type}"
       override_instance_types       = "${var.override_instance_types}"
@@ -210,7 +210,7 @@ module "es-data-v8" {
   disk_prefix = "es-data-v8"
   availability_zones = "${var.availability_zones}"
   storage_sku = "gp2"
-  disk_size_gb = "100"
+  disk_size_gb = "120"
 
 }
 
