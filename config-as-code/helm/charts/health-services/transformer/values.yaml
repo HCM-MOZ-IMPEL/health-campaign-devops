@@ -145,6 +145,26 @@ env: |
     value: "update-stock-topic"
   - name: TRANSFORMER_PRODUCER_BULK_STOCK_INDEX_V1_TOPIC
     value: "transformer-producer-bulk-stock-index-v1-topic"
+  - name: TRANSFORMER_CONSUMER_CREATE_REFERRAL_TOPIC
+    value: save-referral-topic
+  - name: TRANSFORMER_CONSUMER_UPDATE_REFERRAL_TOPIC
+    value: update-referral-topic
+  - name: TRANSFORMER_PRODUCER_REFERRAL_INDEX_V1_TOPIC
+    value: transformer-producer-referral-index-v1-topic
+  - name: EGOV_SEARCH_PROJECT_TASK_URL
+    value: /project/task/v1/_search
+  - name: TRANSFORMER_CONSUMER_CREATE_SIDE_EFFECT_TOPIC
+    value: save-side-effect-topic
+  - name: TRANSFORMER_CONSUMER_UPDATE_SIDE_EFFECT_TOPIC
+    value: update-side-effect-topic
+  - name: TRANSFORMER_PRODUCER_SIDE_EFFECT_INDEX_V1_TOPIC
+    value: transformer-producer-side-effect-index-v1-topic
+  - name: TRANSFORMER_CONSUMER_CREATE_PGR_TOPIC
+    value: save-pgr-request
+  - name: TRANSFORMER_PRODUCER_CREATE_PGR_TOPIC
+    value: transformer-save-pgr-request
+  - name: TRANSFORMER_PRODUCER_BULK_HOUSEHOLD_INDEX_V1_TOPIC
+    value: transformer-producer-household-index-v1-topic
   - name: EGOV_FACILITY_HOST
     valueFrom:
       configMapKeyRef:
