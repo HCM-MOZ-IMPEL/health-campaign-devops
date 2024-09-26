@@ -221,11 +221,32 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: household
+  - name: SPRING_REDIS_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: redis-host
+  - name: SPRING_REDIS_PORT
+    value: "6379"
+  - name: SPRING_CACHE_TYPE
+    value: "redis"
+  - name: SPRING_CACHE_REDIS_TIME-TO-LIVE
+    value: "60"
   - name: EGOV_ATTENDANCE_HOST
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
         key: attendance-service
+  - name: TRANSFORMER_CONSUMER_SAVE_ATTENDANCE_LOG_TOPIC
+    value: save-attendance-log
+  - name: TRANSFORMER_CONSUMER_UPDATE_ATTENDANCE_LOG_TOPIC
+    value: update-attendance-log
+  - name: TRANSFORMER_PRODUCER_ATTENDANCE_LOG_INDEX_V1_TOPIC
+    value: transformer-save-attendance-log
+  - name: TRANSFORMER_PRODUCER_ATTENDANCE_REGISTER_INDEX_V1_TOPIC
+    value: transformer-save-attendance-register
+  - name: EGOV_SEARCH_ATTENDANCE_REGISTER_URL
+    value: /attendance/v1/_search
   - name: EGOV_USER_HOST
     valueFrom:
       configMapKeyRef:
