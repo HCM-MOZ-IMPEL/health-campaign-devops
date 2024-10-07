@@ -28,7 +28,7 @@ modules:
       - egovio/egov-filestore:v1.2.4-72f8a8f87b-10
       - egovio/egov-localization:v1.1.3-72f8a8f87b-6
       - egovio/egov-idgen:v1.2.3-72f8a8f87b-7
-      - egovio/egov-indexer:v1.1.7-f52184e6ba-25
+      - egovio/egov-indexer:indexer-17-searchBody-1799f17903-57
       - egovio/egov-location:v1.1.5-f9271c8-7
       - egovio/egov-mdms-service:v1.3.2-72f8a8f87b-12
       - egovio/egov-notification-mail:health-digit-master-6865af2823-2
@@ -38,36 +38,36 @@ modules:
       - egovio/egov-persister:v1.1.5-3371bc2-5
       - egovio/mdms-v2:MDMS-v2-2.9LTS-fc6b868dce-47
       - egovio/egov-url-shortening:v1.1.2-1715164454-3
-      - egovio/egov-user:health-digit-dev-f2ddde9-32
+      - egovio/egov-user:health-digit-master-e27b970-31
       - egovio/user-otp:health-digit-master-dca3efde85-7
-      - egovio/egov-workflow-v2:v1.2.1-df98ec3c35-2
+      - egovio/egov-workflow-v2:2.9.1-80b58dc788-15
       - egovio/report:v1.3.4-96b24b0d72-16
       - egovio/egov-document-uploader:v1.1.0-75d461a4d2-4
-      - egovio/service-request:master-impel-198c6d78f8-11
-      - egovio/pgr-services:master-impel-afa361c92a-13
+      - egovio/service-request:v1.0.1-a0e714254c-18
+      - egovio/pgr-services:v1.1.7-00a7accbda-19
       - egovio/playground:1.0
-      - egovio/audit-service:audit-heatlh-40b1a4018a-1
+      - egovio/audit-service:audit-heatlh-40b1a4018a-11
       - egovio/error-handler:master-impel-dump-5022b7acff-1
+      - egovio/boundary-service:boundary-hierarchy-def-modified-2.9-lts-629baf086b-15
   - name: business
     dependencies:
       - "core"
     services:
       - egovio/egf-master:v1.1.3-72f8a8f87b-15
-      - egovio/egov-hrms:health-moz-dev-c04a453286-67
+      - egovio/egov-hrms:v1.2.7-00a7accbda-19
   - name: "frontend"
     dependencies:
       - "business"
     services:
-      - egovio/citizen:v1.8.0-b078fa041d-97
       - egovio/employee:v1.8.0-2ac8314b2f-116
-      - egovio/digit-ui:master-impl-e419f23a58-101
+      - egovio/digit-ui:health-dashboard-digit-ui-422a6751ec-658
   - name: m_dss   #dss
     dependencies:
       - "frontend"
       - "core"
       - "business"
     services:
-      - egovio/dashboard-analytics:master-impel-47640b6456-44
+      - egovio/dashboard-analytics:analytics-es8-auth-8f6d1faeb0-50
       - egovio/dashboard-ingest:v1.1.4-72f8a8f87b-10
       - egovio/dss-dashboard:v1.8.0-0d70d60e63-53
   - name: m_health
@@ -77,13 +77,14 @@ modules:
       - "core"
     services:
       # - egovio/facility:v1.0.0-a51bee1435-19
-      - egovio/facility:master-impel-d2baf0d40f-45
-      - egovio/product:master-impel-9e32e9c097-22
-      - egovio/individual:master-impel-73d2b66a68-168
-      - egovio/transformer:HLM-3986-6ca86321c3-89
-      - egovio/stock:master-impel-73d2b66a68-67
-      - egovio/household:master-impel-73d2b66a68-77
-      - egovio/project:master-impel-523cc26c16-152
-      - egovio/hcm-moz-impl:develop-66239ad-288
+      - egovio/facility:v1.1.2-00a7accbda-14
+      - egovio/product:v1.1.0-00a7accbda-31
+      - egovio/individual:v1.1.6-a0e714254c-12
+      - egovio/transformer:v1.1.2-00a7accbda-19
+      - egovio/stock:v1.1.3-a0e714254c-31
+      - egovio/household:v1.1.4-a0e714254c-30
+      - egovio/project:v1.1.5-a0e714254c-13
+      - egovio/referralmanagement:v1.0.3-a0e714254c-42
+      - egovio/health-attendance:v1.0.2-30824c427-11
       - egovio/egov-mdms-create:develop-3a53c3b-3
-      - egovio/referralmanagement:master-impel-523cc26c16-14
+      - egovio/hcm-moz-impl:develop-66239ad-288

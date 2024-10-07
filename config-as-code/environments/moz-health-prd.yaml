@@ -17,7 +17,7 @@ cluster-configs:
         db-url: "jdbc:postgresql://moz-health-prd-db.cls5uiey6qrs.af-south-1.rds.amazonaws.com:5432/mozhealthprd" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
         db-read-url: "jdbc:postgresql://moz-health-prd-replica-db.cls5uiey6qrs.af-south-1.rds.amazonaws.com:5432/mozhealthprd" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
         domain: "salama.digit.org" ## Add your Domain Name
-        redis-host: "moz-health-prd-digit.xhaglj.ng.0001.afs1.cache.amazonaws.com"
+        redis-host: "redis.backbone"
         egov-services-fqdn-name: "https://salama.digit.org/" ## Add your Domain Name
         aws-cluster-ip: "https://2DF082542B59C28B32513742FE7BD8C6.sk1.af-south-1.eks.amazonaws.com"
         aws-region: "af-south-1"
@@ -28,7 +28,7 @@ cluster-configs:
         es-infra-host: "elasticsearch-data-infra-v1.es-cluster-infra"
         es-indexer-host: "https://elasticsearch-data.es-cluster-v8:9200/"
         flyway-locations: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa"
-        kafka-brokers: "b-1.mozhealthprd.qp1klr.c4.kafka.af-south-1.amazonaws.com:9092,b-2.mozhealthprd.qp1klr.c4.kafka.af-south-1.amazonaws.com:9092,b-3.mozhealthprd.qp1klr.c4.kafka.af-south-1.amazonaws.com:9092"
+        kafka-brokers: "release-name-kafka-controller-headless.kafka-cluster:9092"
         kafka-infra-brokers: "kafka-v2.kafka-cluster:9092"
         logging-level-jdbc: "DEBUG"
         mobile-validation-workaround: "true"
@@ -76,6 +76,7 @@ cluster-configs:
         egov-otp: "http://egov-otp:8080/"
         egov-common-workflows: "http://egov-common-workflows:8080/"
         egov-mdms-service: "http://egov-mdms-service:8080/"
+        mdms-v2: "http://mdms-v2:8080/"
         egov-mdms-service-test: "http://egov-mdms-service-test:8080/"
         egov-mdms-create: "http://egov-mdms-create:8080/"
         egov-eis: "http://egov-eis:8080/"
@@ -152,13 +153,14 @@ cluster-configs:
         project-referral: "http://project-referral:8080/"
         product: "http://product:8080/"
         household: "http://household:8080/"
-        household-referral: "http://household-referral:8080/"
+        boundary-service: "http://boundary-service.egov:8080/"
         individual: "http://individual:8080/"
         individual-referral: "http://individual-referral:8080/"
         stock: "http://stock:8080/"
         facility: "http://facility:8080/"
         hcm-moz-impl: "http://hcm-moz-impl:8080/"
         service-request: "http://service-request:8080/"
+        attendance-service: "http://health-attendance.egov:8080/"
 
     hcm-moz-impl:
       data:
@@ -344,7 +346,7 @@ egov-persister:
   replicas: 2
   images:
     - egovio/egov-persister
-  persist-yml-path: "file:///work-dir/health-campaign-config/egov-persister/audit-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-user-event-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-workflow-v2-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hrms-employee-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pdf-generator.yml,file:///work-dir/health-campaign-config/egov-persister/product-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-persister.yml,file:///work-dir/health-campaign-config/egov-persister/individual-persister.yml,file:///work-dir/health-campaign-config/egov-persister/household-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-task-persister.yml,file:///work-dir/health-campaign-config/egov-persister/stock-persister.yml,file:///work-dir/health-campaign-config/egov-persister/facility-persister.yml,file:///work-dir/health-campaign-config/egov-persister/service-request-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pgr-services-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hcm-moz-impl-persister.yml,file:///work-dir/health-campaign-config/egov-persister/referral-management-persister.yml"
+  persist-yml-path: "file:///work-dir/health-campaign-config/egov-persister/mdms-persister.yml,file:///work-dir/health-campaign-config/egov-persister/audit-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-user-event-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-workflow-v2-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hrms-employee-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pdf-generator.yml,file:///work-dir/health-campaign-config/egov-persister/product-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-persister.yml,file:///work-dir/health-campaign-config/egov-persister/individual-persister.yml,file:///work-dir/health-campaign-config/egov-persister/household-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-task-persister.yml,file:///work-dir/health-campaign-config/egov-persister/stock-persister.yml,file:///work-dir/health-campaign-config/egov-persister/facility-persister.yml,file:///work-dir/health-campaign-config/egov-persister/service-request-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pgr-services-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hcm-moz-impl-persister.yml,file:///work-dir/health-campaign-config/egov-persister/referral-management-persister.yml"
   initContainers:
     gitSync:
       repo: "git@github.com:HCM-MOZ-IMPEL/health-campaign-config"      ##### Change repo url with Your fork Repo url
@@ -610,7 +612,7 @@ jaeger:
 redis:
   replicas: 1
   images:
-    - egovio/redis:3.2
+    - egovio/redis:7.2.4
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 playground:

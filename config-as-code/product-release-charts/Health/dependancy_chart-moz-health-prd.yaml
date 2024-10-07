@@ -17,7 +17,7 @@ modules:
       - redis
       - ingress-nginx
       - cert-manager
-      - zuul:master-moz-impel-ratelimiter-1760f3be7b-1
+      - zuul:v1.3.1-96b24b0d72-39
   - name: core
     dependencies:
       - "backbone"
@@ -29,29 +29,31 @@ modules:
       - egovio/egov-filestore:v1.2.4-72f8a8f87b-10
       - egovio/egov-localization:v1.1.3-72f8a8f87b-6
       - egovio/egov-idgen:v1.2.3-72f8a8f87b-7
-      - egovio/egov-indexer:master-impel-4e1c6763cf-45
+      - egovio/egov-indexer:indexer-17-searchBody-1799f17903-57
       - egovio/egov-location:master-impel-60bd931a97-6
       - egovio/egov-mdms-service:v1.3.2-72f8a8f87b-12
       - egovio/egov-notification-mail:health-digit-master-6865af2823-2
       - egovio/egov-otp:v1.2.2-72f8a8f87b-12
       - egovio/egov-persister:v1.1.5-3371bc2-5
       - egovio/egov-url-shortening:v1.1.2-1715164454-3
-      - egovio/egov-user:health-digit-master-c7e4f3147b-7
+      - egovio/egov-user:health-digit-master-e27b970-31
       - egovio/user-otp:health-digit-master-dca3efde85-7
-      - egovio/egov-workflow-v2:v1.2.1-df98ec3c35-2
+      - egovio/egov-workflow-v2:2.9.1-80b58dc788-15
       - egovio/report:v1.3.4-96b24b0d72-16
       - egovio/egov-document-uploader:v1.1.0-75d461a4d2-4
       - egovio/service-request:master-impel-198c6d78f8-11
-      - egovio/pgr-services:master-impel-afa361c92a-13
+      - egovio/pgr-services:v1.1.7-00a7accbda-19
       - egovio/playground:1.0
-      - egovio/audit-service:audit-heatlh-40b1a4018a-1
+      - egovio/audit-service:audit-heatlh-40b1a4018a-11
       - egovio/error-handler:master-impel-dump-5022b7acff-1
+      - egovio/mdms-v2:MDMS-v2-2.9LTS-fc6b868dce-47
+      - egovio/boundary-service:boundary-hierarchy-def-modified-2.9-lts-629baf086b-15
   - name: business
     dependencies:
       - "core"
     services:
       - egovio/egf-master:v1.1.3-72f8a8f87b-15
-      - egovio/egov-hrms:health-moz-dev-c04a453286-67
+      - egovio/egov-hrms:v1.2.7-00a7accbda-19
   - name: "frontend"
     dependencies:
       - "business"
@@ -65,7 +67,7 @@ modules:
       - "core"
       - "business"
     services:
-      - egovio/dashboard-analytics:master-impel-f705ac483a-48
+      - egovio/dashboard-analytics:analytics-es8-auth-8f6d1faeb0-50
       - egovio/dashboard-ingest:v1.1.4-72f8a8f87b-10
       - egovio/dss-dashboard:v1.8.0-0d70d60e63-53
   - name: m_health
@@ -75,13 +77,14 @@ modules:
       - "core"
     services:
       # - egovio/facility:v1.0.0-a51bee1435-19
-      - egovio/facility:master-impel-82abd11612-46
-      - egovio/product:master-impel-9e32e9c097-22
-      - egovio/individual:master-impel-94bad42079-183
-      - egovio/transformer:hf-referral-transformation-6374410835-194
-      - egovio/stock:master-impel-9ebd806fe1-71
-      - egovio/household:hh-address-change-899fa0cb27-121
-      - egovio/project:master-impel-82abd11612-195
+      - egovio/facility:v1.1.2-00a7accbda-14
+      - egovio/product:v1.1.0-00a7accbda-31
+      - egovio/individual:v1.1.6-a0e714254c-12
+      - egovio/transformer:v1.1.2-00a7accbda-19
+      - egovio/stock:v1.1.3-a0e714254c-31
+      - egovio/household:v1.1.4-a0e714254c-30
+      - egovio/project:v1.1.5-a0e714254c-13
       - egovio/hcm-moz-impl:develop-869b688-347
       - egovio/egov-mdms-create:develop-3a53c3b-3
-      - egovio/referralmanagement:redis-cache-inc-downsync-nohouseholdbeneficiary-433e191842-142
+      - egovio/referralmanagement:v1.0.3-a0e714254c-42
+      - egovio/health-attendance:v1.0.2-30824c427-11

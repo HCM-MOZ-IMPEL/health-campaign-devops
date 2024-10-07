@@ -154,7 +154,3 @@ cluster-configs:
     jupyter:
       namespace: jupyter
       name: jupyter
-
-    kafka-kraft:
-      name: release-name-kafka-kraft-cluster-id
-      namespace: backbone

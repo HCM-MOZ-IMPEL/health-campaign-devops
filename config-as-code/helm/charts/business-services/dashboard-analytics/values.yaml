@@ -70,7 +70,7 @@ env: |
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: egov-mdms-service
+        key: mdms-v2
   - name: EGOV_MDMS_SEARCH_ENDPOINT
     value: "/mdms-v2/v1/_search"
   - name: EGOV_MDMS_PATH
@@ -89,10 +89,10 @@ env: |
   - name: EGOV_ES_USERNAME
     valueFrom:
       secretKeyRef:
-        name: elasticsearch-master-credentials
+        name: elastic
         key: username
   - name: EGOV_ES_PASSWORD
     valueFrom:
       secretKeyRef:
-        name: elasticsearch-master-credentials
+        name: elastic
         key: password
