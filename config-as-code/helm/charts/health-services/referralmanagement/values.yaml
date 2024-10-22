@@ -216,3 +216,5 @@ env: |
     value: "ADMIN"
   - name: EGOV_LOCATION_CODE_QUERY_PARAM
     value: "code"
+  - name: EGOV_ENABLE_MATVIEW_SEARCH
+    value: "true"
