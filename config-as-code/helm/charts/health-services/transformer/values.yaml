@@ -216,6 +216,10 @@ env: |
     value: transformer-producer-hfreferral-service-index-topic
   - name: HFREFERRAL_FEVER_SERVICE_CHECKLIST_NAME
     value: SMCMozambique.HF_RF_FEVER.HEALTH_FACILITY_SUPERVISOR
+  - name: TRANSFORMER_PRODUCER_CHECKLIST_ANSWER_INDEX_V1_TOPIC
+    value: "transformer-producer-checklist-answer-index-v1-topic"
+  - name: CHECKLIST_ANSWER_INDEX_CHECKLIST_NAMES
+    value: "EOD_CLEANING,WAREHOUSE_MANAGER_PERFORMANCE,SOP"
   - name: EGOV_HOUSEHOLD_HOST
     valueFrom:
       configMapKeyRef:
