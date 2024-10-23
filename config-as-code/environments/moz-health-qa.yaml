@@ -985,6 +985,7 @@ transformer:
       memory: "2Gi"
     limits:
       memory: "2Gi"
+  java-enable-debug: true
 hcm-moz-impl:
   replicas: 1
   heap: "-Xmx1024m -Xms1024m"
