@@ -407,7 +407,7 @@ env: |
   - name: TRACER_OPENTRACING_ENABLED
     value: "true" 
   {{- end }}
-  - name: EGOV_BOUNDARY_HIERARCHY_TYPE
+  - name: EGOV_BOUNDARY_HIERARCHYTYPE
     value: ADMIN
   - name: EGOV_BOUNDARYV2_HOST
     valueFrom:
@@ -430,4 +430,9 @@ env: |
         key: egov-localization
   - name: EGOV_BOUNDARY_LOCALIZATION_PREFIX
     value: ""
+  - name: EGOV_BOUNDARY_LOCALIZATION_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-localization
   
