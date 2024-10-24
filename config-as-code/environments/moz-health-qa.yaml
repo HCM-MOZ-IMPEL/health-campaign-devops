@@ -366,7 +366,7 @@ dashboard-analytics:
     gitSync:
       repo: "git@github.com:HCM-MOZ-IMPEL/health-campaign-config"      ##### Change repo url with Your fork Repo url
       branch: "QA"                                    ##### Change repo branch with Your fork Repo branch
-  java-debug: true
+  java-enable-debug: true
 
 dashboard-ingest:
   config-schema-paths: "file:///work-dir/health-campaign-config/egov-dss-dashboards/dashboard-ingest/*.json"
