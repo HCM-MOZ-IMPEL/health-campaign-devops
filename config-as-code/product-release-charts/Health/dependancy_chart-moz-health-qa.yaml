@@ -60,7 +60,7 @@ modules:
       - "business"
     services:
       - egovio/employee:v1.8.0-2ac8314b2f-116
-      - egovio/digit-ui:health-dashboard-digit-ui-422a6751ec-658
+      - egovio/digit-ui:irs-impel-e88fd7d51c-207
   - name: m_dss   #dss
     dependencies:
       - "frontend"
@@ -87,4 +87,4 @@ modules:
       - egovio/referralmanagement:v1.0.3-a0e714254c-42
       - egovio/health-attendance:v1.0.2-30824c427-11
       - egovio/egov-mdms-create:develop-3a53c3b-3
-      - egovio/hcm-moz-impl:develop-66239ad-288
+      - egovio/hcm-moz-impl:HDDF-1499-be2081d0-388
