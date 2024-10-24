@@ -87,4 +87,4 @@ modules:
       - egovio/referralmanagement:v1.0.3-a0e714254c-42
       - egovio/health-attendance:v1.0.2-30824c427-11
       - egovio/egov-mdms-create:develop-3a53c3b-3
-      - egovio/hcm-moz-impl:HDDF-1499-be2081d0-388
+      - egovio/hcm-moz-impl:HDDF-1499-528ec4fa-390
