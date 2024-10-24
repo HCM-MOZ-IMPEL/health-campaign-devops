@@ -67,7 +67,7 @@ modules:
       - "core"
       - "business"
     services:
-      - egovio/dashboard-analytics:analytics-es8-auth-8f6d1faeb0-50
+      - egovio/dashboard-analytics:analytics-es8-auth-f49f8e0aca-55
       - egovio/dashboard-ingest:v1.1.4-72f8a8f87b-10
       - egovio/dss-dashboard:v1.8.0-0d70d60e63-53
   - name: m_health
