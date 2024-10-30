@@ -435,4 +435,6 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: egov-localization
+  - name: EGOV_ATTENDANCE_SESSIONS
+    value: 1      
   

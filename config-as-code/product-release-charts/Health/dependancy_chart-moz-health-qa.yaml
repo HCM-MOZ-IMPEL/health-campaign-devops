@@ -38,7 +38,7 @@ modules:
       - egovio/egov-persister:v1.1.5-3371bc2-5
       - egovio/mdms-v2:MDMS-v2-2.9LTS-fc6b868dce-47
       - egovio/egov-url-shortening:v1.1.2-1715164454-3
-      - egovio/egov-user:health-digit-master-e27b970-31
+      - egovio/egov-user:health-digit-master-c7e4f3147b-7
       - egovio/user-otp:health-digit-master-dca3efde85-7
       - egovio/egov-workflow-v2:2.9.1-80b58dc788-15
       - egovio/report:v1.3.4-96b24b0d72-16
@@ -87,4 +87,4 @@ modules:
       - egovio/referralmanagement:v1.0.3-a0e714254c-42
       - egovio/health-attendance:v1.0.2-30824c427-11
       - egovio/egov-mdms-create:develop-3a53c3b-3
-      - egovio/hcm-moz-impl:HDDF-1499-e9e5f4e0-395
+      - egovio/hcm-moz-impl:HDDF-1499-4c799b41-398
