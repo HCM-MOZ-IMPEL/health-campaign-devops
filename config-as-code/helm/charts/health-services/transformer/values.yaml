@@ -220,6 +220,10 @@ env: |
     value: "transformer-producer-finance-checklist-index-v1-topic"
   - name: FINANCE_CHECKLIST_INDEX_CHECKLIST_NAMES
     value: "CAMPAIGN_COSTS"
+  - name: TRANSFORMER_PRODUCER_SPECIAL_SPRAYING_CHECKLIST_INDEX_V1_TOPIC
+    value: "transformer-producer-special-spraying-index-topic
+  - name: SPECIAL_SPRAYING_CHECKLIST_NAME
+    value: "SPECIAL_SPRAYING"
   - name: EGOV_HOUSEHOLD_HOST
     valueFrom:
       configMapKeyRef:
