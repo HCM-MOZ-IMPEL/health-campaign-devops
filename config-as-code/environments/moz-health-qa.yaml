@@ -998,3 +998,5 @@ hcm-moz-impl:
       memory: "2Gi"
     limits:
       memory: "2Gi"
+health-attendance:
+  java-enable-debug: true
