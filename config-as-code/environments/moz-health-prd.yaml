@@ -42,6 +42,7 @@ cluster-configs:
         timezone: "UTC"
         tracer-errors-provideexceptionindetails: "true"
         egov-env: "PRD"
+        boundary-hierarchy: "IRS"
 
     egov-service-host:
       namespace: [egov, monitoring]
@@ -161,6 +162,7 @@ cluster-configs:
         hcm-moz-impl: "http://hcm-moz-impl:8080/"
         service-request: "http://service-request:8080/"
         attendance-service: "http://health-attendance.egov:8080/"
+        household-referral: "http://household-referral:8080/"
 
     hcm-moz-impl:
       data:
@@ -233,7 +235,7 @@ egov-user:
   otp-validation: "true"
   citizen-otp-enabled: "true"
   employee-otp-enabled: "false"
-  access-token-validity: 43200
+  access-token-validity: 172800
   refresh-token-validity: 20160
   default-password-expiry: 90
   mobile-number-validation: "false"
@@ -512,6 +514,19 @@ tl-services:
   pdf-link: "https://egov-demo.egovernments.org/egov-pdf/download/epass?tenantId={TENANTID}&uuid={UUID}"
   tl-search-default-limit: "100"
 
+attendance-service:
+  tracing-enabled: true
+  java-enable-debug: true
+  attendance-register-default-offset: 0
+  attendance-register-default-limit: 10
+  attendance-register-search-max-limit: 100
+  attendance-individual-service-integration-required: false
+  attendance-staff-service-integration-required: false
+  attendance-document-id-verification-required: false
+  attendance-register-open-search-enabled-roles: "SUPERUSER,SYSTEM_ADMINISTRATOR"
+  organisation-contact-details-update-topic: organisation.contact.details.update
+  contracts-revision-topic: "contracts-revision"
+
 egov-workflow-v2:
   logging-level: "DEBUG"
   java-args: -Dspring.profiles.active=monitoring
@@ -523,7 +538,7 @@ egov-workflow-v2:
 egov-hrms:
   java-args: -Dspring.profiles.active=monitoring
   heap: "-Xmx512m -Xms512m"
-  employee-applink: "https://egov-demo.egovernments.org/employee/user/login"
+  employee-applink: "https://salama.digit.org/digit-ui/employee/user/login"
 
 
 egov-weekly-impact-notifier:

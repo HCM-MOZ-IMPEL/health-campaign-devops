@@ -109,7 +109,10 @@ env: |
   - name: EGOV_BOUNDARY_SEARCH_URL
     value: "/boundary-service/boundary/_search"
   - name: EGOV_BOUNDARY_HIERARCHY_NAME
-    value: "ADMIN"
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: boundary-hierarchy
   - name: EGOV_LOCATION_CONTEXT_PATH
     value: "/egov-location/location/v11"
   - name: EGOV_LOCATION_ENDPOINT
@@ -213,7 +216,7 @@ env: |
   - name: PROJECT_MDMS_MODULE
     value: "HCM-PROJECT-TYPES"
   - name: EGOV_LOCATION_HIERARCHY_TYPE
-    value: "ADMIN"
+    value: "IRS"
   - name: EGOV_LOCATION_CODE_QUERY_PARAM
     value: "code"
   - name: EGOV_ENABLE_MATVIEW_SEARCH
