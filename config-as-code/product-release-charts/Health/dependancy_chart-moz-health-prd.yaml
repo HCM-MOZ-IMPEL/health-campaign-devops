@@ -59,7 +59,7 @@ modules:
       - "business"
     services:
       - egovio/employee:v1.8.0-2ac8314b2f-116
-      - egovio/digit-ui:barchart-stack-ba64a9986c-232
+      - egovio/digit-ui:barchart-stack-6fe3d33fb5-233
   - name: m_dss   #dss
     dependencies:
       - "frontend"
