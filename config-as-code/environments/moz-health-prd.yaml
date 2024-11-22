@@ -18,6 +18,7 @@ cluster-configs:
         db-read-url: "jdbc:postgresql://moz-health-prd-replica-db.cls5uiey6qrs.af-south-1.rds.amazonaws.com:5432/mozhealthprd" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
         domain: "salama.digit.org" ## Add your Domain Name
         redis-host: "redis.backbone"
+        redis-downsync-host: "moz-health-prd-001.xhaglj.0001.afs1.cache.amazonaws.com"
         egov-services-fqdn-name: "https://salama.digit.org/" ## Add your Domain Name
         aws-cluster-ip: "https://2DF082542B59C28B32513742FE7BD8C6.sk1.af-south-1.eks.amazonaws.com"
         aws-region: "af-south-1"
