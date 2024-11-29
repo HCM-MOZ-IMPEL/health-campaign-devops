@@ -94,5 +94,5 @@ modules:
       - "authn-authz"
       - "core"
     services:
-      - egovio/project-factory-db:project-factory-kafka-fix-a3ca5439b5-24
-      - egovio/workbench-ui:console-0132e7aa64-546
+	     - egovio/project-factory:console-7086bdface-175
+	     - egovio/workbench-ui:console-82f25b2bca-655
