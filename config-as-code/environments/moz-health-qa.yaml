@@ -41,6 +41,7 @@ cluster-configs:
         timezone: "UTC"
         tracer-errors-provideexceptionindetails: "true"
         egov-env: "QA"
+        boundary-hierarchy: "IRS"
 
     egov-service-host:
       namespace: [egov, monitoring]
@@ -157,6 +158,7 @@ cluster-configs:
         facility: "http://facility:8080/"
         service-request: "http://service-request:8080/"
         attendance-service: "http://health-attendance.egov:8080/"
+        audit-service: "http://audit-service.egov:8080/"
 
     hcm-moz-impl:
       data:
@@ -346,7 +348,7 @@ egov-persister:
   replicas: 1
   images:
     - egovio/egov-persister
-  persist-yml-path: "file:///work-dir/health-campaign-config/egov-persister/audit-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-user-event-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-workflow-v2-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hrms-employee-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pdf-generator.yml,file:///work-dir/health-campaign-config/egov-persister/product-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-persister.yml,file:///work-dir/health-campaign-config/egov-persister/individual-persister.yml,file:///work-dir/health-campaign-config/egov-persister/household-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-task-persister.yml,file:///work-dir/health-campaign-config/egov-persister/stock-persister.yml,file:///work-dir/health-campaign-config/egov-persister/facility-persister.yml,file:///work-dir/health-campaign-config/egov-persister/service-request-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pgr-services-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hcm-moz-impl-persister.yml,file:///work-dir/health-campaign-config/egov-persister/mdms-persister.yml,file:///work-dir/health-campaign-config/egov-persister/referral-management-persister.yml,file:///work-dir/health-campaign-config/egov-persister/attendance-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/boundary-persister.yml"
+  persist-yml-path: "file:///work-dir/health-campaign-config/egov-persister/audit-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-user-event-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-workflow-v2-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hrms-employee-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pdf-generator.yml,file:///work-dir/health-campaign-config/egov-persister/product-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-persister.yml,file:///work-dir/health-campaign-config/egov-persister/individual-persister.yml,file:///work-dir/health-campaign-config/egov-persister/household-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-task-persister.yml,file:///work-dir/health-campaign-config/egov-persister/stock-persister.yml,file:///work-dir/health-campaign-config/egov-persister/facility-persister.yml,file:///work-dir/health-campaign-config/egov-persister/service-request-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pgr-services-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hcm-moz-impl-persister.yml,file:///work-dir/health-campaign-config/egov-persister/mdms-persister.yml,file:///work-dir/health-campaign-config/egov-persister/referral-management-persister.yml,file:///work-dir/health-campaign-config/egov-persister/attendance-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/boundary-persister.yml,file:///work-dir/health-campaign-config/egov-persister/irs-persister.yml"
   initContainers:
     gitSync:
       repo: "git@github.com:HCM-MOZ-IMPEL/health-campaign-config"      ##### Change repo url with Your fork Repo url
@@ -1003,3 +1005,5 @@ hcm-moz-impl:
       memory: "2Gi"
     limits:
       memory: "2Gi"
+health-attendance:
+  java-enable-debug: true

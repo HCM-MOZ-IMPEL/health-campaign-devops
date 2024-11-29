@@ -144,7 +144,10 @@ env: |
   - name: EGOV_BOUNDARY_SEARCH_URL
     value: "/boundary-service/boundary/_search"
   - name: EGOV_BOUNDARY_HIERARCHY_NAME
-    value: "ADMIN"
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: boundary-hierarchy
   - name: EGOV_HRMS_USER_SERVICE_QUALIFIER
     value: "individualService"
   {{- if index .Values "tracing-enabled" }}

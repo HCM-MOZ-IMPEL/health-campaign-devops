@@ -62,7 +62,7 @@ env: |
     valueFrom:
       configMapKeyRef:
         name: egov-config
-        key: redis-host
+        key: redis-downsync-host
   - name: SPRING_REDIS_PORT
     value: "6379"
   - name: SPRING_CACHE_TYPE
@@ -109,7 +109,10 @@ env: |
   - name: EGOV_BOUNDARY_SEARCH_URL
     value: "/boundary-service/boundary/_search"
   - name: EGOV_BOUNDARY_HIERARCHY_NAME
-    value: "ADMIN"
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: boundary-hierarchy
   - name: EGOV_LOCATION_CONTEXT_PATH
     value: "/egov-location/location/v11"
   - name: EGOV_LOCATION_ENDPOINT
@@ -135,18 +138,18 @@ env: |
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: household
+        key: household-referral
   - name: EGOV_SEARCH_HOUSEHOLD_URL
-    value: "/household/v1/_search"
+    value: "/household-referral/v1/_search"
   - name: EGOV_SEARCH_HOUSEHOLD_MEMBER_URL
-    value: "/household/member/v1/_search"
+    value: "/household-referral/member/v1/_search"
   - name: EGOV_INDIVIDUAL_HOST
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: individual
+        key: individual-referral
   - name: EGOV_SEARCH_INDIVIDUAL_URL
-    value: "/individual/v1/_search"
+    value: "/individual-referral/v1/_search"
   - name: EGOV_PRODUCT_HOST
     valueFrom:
       configMapKeyRef:
@@ -158,13 +161,15 @@ env: |
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: project
+        key: project-referral
   - name: EGOV_SEARCH_PROJECT_TASK_URL
-    value: "/project/task/v1/_search"
+    value: "/project-referral/task/v1/_search"
   - name: EGOV_SEARCH_PROJECT_BENEFICIARY_URL
-    value: "/project/beneficiary/v1/_search"
+    value: "/project-referral/beneficiary/v1/_search"
   - name: EGOV_SEARCH_PROJECT_STAFF_URL
-    value: "/project/staff/v1/_search"
+    value: "/project-referral/staff/v1/_search"
+  - name: EGOV_SEARCH_PROJECT_URL
+    value: "/project-referral/v1/_search"
   - name: REFERRALMANAGEMENT.SIDEEFFECT.KAFKA.CREATE.TOPIC
     value: "save-side-effect-topic"
   - name: REFERRALMANAGEMENT.SIDEEFFECT.KAFKA.UPDATE.TOPIC
@@ -210,10 +215,12 @@ env: |
         key: facility
   - name: EGOV_SEARCH_FACILITY_URL
     value: "/facility/v1/_search"
+  - name: EGOV_SEARCH_PROJECT_FACILITY_URL
+    value: "/project-referral/facility/v1/_search"
   - name: PROJECT_MDMS_MODULE
     value: "HCM-PROJECT-TYPES"
   - name: EGOV_LOCATION_HIERARCHY_TYPE
-    value: "ADMIN"
+    value: "IRS"
   - name: EGOV_LOCATION_CODE_QUERY_PARAM
     value: "code"
   - name: EGOV_ENABLE_MATVIEW_SEARCH
