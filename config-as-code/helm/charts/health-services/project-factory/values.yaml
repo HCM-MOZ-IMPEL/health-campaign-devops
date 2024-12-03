@@ -135,6 +135,8 @@ env: |
     value: project/v1/_search
   - name: HEALTH_PROJECT_CREATE_PATH
     value: project/v1/_create
+  - name: HEALTH_PROJECT_UPDATE_PATH
+    value: project/v1/_update
   - name: EGOV_PROJECT_STAFF_CREATE_PATH
     value: project/staff/v1/_create
   - name: EGOV_HRMS_EMPLOYEE_CREATE_PATH
