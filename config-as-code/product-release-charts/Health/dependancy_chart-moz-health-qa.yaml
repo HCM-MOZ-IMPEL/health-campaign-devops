@@ -88,3 +88,13 @@ modules:
       - egovio/health-attendance:master-impel-attendance-28239c5cc-84
       - egovio/egov-mdms-create:develop-3a53c3b-3
       - egovio/hcm-moz-impl:HDDF-1499-502d7899-400
+  - name: m_hcmconsole
+    dependencies:
+      - "backbone"
+      - "authn-authz"
+      - "core"
+    services:
+      - egovio/project-factory:console-5c9a5bb19c-199
+      - egovio/workbench-ui:console-82f25b2bca-655
+      - egovio/service-request:service-additional-field-8875f8366d-36
+      
