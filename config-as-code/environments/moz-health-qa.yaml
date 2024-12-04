@@ -984,6 +984,10 @@ project:
       memory: "2Gi"
     limits:
       memory: "2Gi"
+project-factory:
+  logLevel: 'debug'
+  maxDebugChar: '2000'
+
 transformer:
   replicas: 1
   heap: "-Xmx1536m -Xms1536m"
