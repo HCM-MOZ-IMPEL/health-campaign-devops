@@ -59,7 +59,7 @@ modules:
       - "business"
     services:
       - egovio/employee:v1.8.0-2ac8314b2f-116
-      - egovio/digit-ui:barchart-stack-6fe3d33fb5-233
+      - egovio/digit-ui:irs-impel-94d31b412b-266
   - name: m_dss   #dss
     dependencies:
       - "frontend"
@@ -82,7 +82,7 @@ modules:
       - egovio/transformer:boundary-service-caching-8e8ac1412a-288
       - egovio/stock:hcmpre-639-shashwat-changes-a06b79e874-39
       - egovio/household:v1.1.4-a0e714254c-30
-      - egovio/project:HDDF-1638-79f8bd35a9-21
+      - egovio/project:HDDF-1638-79f8bd35a9-24
       - egovio/referralmanagement:hh-matview-fetch-d348299ba1-47
       - egovio/health-attendance:v1.0.2-c20992b0d-61
       - egovio/egov-mdms-create:develop-3a53c3b-3

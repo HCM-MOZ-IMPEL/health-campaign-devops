@@ -83,7 +83,7 @@ modules:
       - egovio/transformer:finance-checklist-changes-5096dd9b0f-272
       - egovio/stock:v1.1.3-a0e714254c-31
       - egovio/household:v1.1.4-a0e714254c-30
-      - egovio/project:HDDF-1638-79f8bd35a9-21
+      - egovio/project:HDDF-1638-79f8bd35a9-24
       - egovio/referralmanagement:hh-matview-fetch-94fcd8c07f-46
       - egovio/health-attendance:master-impel-attendance-28239c5cc-84
       - egovio/egov-mdms-create:develop-3a53c3b-3
