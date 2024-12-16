@@ -24,7 +24,7 @@ module "db" {
   vpc_security_group_ids        = ["${module.network.rds_db_sg_id}"]
   availability_zone             = "${element(var.availability_zones, 0)}"
   instance_class                = "db.t4g.medium"  ## postgres db instance type
-  engine_version                = "12.17"   ## postgres version
+  engine_version                = "12.19"   ## postgres version
   storage_type                  = "gp3"
   storage_gb                    = "30"     ## postgres disk size
   backup_retention_days         = "7"
@@ -166,30 +166,6 @@ resource "aws_eks_addon" "aws_ebs_csi_driver" {
   addon_name        = "aws-ebs-csi-driver"
   addon_version     = "v1.34.0-eksbuild.1"
   resolve_conflicts = "OVERWRITE"
-}
-
-module "zookeeper" {
-
-  source = "../modules/storage/aws"
-  storage_count = 3
-  environment = "${var.cluster_name}"
-  disk_prefix = "zookeeper"
-  availability_zones = "${var.availability_zones}"
-  storage_sku = "gp2"
-  disk_size_gb = "2"
-  
-}
-
-module "kafka" {
-
-  source = "../modules/storage/aws"
-  storage_count = 3
-  environment = "${var.cluster_name}"
-  disk_prefix = "kafka"
-  availability_zones = "${var.availability_zones}"
-  storage_sku = "gp2"
-  disk_size_gb = "50"
-  
 }
 
 

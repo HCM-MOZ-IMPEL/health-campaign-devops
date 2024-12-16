@@ -21,14 +21,6 @@ output "kubectl_config" {
   value       = module.eks.kubeconfig
 }
 
-output "zookeeper_volume_ids" {
-  value = "${module.zookeeper.volume_ids}"
-}
-
-output "kafka_vol_ids" {
-  value = "${module.kafka.volume_ids}"
-}
-
 output "db_instance_endpoint" {
   value = module.db.db_instance_endpoint
 }
