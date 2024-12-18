@@ -12,11 +12,11 @@ cluster-configs:
   configmaps:
     egov-config:
       data:
-        db-host: "moz-health-uat1-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com" ## Add db-host name eg: egov-demo.database.azure.com
-        db-name: "mozhealthuat" ## Add db-name
-        db-url: "jdbc:postgresql://moz-health-uat1-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com:5432/mozhealthuat" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
+        db-host: "moz-health-uat-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com" ## Add db-host name eg: egov-demo.database.azure.com
+        db-name: "mozhealthqa" ## Add db-name
+        db-url: "jdbc:postgresql://moz-health-uat-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com:5432/mozhealthqa" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
         domain: "moz-health-uat.digit.org" ## Add your Domain Name
-        redis-host: "redis-nc-uat-001.9bp7mc.0001.aps1.cache.amazonaws.com"
+        redis-host: "redis.backbone"
         egov-services-fqdn-name: "https://moz-health-uat.digit.org/" ## Add your Domain Name
         aws-cluster-ip: "https://E17032D622F099B2A0B72B508FD7E7AE.gr7.ap-south-1.eks.amazonaws.com"
         aws-region: "ap-south-1"
@@ -26,8 +26,8 @@ cluster-configs:
         es-host: "elasticsearch-data.es-cluster-v8"
         es-indexer-host: "https://elasticsearch-data.es-cluster-v8:9200/"
         flyway-locations: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa"
-        kafka-brokers: "kafka-v2.kafka-cluster:9092"
-        kafka-infra-brokers: "kafka-v2.kafka-cluster:9092"
+        kafka-brokers: "release-name-kafka-controller-headless.kafka-cluster:9092"
+        kafka-infra-brokers: "release-name-kafka-controller-headless.kafka-cluster:9092"
         logging-level-jdbc: "DEBUG"
         mobile-validation-workaround: "true"
         serializers-timezone-in-ist: "true"
@@ -43,6 +43,7 @@ cluster-configs:
         boundary-hierarchy: "ADMIN"
 
     egov-service-host:
+      namespace: [egov, monitoring]
       data:
         asset-services: "http://asset-services:8080/"
         asset-services-maha: "http://asset-services-maha:8080/"
@@ -74,6 +75,7 @@ cluster-configs:
         egov-otp: "http://egov-otp:8080/"
         egov-common-workflows: "http://egov-common-workflows:8080/"
         egov-mdms-service: "http://egov-mdms-service:8080/"
+        mdms-v2: "http://mdms-v2:8080/"
         egov-mdms-service-test: "http://egov-mdms-service-test:8080/"
         egov-mdms-create: "http://egov-mdms-create:8080/"
         egov-eis: "http://egov-eis:8080/"
@@ -147,17 +149,15 @@ cluster-configs:
         health-registration-service: "http://health-registration-service:8080/"
         health-delivery-service: "http://health-delivery-service:8080/"
         project: "http://project:8080/"
-        project-referral: "http://project-referral:8080/"
         product: "http://product:8080/"
         household: "http://household:8080/"
-        household-referral: "http://household-referral:8080/"
+        boundary-service: "http://boundary-service.egov:8080/"
         individual: "http://individual:8080/"
-        individual-referral: "http://individual-referral:8080/"
         stock: "http://stock:8080/"
         facility: "http://facility:8080/"
-        hcm-moz-impl: "http://hcm-moz-impl:8080/"
         service-request: "http://service-request:8080/"
-        attendance-service: "http://attendance.egov:8080/"
+        attendance-service: "http://health-attendance.egov:8080/"
+        audit-service: "http://audit-service.egov:8080/"
         project-factory: 'http://project-factory.egov:8080/'
         plan-service: 'http://plan-service.egov:8080/'
         census-service: 'http://census-service.egov:8080/'
@@ -222,19 +222,6 @@ egov-idgen:
   heap: "-Xmx192m -Xms192m"
   autocreate-new-seq: "true"
 
-attendance-service:
-  tracing-enabled: true
-  java-enable-debug: true
-  attendance-register-default-offset: 0
-  attendance-register-default-limit: 10
-  attendance-register-search-max-limit: 100
-  attendance-individual-service-integration-required: false
-  attendance-staff-service-integration-required: false
-  attendance-document-id-verification-required: false
-  attendance-register-open-search-enabled-roles: "SUPERUSER,SYSTEM_ADMINISTRATOR"
-  organisation-contact-details-update-topic: organisation.contact.details.update
-  contracts-revision-topic: "contracts-revision"
-
 egov-notification-sms:
   sms-provider-url: "sms provider url" ## Add sms provider url
   sms.provider.class: "Generic"
@@ -268,49 +255,6 @@ egov-user:
   citizen-otp-fixed-enabled: "true"
   egov-state-level-tenant-id: "mz"
   decryption-abac-enabled: "false"
-
-chatbot:
-  kafka-topics-partition-count: 3
-  kafka-topics-replication-factor: 2
-  kafka-consumer-poll-ms: 10
-  kafka-producer-linger-ms: 5
-
-  contact-card-whatsapp-number: "+918744960111"
-  contact-card-whatsapp-name: "mSeva Punjab"
-  valuefirst-whatsapp-number: "918744960111"
-  valuefirst-notification-assigned-templateid: "194781"
-  valuefirst-notification-resolved-templateid: "194783"
-  valuefirst-notification-rejected-templateid: "194785"
-  valuefirst-notification-reassigned-templateid: "194787"
-  valuefirst-notification-commented-templateid: "194789"
-  valuefirst-notification-welcome-templateid: "194791"
-  valuefirst-notification-root-templateid: "194795"
-  valuefirst-send-message-url: "https://api.myvaluefirst.com/psms/servlet/psms.JsonEservice"
-
-  user-service-chatbot-citizen-passwrord: "123456"
-
-
-ws-services:
-  wcid-format: "WS/[CITY.CODE]/[fy:yyyy-yy]/[SEQ_EGOV_COMMON]"
-
-bpa-services:
-  memory_limits: 384Mi
-  java-args: -Dspring.profiles.active=monitoring
-  java-debug: true
-  tracing-enabled: "true"
-  egov.idgen.bpa.applicationNum.format: PB-BP-[cy:yyyy-MM-dd]-[SEQ_EG_BP_APN]
-
-bpa-calculator:
-  memory_limits: 384Mi
-  java-args: -Dspring.profiles.active=monitoring
-  java-debug: true
-  tracing-enabled: "true"
-
-sw-services:
-  scid-format: "SW/[CITY.CODE]/[fy:yyyy-yy]/[SEQ_EGOV_COMMON]"
-
-egov-pg-service:
-  axis: true
 
 audit-service:
   persist-yml-path: "https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/egov-workflow-v2-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/facility-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/hcm-moz-impl-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/household-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/hrms-employee-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/individual-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/stock-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/service-request-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/project-task-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/project-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/DEMO/egov-persister/product-persister.yml"
@@ -396,56 +340,7 @@ dashboard-analytics:
     gitSync:
       repo: "git@github.com:HCM-MOZ-IMPEL/health-campaign-config"      ##### Change repo url with Your fork Repo url
       branch: "DEMO"                                    ##### Change repo branch with Your fork Repo branch
-
-dashboard-ingest:
-  config-schema-paths: "file:///work-dir/health-campaign-config/egov-dss-dashboards/dashboard-ingest/*.json"
-  initContainers:
-    gitSync:
-      repo: "git@github.com:HCM-MOZ-IMPEL/health-campaign-config"      ##### Change repo url with Your fork Repo url
-      branch: "DEMO"                                    ##### Change repo branch with Your fork Repo branch
-
-# reportinfra >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-report:
-  heap: "-Xmx512m -Xms512m"
-  tracing-enabled: "true"
-  spring-datasource-tomcat-max-active: 5
-  initContainers:
-    gitSync:
-      repo: "git@github.com:HCM-MOZ-IMPEL/health-campaign-config"     ##### Change repo url with Your fork Repo url
-      branch: "DEMO"                                   ##### Change repo branch with Your fork Repo branch
-  report-locationsfile-path: "file:///work-dir/health-campaign-config/reports/reportFileLocationsv1.txt"
-
-pdf-service:
-  initContainers:
-    gitSync:
-      repo: "git@github.com:HCM-MOZ-IMPEL/health-campaign-config"     ##### Change repo url with Your fork Repo url
-      branch: "DEMO"                                   ##### Change repo branch with Your fork Repo branch
-  data-config-urls: "file:///work-dir/health-campaign-config/pdf-service/data-config/tradelicense-receipt.json,file:///work-dir/health-campaign-config/pdf-service/data-config/property-receipt.json,file:///work-dir/health-campaign-config/pdf-service/data-config/property-bill.json,file:///work-dir/health-campaign-config/pdf-service/data-config/tradelicense-bill.json,file:///work-dir/health-campaign-config/pdf-service/data-config/firenoc-receipt.json,file:///work-dir/health-campaign-config/pdf-service/data-config/pt-receipt.json,file:///work-dir/health-campaign-config/pdf-service/data-config/tl-receipt.json,file:///work-dir/health-campaign-config/pdf-service/data-config/consolidatedbill.json,file:///work-dir/health-campaign-config/pdf-service/data-config/consolidatedreceipt.json,file:///work-dir/health-campaign-config/pdf-service/data-config/tlapplication.json,file:///work-dir/health-campaign-config/pdf-service/data-config/passvehicle-certificate.json,file:///work-dir/health-campaign-config/pdf-service/data-config/ws-consolidatedacknowlegment.json,file:///work-dir/health-campaign-config/pdf-service/data-config/ws-consolidatedsewerageconnection.json,file:///work-dir/health-campaign-config/pdf-service/data-config/buildingpermit.json,file:///work-dir/health-campaign-config/pdf-service/data-config/ptmutationcertificate.json,file:///work-dir/health-campaign-config/pdf-service/data-config/tlrenewalcertificate.json,file:///work-dir/health-campaign-config/pdf-service/data-config/bpa-revocation.json,file:///work-dir/health-campaign-config/pdf-service/data-config/buildingpermit-low.json,file:///work-dir/health-campaign-config/pdf-service/data-config/misc-receipt.json,file:///work-dir/health-campaign-config/pdf-service/data-config/ws-applicationwater.json,file:///work-dir/health-campaign-config/pdf-service/data-config/ws-sanctionletter.json,file:///work-dir/health-campaign-config/pdf-service/data-config/ws-estimationnotice.json,file:///work-dir/health-campaign-config/pdf-service/data-config/ws-applicationsewerage.json,file:///work-dir/health-campaign-config/pdf-service/data-config/tlcertificate.json"
-  format-config-urls: "file:///work-dir/health-campaign-config/pdf-service/format-config/tradelicense-receipt.json,file:///work-dir/health-campaign-config/pdf-service/format-config/property-receipt.json,file:///work-dir/health-campaign-config/pdf-service/format-config/property-bill.json,file:///work-dir/health-campaign-config/pdf-service/format-config/tradelicense-bill.json,file:///work-dir/health-campaign-config/pdf-service/format-config/firenoc-receipt.json,file:///work-dir/health-campaign-config/pdf-service/format-config/pt-receipt.json,file:///work-dir/health-campaign-config/pdf-service/format-config/tl-receipt.json,file:///work-dir/health-campaign-config/pdf-service/format-config/consolidatedbill.json,file:///work-dir/health-campaign-config/pdf-service/format-config/consolidatedreceipt.json,file:///work-dir/health-campaign-config/pdf-service/format-config/tlapplication.json,file:///work-dir/health-campaign-config/pdf-service/format-config/passvehicle-certificate.json,file:///work-dir/health-campaign-config/pdf-service/format-config/ws-consolidatedacknowlegment.json,file:///work-dir/health-campaign-config/pdf-service/format-config/ws-consolidatedsewerageconnection.json,file:///work-dir/health-campaign-config/pdf-service/format-config/buildingpermit.json,file:///work-dir/health-campaign-config/pdf-service/format-config/ptmutationcertificate.json,file:///work-dir/health-campaign-config/pdf-service/format-config/tlrenewalcertificate.json,file:///work-dir/health-campaign-config/pdf-service/format-config/bpa-revocation.json,file:///work-dir/health-campaign-config/pdf-service/format-config/buildingpermit-low.json,file:///work-dir/health-campaign-config/pdf-service/format-config/misc-receipt.json,file:///work-dir/health-campaign-config/pdf-service/format-config/ws-applicationwater.json,file:///work-dir/health-campaign-config/pdf-service/format-config/ws-sanctionletter.json,file:///work-dir/health-campaign-config/pdf-service/format-config/ws-estimationnotice.json,file:///work-dir/health-campaign-config/pdf-service/format-config/ws-applicationsewerage.json,file:///work-dir/health-campaign-config/pdf-service/format-config/tlcertificate.json"
-
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-# financials >>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-egf-master:
-  db-url: "jdbc:postgresql://moz-health-uat1-db.cqqfmghbjssw.ap-south-1.rds.amazonaws.com:5432/mozhealthuat"
-  memory_limits: 512Mi
-  heap: "-Xmx256m -Xms256m"
-# <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-egov-custom-consumer:
-  erp-host: "https://mohali-qa.egovernments.org/"
-
-egov-apportion-service:
-  memory_limits: 512Mi
-  heap: -Xmx256m -Xms256m
-
-# docs >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-redoc:
-  replicas: 1
-  images:
-    - egovio/redoc:v1.0.5
-  service_type: LoadBalancer
-# <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  java-enable-debug: true
 
 # gateway >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -480,73 +375,38 @@ zuul:
   custom-filter-property: "false"
   tracing-enabled: "true"
   heap: "-Xmx704m -Xms512m"
-  memory_limits: "750Mi"
-  cpu_limits: "500m"
   server-tomcat-max-threads: "350"
   server-tomcat-max-connections: "1500"
   egov-open-endpoints-whitelist: "/user/oauth/token,/user-otp/v1/_send,/otp/v1/_validate,/user/citizen/_create,/localization/messages,/localization/messages/v1/_search,/user/password/nologin/_update,/pgr/servicedefinition/v1/_search,/pgr/servicecategories/v1/_search,/pgr/v1/otp/_send,/pgr-master/receivingmode/v1/_search,/tenant/v1/tenant/_search,/egov-location/boundarys,/egov-location/boundarys/boundariesByBndryTypeNameAndHierarchyTypeName,/pgr-master/service/v1/_search,/egov-location/boundarys/getLocationByLocationName,/pgr-master/OTPConfig/_search,/pgr-master/serviceGroup/v1/_search,/egov-location/boundarys/isshapefileexist,/pgr/services/v1/_search,/hr-masters/hrconfigurations/_search,/collection-services/receipts/_view,/pgr-master/service/v2/_search,/pgr-master/servicedefinition/v1/_search,/citizen-services,/citizen-services/v1/requests/receipt/_create,/citizen-services/v1/pgresponse,/citizen-services/v1/requests/anonymous/_search,/egov-mdms-service/v1/_search,/egov-mdms-service/v1/_get,/egov-mdms-service/v1/_reload,/egov-mdms-service/v1/_reloadobj,/egov-location/boundarys/getshapefile,/egov-indexer/index-operations/_index,/egov-indexer/index-operations/_reload,/egov-mdms-service-test/v1/_search,/egov-mdms-create/v1/_update,/egov-mdms-create/v1/_create,/egov-mdms-service-test/v1/_reload,/filestore/v1/files/url,/egov-url-shortening,/whatsapp-webhook/messages,/edcr/rest/dcr/downloadfile,/dashboard-ingest/ingest/upload,/egov-searcher/water-services/wateropensearch/_get,/egov-searcher/sewerage-services/sewerageopensearch/_get,/xstate-chatbot/status,/xstate-chatbot/reminder,/nlp-engine/fuzzy/city,/nlp-engine/fuzzy/locality,/mdms-v2/schema/v1/_search,/mdms-v2/v2/_search,/mdms-v2/v2/_create,/mdms-v2/v1/_search,/mdms-v2/v2/_create/ACCESSCONTROL-ACTIONS-TEST.actions-test,/mdms-v2/v2/_create/ACCESSCONTROL-ROLES.roles,/mdms-v2/v2/_create/ACCESSCONTROL-ROLEACTIONS.roleactions,/mdms-v2/v2/_create,/boundary-service/boundary/_search"
-  egov-mixed-mode-endpoints-whitelist: "/pgr/seva/v1/_create,/pgr/seva/v1/_search,/pgr/seva/v1/_count,/workflow/history/v1/_search,/filestore/v1/files/id,/filestore/v1/files,/filestore/v1/files/tag,/egov-common-masters/departments/_search,/pt-property/property/propertytypes/_search,/pt-property/properties/_search,/pt-property/property/usages/_search,/egov-idgen/id/_generate,/egf-masters/financialyears/_search,/egov-common-workflows/process/_start,/egov-common-workflows/process/_search,/egov-common-workflows/tasks,/egov-common-workflows/tasks/{id}/_update,/user/_search,/billing-service/demand/_dues,/billing-service/bill/_generate,/billing-service/demand/_create,/wcms/masters/waterchargesconfig/_search,/wcms/masters/usagetypes/_search,/wcms/masters/pipesizes/_search,/wcms-connection/connection/_getbillingtypes,/wcms-connection/connection/_getconnectiontypes,/wcms/masters/sourcetypes/_search,/wcms/masters/supplytypes/_search,/wcms/masters/storagereservoirs/_search,/wcms/masters/treatmentplants/_search,/wcms/masters/documenttypes-applicationtypes/_search,/wcms/masters/donations/_search,/wcms/masters/nonmeterwaterrates/_search,/wcms-connection/connection/_create,/egov-common-masters/genders/_search,/egov-common-workflows/designations/_search,/access/v1/actions/mdms/_get,/tl-services/v1/BPAREG/_create,/tl-services/v1/BPAREG/_update,/tl-calculator/v1/BPAREG/_getbill,/property-services/property/_search,/billing-service/bill/v2/_search,/egov-location/location/v11/boundarys/_search,/pg-service/transaction/v1/_create,/collection-services/payments/_search,/pdf-service/v1/_create,/billing-service/bill/v2/_fetchbill,/pg-service/transaction/v1/_update,/ws-services/wc/_search,/sw-services/swc/_search,/edcr/rest/dcr/scrutinydetails,/edcr/rest/dcr/occomparison,/egov-pdf/download/PAYMENT/consolidatedreceipt,/collection-services/payments/PT/_search,/collection-services/payments/WS/_search,/collection-services/payments/SW/_search,/collection-services/payments/WS.ONE_TIME_FEE/_search,/collection-services/payments/SW.ONE_TIME_FEE/_search,/turn-io-adapter/_transform,/egov-user-event/v1/events/_search"
+  egov-mixed-mode-endpoints-whitelist: "/pgr/seva/v1/_create,/pgr/seva/v1/_search,/pgr/seva/v1/_count,/workflow/history/v1/_search,/filestore/v1/files/id,/filestore/v1/files,/filestore/v1/files/tag,/egov-common-masters/departments/_search,/pt-property/property/propertytypes/_search,/pt-property/properties/_search,/pt-property/property/usages/_search,/egov-idgen/id/_generate,/egf-masters/financialyears/_search,/egov-common-workflows/process/_start,/egov-common-workflows/process/_search,/egov-common-workflows/tasks,/egov-common-workflows/tasks/{id}/_update,/user/_search,/billing-service/demand/_dues,/billing-service/bill/_generate,/billing-service/demand/_create,/wcms/masters/waterchargesconfig/_search,/wcms/masters/usagetypes/_search,/wcms/masters/pipesizes/_search,/wcms-connection/connection/_getbillingtypes,/wcms-connection/connection/_getconnectiontypes,/wcms/masters/sourcetypes/_search,/wcms/masters/supplytypes/_search,/wcms/masters/storagereservoirs/_search,/wcms/masters/treatmentplants/_search,/wcms/masters/documenttypes-applicationtypes/_search,/wcms/masters/donations/_search,/wcms/masters/nonmeterwaterrates/_search,/wcms-connection/connection/_create,/egov-common-masters/genders/_search,/egov-common-workflows/designations/_search,/access/v1/actions/mdms/_get,/tl-services/v1/BPAREG/_create,/tl-services/v1/BPAREG/_update,/tl-calculator/v1/BPAREG/_getbill,/property-services/property/_search,/billing-service/bill/v2/_search,/egov-location/location/v11/boundarys/_search,/boundary-service/boundary-relationships/_search,/pg-service/transaction/v1/_create,/collection-services/payments/_search,/pdf-service/v1/_create,/billing-service/bill/v2/_fetchbill,/pg-service/transaction/v1/_update,/ws-services/wc/_search,/sw-services/swc/_search,/edcr/rest/dcr/scrutinydetails,/edcr/rest/dcr/occomparison,/egov-pdf/download/PAYMENT/consolidatedreceipt,/collection-services/payments/PT/_search,/collection-services/payments/WS/_search,/collection-services/payments/SW/_search,/collection-services/payments/WS.ONE_TIME_FEE/_search,/collection-services/payments/SW.ONE_TIME_FEE/_search,/turn-io-adapter/_transform,/egov-user-event/v1/events/_search"
 
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-collection-services:
-  receiptnumber-servicebased: "true"
-  receipt-search-paginate: "true"
-  receipt-search-defaultsize: 30
-  user-create-enabled: "true"
-
-collection-receipt-voucher-consumer:
-  jalandhar-erp-host: "https://jalandhar-qa.egovernments.org/"
-  mohali-erp-host: "https://mohali-qa.egovernments.org/"
-  nayagaon-erp-host: "https://nayagaon-qa.egovernments.org/"
-  amritsar-erp-host: "https://amritsar-qa.egovernments.org/"
-  kharar-erp-host: "https://kharar-qa.egovernments.org/"
-  zirakpur-erp-host: "https://zirakpur-qa.egovernments.org/"
-
-finance-collections-voucher-consumer:
-  erp-env-name: "qa"
-  erp-domain-name: "egovernments.org"
-
-# rainmaker-pgr >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-rainmaker-pgr:
-  notification-sms-enabled: "true"
-  notification-email-enabled: "false"
-  new-complaint-enabled: "true"
-  reassign-complaint-enabled: "true"
-  reopen-complaint-enabled: "true"
-  comment-by-employee-notif-enabled: "false"
-  notification-allowed-status: "open,assigned,rejected,resolved"
-
-pt-services-v2:
-  pt-userevents-pay-link: "/citizen/otpLogin?mobileNo=$mobile&redirectTo=egov-common/pay?consumerCode=$consumerCode&tenantId=$tenantId"
-
-pt-calculator-v2:
-  logging-level: "DEBUG"
-
-tl-services:
-  heap: "-Xmx128m -Xms64m"
-  memory_limits: 384Mi
-  java-args: -Dspring.profiles.active=monitoring
-  tl-application-num-format: "APP-[SEQ_EG_TL_APL]"
-  tl-license-num-format: "MP-LEP-[SEQ_EG_PT_LN]"
-  tl-userevents-pay-link: "citizen/otpLogin?mobileNo=$mobile&redirectTo=egov-common/pay?consumerCode=$applicationNo&tenantId=$tenantId"
-  tl-payment-topic-name: "egov.collection.payment-create"
-  host-link: "https://egov-demo.egovernments.org/citizen/"
-  pdf-link: "https://egov-demo.egovernments.org/egov-pdf/download/epass?tenantId={TENANTID}&uuid={UUID}"
-  tl-search-default-limit: "100"
+attendance-service:
+  tracing-enabled: true
+  java-enable-debug: true
+  attendance-register-default-offset: 0
+  attendance-register-default-limit: 10
+  attendance-register-search-max-limit: 100
+  attendance-individual-service-integration-required: false
+  attendance-staff-service-integration-required: false
+  attendance-document-id-verification-required: false
+  attendance-register-open-search-enabled-roles: "SUPERUSER,SYSTEM_ADMINISTRATOR"
+  organisation-contact-details-update-topic: organisation.contact.details.update
+  contracts-revision-topic: "contracts-revision"
 
 egov-workflow-v2:
   logging-level: "DEBUG"
   java-args: -Dspring.profiles.active=monitoring
   heap: "-Xmx192m -Xms192m"
   workflow-statelevel: "false"
-  host-link: "https://egov-demo.egovernments.org/citizen/"
+  host-link: "https://moz-health-uat.digit.org/digit-ui/employee"
   pdf-link: "/download/epass?tenantId={TENANTID}&ids={UUID}"
 
 egov-hrms:
   java-args: -Dspring.profiles.active=monitoring
   heap: "-Xmx512m -Xms512m"
-  employee-applink: "https://egov-demo.egovernments.org/employee/user/login"
+  employee-applink: "https://moz-health-uat.digit.org/digit-ui/employee/login"
 
 
 egov-weekly-impact-notifier:
@@ -635,7 +495,7 @@ jaeger:
 redis:
   replicas: 1
   images:
-    - egovio/redis:3.2
+    - egovio/redis:7.2.4
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 playground:
@@ -651,165 +511,6 @@ fluent-bit:
   egov-infra-log-topic: "egov-infra-logs"
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-# kafka-v2 AWS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-kafka-v2:
-  persistence:
-    enabled: true
-    aws:
-      - volumeId: "vol-0e8dfc2645bba4c13" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-0dd779269fc7af010" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-0865ce1547b2523fc" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-  zookeeperHosts: "zookeeper-v2.zookeeper-cluster:2181/kafka-v2"
-
-  heapOptions: "-Xms704M -Xmx704M"
-  memory_limits: 1408Mi
-  lingerMs: "250"
-  numberPartitions: "3"
-  replicationFactor: "2"
-  minInsyncReplicas: "1"
-  offsetsReplicationFactor: "3"
-  maxRequestSize: "20000000"
-  maxMessageBytes: "20000000"
-  maxReplicaFetchMaxBytes: "20000000"
-  maxPartitionFetchBytes: "20000000"
-  requestTimeoutMs: "600000"
-  heartbeatIntervalMs: "1000"
-  maxPollIntervalMs: "900000"
-  maxPollRecords: "100"
-  sessionTimeoutMs: "300000"
-
-## kafka-v2 Azure <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-#kafka-v2:
-#  persistence:
-#    enabled: true
-#    azure:
-#      - diskName: "diskName" ## add diskName
-#        diskURI: ## Azure diskURI
-#      - diskName: "diskName" ## add diskName
-#        diskURI: ## Azure diskURI
-#      - diskName: "diskName"  ## add diskName
-#        diskURI:  ## Azure diskURI
-#  zookeeperHosts: "zookeeper-v2.zookeeper-cluster:2181/kafka-v2"
-
-#  heapOptions: "-Xms704M -Xmx704M"
-#  memory_limits: 1408Mi
-#  lingerMs: "250"
-#  numberPartitions: "3"
-#  replicationFactor: "2"
-#  minInsyncReplicas: "1"
-#  offsetsReplicationFactor: "3"
-
-## kafka-v2 SDC >>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-#kafka-v2:
-#  persistence:
-#    enabled: true
-#    iscsi:
-#      targetPortal: 10.67.49.8:3260 ## change the targetPortal with yours.
-#      iqn:
-#      - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt0   ## change the iqn with yours.
-#      - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt1   ## change the iqn with yours.
-#      - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt2   ## change the iqn with yours.
-#  zookeeperHosts: "zookeeper-v2.zookeeper-cluster:2181/kafka-v2"
-#  storage-size: "75Gi
-#  heapOptions: "-Xms704M -Xmx704M"
-#  memory_limits: 1408Mi
-#  lingerMs: "250"
-#  numberPartitions: "3"
-#  replicationFactor: "2"
-#  minInsyncReplicas: "1"
-#  offsetsReplicationFactor: "3"
-
-# zookeeper-v2 AWS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-zookeeper-v2:
-  persistence:
-    enabled: true
-    aws:
-      - volumeId: "vol-0def98c7c08c136a8" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-0c4fc641e3020e153" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-048151cb07a0aa3ce" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-
-  ## Zookeeper JVM Heap Option
-  heapOptions: "-Xms256M -Xmx256M"
-  resources:
-    limits:
-      cpu: 300m
-      memory: 384Mi
-    requests:
-      cpu: 300m
-      memory: 384Mi
-
-  # zookeeper-v2 Azure >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  #zookeeper-v2:
-  #  persistence:
-  #    enabled: true
-  #    azure:
-  #      - diskName: "diskName" ## add diskName
-  #        diskURI: ## Azure diskURI
-  #      - diskName: "diskName" ## add diskName
-  #        diskURI: ## Azure diskURI
-  #      - diskName: "diskName"  ## add diskName
-  #        diskURI:  ## Azure diskURI
-
-  ## Zookeeper JVM Heap Option
-#  heapOptions: "-Xms256M -Xmx256M"
-#  resources:
-#    limits:
-#      cpu: 300m
-#      memory: 384Mi
-#    requests:
-#      cpu: 300m
-#      memory: 384Mi
-
-# <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-## zookeeper-v2 SDC <<<<<<<<<<<<<<<<<
-#zookeeper-v2:
-#  persistence:
-#    enabled: true
-#    iscsi:
-#      targetPortal: 10.67.49.8:3260  ## change the targetPortal with yours.
-#      iqn:
-#      - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt3  ## change the iqn with yours.
-#      - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt4  ## change the iqn with yours.
-#      - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt5  ## change the iqn with yours.
-
-#  storage-size: 5Gi
-#  heapOptions: "-Xms256M -Xmx256M"
-#  resources:
-#    limits:
-#      cpu: 300m
-#      memory: 384Mi
-#    requests:
-#      cpu: 300m
-#      memory: 384Mi
-
-
-# es-v1-cluster AWS >>>>>>>>>>>>>>>>>>>>>>>>>>>>
-elasticsearch-data-v1:
-  image:
-    tag: 6.6.2
-  persistence:
-    enabled: true
-    aws:
-      - volumeId: "vol-0f4be5318130f7c0f" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-07376e95005cf4306" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-0240cacc5a308c758" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-
-  esJavaOpts: "-Xmx1g -Xms1g"
-  resources:
-    requests:
-      memory: "2Gi"
-    limits:
-      memory: "2Gi"
 
 elasticsearch-data:
   namespace: es-cluster-v8
@@ -818,11 +519,11 @@ elasticsearch-data:
   persistence:
     enabled: true
     aws:
-      - volumeId: "vol-006a20b89957e0acb" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-0c9e7dfe0e2a93373" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-0d0272e3eecd01160" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-01321842592e94ebf" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-0989a3146be8ca8fe" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-0dc594a90f2f2bc46" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
 
   esJavaOpts: "-Xmx1g -Xms1g"
@@ -831,70 +532,6 @@ elasticsearch-data:
       memory: "2Gi"
     limits:
       memory: "2Gi"
-## es-data-v1 Azure >>>>>>>>>>>>>>>>>>>>>
-#elasticsearch-data-v1:
-#  image:
-#    tag: 6.6.2
-#  persistence:
-#    enabled: true
-#    azure:
-#      - diskName: "diskName" ## add diskName
-#        diskURI: ## Azure diskURI
-#      - diskName: "diskName" ## add diskName
-#        diskURI: ## Azure diskURI
-#      - diskName: "diskName"  ## add diskName
-#        diskURI:  ## Azure diskURI
-#
-#  esJavaOpts: "-Xmx1g -Xms1g"
-#  resources:
-#    requests:
-#      memory: "896Mi"
-#    limits:
-#      memory: "896Mi"
-
-## es-data-v1 SDC<<<<<<<<<<<<<<<
-#elasticsearch-data-v1:
-#  image:
-#    tag: 6.6.2
-#  persistence:
-#    enabled: true
-#    iscsi:
-#       targetPortal: 10.67.49.8:3260  ## change the targetPortal with yours.
-#       iqn:
-#       - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt17  ## change the iqn with yours.
-#       - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt16  ## change the iqn with yours.
-#       - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt19  ## change the iqn with yours.
-#  storage-size: 25Gi
-#  esJavaOpts: "-Xmx1g -Xms1g"
-#   storage-size: 25Gi
-#  resources:
-#    requests:
-#      memory: "896Mi"
-#    limits:
-#      memory: "896Mi"
-
-### es-master-v1 AWS >>>>>>>>>>>>>>>>>>>>
-
-elasticsearch-master-v1:
-  replicas: 3
-  image:
-    tag: 6.6.2
-  persistence:
-    enabled: true
-    aws:
-      - volumeId: "vol-00dfc8ce2be5a0c01" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-067df04ba4216ae52" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-00c7afc95ec4cb9e6" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-
-  esJavaOpts: "-Xmx448m -Xms448m"
-  resources:
-    requests:
-      memory: "896Mi"
-    limits:
-      memory: "896Mi"
 
 elasticsearch-master:
   namespace: es-cluster-v8
@@ -904,11 +541,11 @@ elasticsearch-master:
   persistence:
     enabled: true
     aws:
-      - volumeId: "vol-0018096316045284d" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-0d98d196eadbfedba" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-04301a472604418e3" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-0493d41e6ce1cc732" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
-      - volumeId: "vol-077ef0c3589605f62" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-065cc0ed6975358e8" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: ap-south-1b            ## add your respective zone eg. ap-south-1b
 
   esJavaOpts: "-Xmx448m -Xms448m"
@@ -917,49 +554,6 @@ elasticsearch-master:
       memory: "896Mi"
     limits:
       memory: "896Mi"
-
-## es-master-v1 Azure >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#elasticsearch-master-v1:
-#  replicas: 3
-#  image:
-#    tag: 6.6.2
-#  persistence:
-#    enabled: true
-#    azure:
-#      - diskName: "diskName" ## add diskName
-#        diskURI: ## Azure diskURI
-#      - diskName: "diskName" ## add diskName
-#        diskURI: ## Azure diskURI
-#      - diskName: "diskName"  ## add diskName
-#        diskURI:  ## Azure diskURI
-
-#  esJavaOpts: "-Xmx448m -Xms448m"
-#  resources:
-#    requests:
-#      memory: "896Mi"
-#    limits:
-#      memory: "896Mi"
-
-## es-master-v1 SDC <<<<<<<<<<<<<<<<<<<<
-#elasticsearch-master-v1:
-#  replicas: 3
-#  image:
-#    tag: 6.6.2
-#  persistence:
-#    enabled: true
-#    iscsi:
-#      targetPortal: 10.67.49.8:3260  ## change the targetPortal with yours.
-#      iqn:
-#      - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt14  ## change the iqn with yours.
-#      - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt15  ## change the iqn with yours.
-#      - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt16  ## change the iqn with yours.
-#  storage-size: 5Gi
-#  esJavaOpts: "-Xmx448m -Xms448m"
-#  resources:
-#    requests:
-#      memory: "896Mi"
-#    limits:
-#      memory: "896Mi"
 
 es-curator:
   schedule: "45 18 * * *"
@@ -990,7 +584,6 @@ project:
   replicas: 1
   heap: "-Xmx2g -Xms2g"
   memory_limits: "2Gi"
-  cpu_limits: "250m"
   resources:
     requests:
       memory: "2Gi"
@@ -1013,29 +606,24 @@ resource-generator:
 
 transformer:
   replicas: 1
-  heap: "-Xmx2048m -Xms2048m"
+  heap: "-Xmx1536m -Xms1536m"
   memory_limits: "2Gi"
-  cpu_limits: "250m"
   resources:
     requests:
-      cpu: "250m"
       memory: "2Gi"
     limits:
       memory: "2Gi"
+  java-enable-debug: true
 hcm-moz-impl:
   replicas: 1
-  heap: "-Xmx1700m -Xms1700m"
+  heap: "-Xmx1024m -Xms1024m"
   memory_limits: "2Gi"
-  startDate: "13/01/2024"
-  endDate: "18/03/2024"
-  cpu_limits: "250m"
+  startDate: "28/08/2023"
+  endDate: "22/09/2023"
   resources:
     requests:
       memory: "2Gi"
     limits:
       memory: "2Gi"
-
-pgadmin:
-  dbUrl: "jdbc:postgresql://moz-health-prd-db.cls5uiey6qrs.af-south-1.rds.amazonaws.com:5432/mozhealthprd"
-  environment: "PROD"
-  serverBasePath: "/pgadmin"
+health-attendance:
+  java-enable-debug: true
