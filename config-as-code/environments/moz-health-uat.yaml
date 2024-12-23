@@ -407,6 +407,7 @@ egov-hrms:
   java-args: -Dspring.profiles.active=monitoring
   heap: "-Xmx512m -Xms512m"
   employee-applink: "https://moz-health-uat.digit.org/digit-ui/employee/login"
+  java-enable-debug: true
 
 
 egov-weekly-impact-notifier:
