@@ -60,6 +60,7 @@ modules:
     services:
       - egovio/employee:v1.8.0-2ac8314b2f-116
       - egovio/digit-ui:filter_cycle_selection-3652dd2baf-326
+      - egovio/microplan-ui:console-97866dfc66-104
   - name: m_dss   #dss
     dependencies:
       - "frontend"
@@ -84,7 +85,9 @@ modules:
 #      - egovio/household:v1.1.4-a0e714254c-30
       - egovio/household-db:dev-2fd1348b02-63
       - egovio/project:HDDF-1638-e0cc729ef6-31
+      - egovio/resource-generator:microplanning-dev-6e9df4dc70-134
       - egovio/referralmanagement:hh-matview-fetch-d348299ba1-47
       - egovio/health-attendance-db:v1.1.0-55e92c713-51
       - egovio/egov-mdms-create:develop-3a53c3b-3
       - egovio/hcm-moz-impl:HDDF-1499-8cedf8c5-411
+      - egovio/plan-service-db:microplanning-dev-24a32aa371-292
