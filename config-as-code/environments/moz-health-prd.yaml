@@ -748,6 +748,61 @@ kibana:
         hosts:
           - salama.digit.org
 
+# es8-cluster AWS >>>>>>>>>>>>>>>>>>>>>>>>>>>>
+elasticsearch-data:
+  image:
+    tag: 8.11.1
+  volumeClaimTemplate:
+    accessModes: [ "ReadWriteOnce" ]
+    resources:
+      requests:
+        storage: 100Gi
+  persistence:
+    enabled: true
+    dataDirSize: "100Gi"
+    aws:
+      - volumeId: "vol-006fb06e07f1b0188" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: af-south-1b            ## add your respective zone eg. af-south-1b
+      - volumeId: "vol-0c814693a6231eca6" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: af-south-1b            ## add your respective zone eg. af-south-1b
+      - volumeId: "vol-016bc0ba277198a63" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: af-south-1b            ## add your respective zone eg. af-south-1b
+
+  esJavaOpts: "-Xmx3500M -Xms3500M"
+  resources:
+    requests:
+      memory: "4Gi"
+    limits:
+      memory: "4Gi"
+
+
+elasticsearch-master:
+  replicas: 3
+  image:
+    tag: 8.11.1
+  volumeClaimTemplate:
+    accessModes: [ "ReadWriteOnce" ]
+    resources:
+      requests:
+        storage: 10Gi
+  persistence:
+    enabled: true
+    dataDirSize: "10Gi"
+    aws:
+      - volumeId: "vol-03edebc9323919c93" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: af-south-1b            ## add your respective zone eg. af-south-1b
+      - volumeId: "vol-0017f5f0adcd5ce6a" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: af-south-1b            ## add your respective zone eg. af-south-1b
+      - volumeId: "	vol-0108f46a19a91edeb" ## add your respective volume id eg. vol-0085073c65f76dre5
+        zone: af-south-1b            ## add your respective zone eg. af-south-1b
+
+  esJavaOpts: "-Xmx448m -Xms448m"
+  resources:
+    requests:
+      memory: "1536Mi"
+    limits:
+      memory: "1536Mi"
+
 ### es-master-infra-v1 AWS >>>>>>>>>>>>>>>>>>>>
 
 elasticsearch-master-infra-v1:
