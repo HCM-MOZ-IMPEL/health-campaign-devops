@@ -3,7 +3,7 @@ labels:
   app: "health-muster-roll"
   group: "health"
 
-namespace: health
+namespace: egov
 
 # Ingress Configs
 ingress:
@@ -70,12 +70,12 @@ env: |
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: health-attendance
+        key: attendance-service
   - name: WORKS_INDIVIDUAL_HOST
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: health-individual
+        key: individual
   - name: EGOV_LOCALIZATION_HOST
     valueFrom:
       configMapKeyRef:
@@ -159,7 +159,7 @@ env: |
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: mdms-service-v2
+        key: mdms-v2
   {{- if index .Values "musterroll-update-recompute-attendance-enabled" }}
   - name: MUSTERROLL_UPDATE_RECOMPUTE_ATTENDANCE_ENABLED
     value: {{ index .Values "musterroll-update-recompute-attendance-enabled" | quote }}

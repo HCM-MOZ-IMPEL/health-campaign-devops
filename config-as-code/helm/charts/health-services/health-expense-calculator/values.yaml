@@ -3,7 +3,7 @@ labels:
   app: "health-expense-calculator"
   group: "health"
 
-namespace: health
+namespace: egov
 
 # Ingress Configs
 ingress:
@@ -79,12 +79,12 @@ env: |
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: health-individual
+        key: individual
   - name: EGOV_MDMS_V2_HOST
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: mdms-service-v2
+        key: mdms-v2
   {{- if index .Values "egov-mdms-service-endpoint-key" }}
   - name: EGOV_MDMS_SEARCH_V2_ENDPOINT
     value: {{ index .Values "egov-mdms-service-endpoint-key" | quote }} 
@@ -95,7 +95,7 @@ env: |
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: health-attendance
+        key: attendance-service
   - name: EGOV_BOUNDARY_HOST
     valueFrom:
       configMapKeyRef:
@@ -105,9 +105,9 @@ env: |
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: health-project
+        key: project
   - name: PROJECT_SEARCH_PATH
-    value: "health-project/v1/_search"
+    value: "project/v1/_search"
   - name: EGOV_FILESTORE_HOST
     valueFrom:
       configMapKeyRef:
@@ -192,3 +192,11 @@ env: |
   - name: SPRING_KAFKA_PRODUCER_PROPERTIES_MAX_REQUEST_SIZE
     value: {{ index .Values "spring-kafka-producer-properties-max-request-size" | quote }} 
   {{- end }}
+  - name: JAVA_ENABLE_DEBUG
+    value: {{ index .Values "java-enable-debug" | quote }}
+  - name: WORKS_ATTENDANCE_REGISTER_SEARCH_ENDPOINT
+    value: attendance/v1/_search
+  - name: EGOV_INDIVIDUAL_SEARCH_ENDPOINT
+    value: individual/v1/_search
+  - name: STATE_LEVEL_TENANT_ID
+    value: bi

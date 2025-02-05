@@ -3,7 +3,7 @@ labels:
   app: "health-expense"
   group: "health"
 
-namespace: health
+namespace: egov
 
 # Ingress Configs
 ingress:
@@ -61,7 +61,7 @@ env: |
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: health-hrms
+        key: egov-hrms
   - name: EGOV_LOCALIZATION_HOST
     valueFrom:
       configMapKeyRef:
@@ -86,12 +86,12 @@ env: |
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: mdms-service-v2
+        key: mdms-v2
   - name: WORKS_INDIVIDUAL_HOST
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: health-individual
+        key: individual
   - name: BUSINESS_WORKFLOW_STATUS_MAP
     value: {{ index .Values "business-workflow-status-map" | quote }}
   - name: EXPENSE_BILLING_BILL_CREATE
@@ -116,9 +116,9 @@ env: |
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: health-project
+        key: project
   - name: PROJECT_SEARCH_PATH
-    value: "health-project/v1/_search"
+    value: "project/v1/_search"
   {{- if index .Values "spring-kafka-producer-properties-max-request-size" }}
   - name: SPRING_KAFKA_PRODUCER_PROPERTIES_MAX_REQUEST_SIZE
     value: {{ index .Values "spring-kafka-producer-properties-max-request-size" | quote }} 
@@ -127,3 +127,5 @@ env: |
   - name: EGOV_MDMS_V2_SEARCH_ENDPOINT
     value: {{ index .Values "egov-mdms-v2-search-endpoint" | quote }} 
   {{- end }}
+  - name: JAVA_ENABLE_DEBUG
+    value: {{ index .Values "java-enable-debug" | quote }}
