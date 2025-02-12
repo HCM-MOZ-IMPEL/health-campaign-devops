@@ -129,3 +129,5 @@ env: |
   {{- end }}
   - name: JAVA_ENABLE_DEBUG
     value: {{ index .Values "java-enable-debug" | quote }}
+  - name: IS_HEALTH_CONTEXT_ENABLED
+    value: "true"
