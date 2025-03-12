@@ -224,6 +224,10 @@ env: |
     value: "transformer-producer-special-spraying-index-topic"
   - name: SPECIAL_SPRAYING_CHECKLIST_NAME
     value: "SPECIAL_SPRAYING"
+  - name: TRANSFORMER_PRODUCER_SPECIAL_CASES_CHECKLIST_INDEX_V1_TOPIC
+    value: "transformer-producer-special-cases-index-topic"
+  - name: SPECIAL_CASES_CHECKLIST_NAME
+    value: "SPECIAL_CASES"
   - name: EGOV_HOUSEHOLD_HOST
     valueFrom:
       configMapKeyRef:

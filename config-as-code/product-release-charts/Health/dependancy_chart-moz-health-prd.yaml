@@ -79,9 +79,10 @@ modules:
       - egovio/facility:v1.1.2-00a7accbda-14
       - egovio/product:v1.1.0-00a7accbda-31
       - egovio/individual:HDDF-2209-individual-c2a5ea37e0-22
-      - egovio/transformer:boundary-service-caching-8e8ac1412a-288
+      - egovio/transformer:smc-niassa-wasted-ac3254c0f2-321
       - egovio/stock:sender-reciever-validation-changes-898070cadc-45
-      - egovio/household:v1.1.4-a0e714254c-30
+#      - egovio/household:v1.1.4-a0e714254c-30
+      - egovio/household:hhm-null-error-dae912e1f3-42
       - egovio/project:HDDF-1638-e0cc729ef6-31
       - egovio/referralmanagement:hh-matview-fetch-d348299ba1-47
       - egovio/health-attendance:v1.0.2-c20992b0d-61
