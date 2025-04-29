@@ -113,6 +113,10 @@ env: |
         key: census-service
   - name: CONTEXT_PATH
     value: "/project-factory"
+  - name: DEFAULT_TENANT_ID
+    value: "mz"
+  - name: BOUNDARY_CODE_HEADER_NAME
+    value: HCM_ADMIN_CONSOLE_BOUNDARY_CODE
   - name: FILE_STORE_SERVICE_END_POINT
     value: filestore/v1/files 
   - name: EGOV_MDMS_V2_SEARCH_ENDPOINT
@@ -250,7 +254,7 @@ env: |
   - name: APP_MAX_DEBUG_CHAR
     value: "{{ .Values.maxDebugChar | default "500" }}"
   - name: READ_ME_TAB
-    value: "Read Me"  
+    value: "HCM_README_SHEETNAME"  
   - name: USER_PASSWORD_AUTO_GENERATE
     value: "false"  
   - name: USER_DEFAULT_PASSWORD
