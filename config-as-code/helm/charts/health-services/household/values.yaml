@@ -94,7 +94,10 @@ env: |
   - name: EGOV_BOUNDARY_SEARCH_URL
     value: "/boundary-service/boundary/_search"
   - name: EGOV_BOUNDARY_HIERARCHY_NAME
-    value: "ADMIN"
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: boundary-hierarchy
   - name: HOUSEHOLD_MEMBER_KAFKA_CREATE_TOPIC
     value: "save-household-member-topic"
   - name: HOUSEHOLD_MEMBER_KAFKA_UPDATE_TOPIC

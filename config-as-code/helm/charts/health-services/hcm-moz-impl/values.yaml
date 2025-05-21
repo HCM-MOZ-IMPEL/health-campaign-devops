@@ -359,9 +359,15 @@ env: |
   - name: EGOV_BOUNDARY_MODULE_NAME
     value: egov-location
   - name: EGOV_BOUNDARY_HIERARCHY_CODE
-    value: ADMIN
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: boundary-hierarchy
   - name: EGOV_BOUNDARY_HIERARCHY_NAME
-    value: ADMIN
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: boundary-hierarchy
   - name: EGOV_PRODUCT_HOST
     valueFrom:
       configMapKeyRef:
@@ -408,7 +414,10 @@ env: |
     value: "true" 
   {{- end }}
   - name: EGOV_BOUNDARY_HIERARCHYTYPE
-    value: ADMIN
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: boundary-hierarchy
   - name: EGOV_BOUNDARYV2_HOST
     valueFrom:
       configMapKeyRef:
@@ -436,5 +445,10 @@ env: |
         name: egov-service-host
         key: egov-localization
   - name: EGOV_ATTENDANCE_SESSIONS
-    value: 1      
+    value: 1
+  - name: EGOV_ATTENDANCE_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: attendance-service        
   

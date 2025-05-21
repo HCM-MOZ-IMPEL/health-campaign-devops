@@ -18,6 +18,7 @@ cluster-configs:
         db-read-url: "jdbc:postgresql://moz-health-prd-replica-db.cls5uiey6qrs.af-south-1.rds.amazonaws.com:5432/mozhealthprd" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
         domain: "salama.digit.org" ## Add your Domain Name
         redis-host: "redis.backbone"
+        redis-downsync-host: "moz-health-prd-001.xhaglj.0001.afs1.cache.amazonaws.com"
         egov-services-fqdn-name: "https://salama.digit.org/" ## Add your Domain Name
         aws-cluster-ip: "https://2DF082542B59C28B32513742FE7BD8C6.sk1.af-south-1.eks.amazonaws.com"
         aws-region: "af-south-1"
@@ -29,7 +30,7 @@ cluster-configs:
         es-indexer-host: "https://elasticsearch-data.es-cluster-v8:9200/"
         flyway-locations: "filesystem:/flyway/sql,filesystem:/flyway/seed,filesystem:/flyway/qa"
         kafka-brokers: "release-name-kafka-controller-headless.kafka-cluster:9092"
-        kafka-infra-brokers: "kafka-v2.kafka-cluster:9092"
+        kafka-infra-brokers: "kafka-v2-infra.kafka-cluster:9092"
         logging-level-jdbc: "DEBUG"
         mobile-validation-workaround: "true"
         serializers-timezone-in-ist: "true"
@@ -42,12 +43,14 @@ cluster-configs:
         timezone: "UTC"
         tracer-errors-provideexceptionindetails: "true"
         egov-env: "PRD"
+        boundary-hierarchy: "IRS"
 
     egov-service-host:
       namespace: [egov, monitoring]
       data:
         asset-services: "http://asset-services:8080/"
         asset-services-maha: "http://asset-services-maha:8080/"
+        audit-service: "http://audit-service.egov:8080/"
         billing-service: "http://billing-service:8080/"
         collection-services: "http://collection-services:8080/"
         collection-masters: "http://collection-masters:8080/"
@@ -161,6 +164,10 @@ cluster-configs:
         hcm-moz-impl: "http://hcm-moz-impl:8080/"
         service-request: "http://service-request:8080/"
         attendance-service: "http://health-attendance.egov:8080/"
+        household-referral: "http://household-referral:8080/"
+        project-factory: 'http://project-factory.egov:8080/'
+        plan-service: 'http://plan-service.egov:8080/'
+        census-service: 'http://census-service.egov:8080/'
 
     hcm-moz-impl:
       data:
@@ -184,13 +191,26 @@ citizen:
       <script src=https://moz-health-prd.s3.af-south-1.amazonaws.com/globalConfig.js type=text/javascript></script>
       ';"
 
+workbench-ui:
+  custom-js-injection: |
+    sub_filter.conf: "
+      sub_filter  '<head>' '<head>
+      <script src=https://moz-health-prd.s3.af-south-1.amazonaws.com/globalConfigsWorkbench-mz-prd.js type=text/javascript></script>';" 
+
 digit-ui:
   custom-js-injection: |
     sub_filter.conf: "
       sub_filter  '<head>' '<head>
       <script src=https://moz-health-prd.s3.af-south-1.amazonaws.com/globalConfig.js type=text/javascript></script>
       ';"
-#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+microplan-ui:
+  custom-js-injection: |
+    sub_filter.conf: "
+      sub_filter  '<head>' '<head>
+      <script src=https://moz-health-qa.s3.ap-south-1.amazonaws.com/analytics.js type=text/javascript></script>       
+      <script src=https://moz-health-prd.s3.af-south-1.amazonaws.com/globalConfigMicroplanUi.js type=text/javascript></script>
+      ';" 
 
 egov-filestore:
   volume: /opt/eGov/filestore
@@ -199,10 +219,10 @@ egov-filestore:
   aws.s3.url : "https://s3.amazonaws.com"
   is-s3-enabled: "true"
   minio-enabled: false
-  allowed-file-formats-map: "{gz:{'application/gzip'},jpg:{'image/jpg','image/jpeg'},jpeg:{'image/jpeg','image/jpg'},png:{'image/png'},pdf:{'application/pdf'},odt:{'application/vnd.oasis.opendocument.text'},ods:{'application/vnd.oasis.opendocument.spreadsheet'},docx:{'application/x-tika-msoffice','application/x-tika-ooxml','application/vnd.oasis.opendocument.text','application/msword'},doc:{'application/x-tika-msoffice','application/x-tika-ooxml','application/vnd.oasis.opendocument.text','application/msword'},dxf:{'text/plain','application/dxf','application/octet-stream','image/vnd.dxf','image/vnd.dxf; format=ascii','image/vnd.dxf; format=binary','image/vnd.dxb'},csv:{'text/plain'},txt:{'text/plain'},xlsx:{'application/x-tika-ooxml','application/x-tika-msoffice','application/vnd.ms-excel'},xls:{'application/x-tika-ooxml','application/x-tika-msoffice','application/vnd.ms-excel'}}"
-  allowed-file-formats: "jpg,jpeg,png,doc,docx,pdf,odt,ods,text,dxf,xls,xlsx"
+  allowed-file-formats-map: "{jpg:{'image/jpg','image/jpeg'},jpeg:{'image/jpeg','image/jpg'},png:{'image/png'},pdf:{'application/pdf'},odt:{'application/vnd.oasis.opendocument.text'},ods:{'application/vnd.oasis.opendocument.spreadsheet'},docx:{'application/x-tika-msoffice','application/x-tika-ooxml','application/vnd.oasis.opendocument.text','application/msword'},doc:{'application/x-tika-msoffice','application/x-tika-ooxml','application/vnd.oasis.opendocument.text','application/msword'},dxf:{'text/plain','application/dxf','application/octet-stream','image/vnd.dxf','image/vnd.dxf; format=ascii','image/vnd.dxf; format=binary','image/vnd.dxb'},csv:{'text/plain'},txt:{'text/plain'},xlsx:{'application/x-tika-ooxml','application/x-tika-msoffice','application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','application/zip','multipart/form-data'},xls:{'application/x-tika-ooxml','application/x-tika-msoffice','application/vnd.ms-excel','multipart/form-data'},zip:{'application/zip','application/octet-stream'},geojson:{'application/json','text/plain','application/geo+json','multipart/form-data'},json:{'application/json','text/plain'}}"
+  allowed-file-formats: "jpg,jpeg,png,doc,docx,pdf,odt,ods,text,dxf,xls,xlsx,zip,geojson,json"
   filestore-url-validity: 3600
-  fixed-bucketname: health-egov-assets  ## Add filestore bucket name
+  fixed-bucketname: "mozprodfilestore"
 
 egov-idgen:
   idformat-from-mdms: "true"
@@ -233,7 +253,7 @@ egov-user:
   otp-validation: "true"
   citizen-otp-enabled: "true"
   employee-otp-enabled: "false"
-  access-token-validity: 43200
+  access-token-validity: 172800
   refresh-token-validity: 20160
   default-password-expiry: 90
   mobile-number-validation: "false"
@@ -340,13 +360,13 @@ egov-indexer:
     gitSync:
       repo: "git@github.com:HCM-MOZ-IMPEL/health-campaign-config"        ##### Change repo url with Your fork Repo url
       branch: "PROD"                                      ##### Change repo branch with Your fork Repo branch
-  egov-indexer-yaml-repo-path: "file:///work-dir/health-campaign-config/egov-indexer/error-queue.yml,file:///work-dir/health-campaign-config/egov-indexer/product-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/project-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/individual-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/household-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/project-task-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/stock-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/facility-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/project-staff-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/egov-error-queue-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/pgr-services.yml,file:///work-dir/health-campaign-config/egov-indexer/service-request-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/referral-management-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/transformer-pgr-services.yml,file:///work-dir/health-campaign-config/egov-indexer/attendance-service-indexer.yml"
+  egov-indexer-yaml-repo-path: "file:///work-dir/health-campaign-config/egov-indexer/transformer-pgr-services.yml,file:///work-dir/health-campaign-config/egov-indexer/error-queue.yml,file:///work-dir/health-campaign-config/egov-indexer/product-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/project-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/individual-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/household-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/project-task-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/stock-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/facility-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/project-staff-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/egov-error-queue-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/pgr-services.yml,file:///work-dir/health-campaign-config/egov-indexer/service-request-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/referral-management-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/attendance-service-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/plan-service-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/census-service-indexer.yml"
 
 egov-persister:
   replicas: 2
   images:
     - egovio/egov-persister
-  persist-yml-path: "file:///work-dir/health-campaign-config/egov-persister/mdms-persister.yml,file:///work-dir/health-campaign-config/egov-persister/audit-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-user-event-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-workflow-v2-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hrms-employee-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pdf-generator.yml,file:///work-dir/health-campaign-config/egov-persister/product-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-persister.yml,file:///work-dir/health-campaign-config/egov-persister/individual-persister.yml,file:///work-dir/health-campaign-config/egov-persister/household-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-task-persister.yml,file:///work-dir/health-campaign-config/egov-persister/stock-persister.yml,file:///work-dir/health-campaign-config/egov-persister/facility-persister.yml,file:///work-dir/health-campaign-config/egov-persister/service-request-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pgr-services-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hcm-moz-impl-persister.yml,file:///work-dir/health-campaign-config/egov-persister/referral-management-persister.yml,file:///work-dir/health-campaign-config/egov-persister/attendance-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/boundary-persister.yml"
+  persist-yml-path: "file:///work-dir/health-campaign-config/egov-persister/audit-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-user-event-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-workflow-v2-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hrms-employee-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pdf-generator.yml,file:///work-dir/health-campaign-config/egov-persister/product-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-persister.yml,file:///work-dir/health-campaign-config/egov-persister/individual-persister.yml,file:///work-dir/health-campaign-config/egov-persister/household-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-task-persister.yml,file:///work-dir/health-campaign-config/egov-persister/stock-persister.yml,file:///work-dir/health-campaign-config/egov-persister/facility-persister.yml,file:///work-dir/health-campaign-config/egov-persister/service-request-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pgr-services-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hcm-moz-impl-persister.yml,file:///work-dir/health-campaign-config/egov-persister/mdms-persister.yml,file:///work-dir/health-campaign-config/egov-persister/referral-management-persister.yml,file:///work-dir/health-campaign-config/egov-persister/attendance-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/boundary-persister.yml,file:///work-dir/health-campaign-config/egov-persister/irs-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-factory-persister.yml,file:///work-dir/health-campaign-config/egov-persister/plan-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/census-service-persister.yml"
   initContainers:
     gitSync:
       repo: "git@github.com:HCM-MOZ-IMPEL/health-campaign-config"      ##### Change repo url with Your fork Repo url
@@ -512,6 +532,19 @@ tl-services:
   pdf-link: "https://egov-demo.egovernments.org/egov-pdf/download/epass?tenantId={TENANTID}&uuid={UUID}"
   tl-search-default-limit: "100"
 
+attendance-service:
+  tracing-enabled: true
+  java-enable-debug: true
+  attendance-register-default-offset: 0
+  attendance-register-default-limit: 10
+  attendance-register-search-max-limit: 100
+  attendance-individual-service-integration-required: false
+  attendance-staff-service-integration-required: false
+  attendance-document-id-verification-required: false
+  attendance-register-open-search-enabled-roles: "SUPERUSER,SYSTEM_ADMINISTRATOR"
+  organisation-contact-details-update-topic: organisation.contact.details.update
+  contracts-revision-topic: "contracts-revision"
+
 egov-workflow-v2:
   logging-level: "DEBUG"
   java-args: -Dspring.profiles.active=monitoring
@@ -523,7 +556,7 @@ egov-workflow-v2:
 egov-hrms:
   java-args: -Dspring.profiles.active=monitoring
   heap: "-Xmx512m -Xms512m"
-  employee-applink: "https://egov-demo.egovernments.org/employee/user/login"
+  employee-applink: "https://salama.digit.org/digit-ui/employee/user/login"
 
 
 egov-weekly-impact-notifier:
@@ -629,48 +662,17 @@ fluent-bit:
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 # kafka-v2 AWS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-kafka-v2:
-  persistence:
-    enabled: true
-    aws:
-      - volumeId: "vol-0d9524d4ed13c1737" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: af-south-1b            ## add your respective zone eg. af-south-1b
-      - volumeId: "vol-01f8bf029125c9c43" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: af-south-1b            ## add your respective zone eg. af-south-1b
-      - volumeId: "vol-06349366b3ce89e55" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: af-south-1b            ## add your respective zone eg. af-south-1b
-  zookeeperHosts: "zookeeper-v2.zookeeper-cluster:2181/kafka-v2"
-
-  heapOptions: "-Xms1024M -Xmx1024M"
-  memory_limits: 1408Mi
-  lingerMs: "250"
-  numberPartitions: "3"
-  replicationFactor: "2"
-  minInsyncReplicas: "1"
-  offsetsReplicationFactor: "3"
-  maxRequestSize: "20000000"
-  maxMessageBytes: "20000000"
-  maxReplicaFetchMaxBytes: "20000000"
-  maxPartitionFetchBytes: "20000000"
-  requestTimeoutMs: "600000"
-  heartbeatIntervalMs: "1000"
-  maxPollIntervalMs: "900000"
-  maxPollRecords: "100"
-  sessionTimeoutMs: "300000"
-
-
-# kafka-v2 AWS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 kafka-v2-infra:
   persistence:
     enabled: true
     aws:
-      - volumeId: "vol-04835b02bd061b90c" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-0a8406d3236df91c5" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: af-south-1b            ## add your respective zone eg. af-south-1b
-      - volumeId: "vol-0c2928f6b5fffaa73" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-03a0f7c8fc724d0b9" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: af-south-1b            ## add your respective zone eg. af-south-1b
-      - volumeId: "vol-02ef9c0cb7370e333" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-04251ddf73263b319" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: af-south-1b            ## add your respective zone eg. af-south-1b
-  zookeeperHosts: "zookeeper-v2-infra.zookeeper-cluster:2181/kafka-v2-infra"
+  zookeeperHosts: "zookeeper-v2.zookeeper-cluster:2181/kafka-v2-infra"
 
   heapOptions: "-Xms704M -Xmx704M"
   memory_limits: 1408Mi
@@ -689,80 +691,16 @@ kafka-v2-infra:
   maxPollRecords: "100"
   sessionTimeoutMs: "300000"
 
-## kafka-v2 Azure <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-#kafka-v2:
-#  persistence:
-#    enabled: true
-#    azure:
-#      - diskName: "diskName" ## add diskName
-#        diskURI: ## Azure diskURI
-#      - diskName: "diskName" ## add diskName
-#        diskURI: ## Azure diskURI
-#      - diskName: "diskName"  ## add diskName
-#        diskURI:  ## Azure diskURI
-#  zookeeperHosts: "zookeeper-v2.zookeeper-cluster:2181/kafka-v2"
-
-#  heapOptions: "-Xms704M -Xmx704M"
-#  memory_limits: 1408Mi
-#  lingerMs: "250"
-#  numberPartitions: "3"
-#  replicationFactor: "2"
-#  minInsyncReplicas: "1"
-#  offsetsReplicationFactor: "3"
-
-## kafka-v2 SDC >>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-#kafka-v2:
-#  persistence:
-#    enabled: true
-#    iscsi:
-#      targetPortal: 10.67.49.8:3260 ## change the targetPortal with yours.
-#      iqn:
-#      - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt0   ## change the iqn with yours.
-#      - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt1   ## change the iqn with yours.
-#      - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt2   ## change the iqn with yours.
-#  zookeeperHosts: "zookeeper-v2.zookeeper-cluster:2181/kafka-v2"
-#  storage-size: "75Gi
-#  heapOptions: "-Xms704M -Xmx704M"
-#  memory_limits: 1408Mi
-#  lingerMs: "250"
-#  numberPartitions: "3"
-#  replicationFactor: "2"
-#  minInsyncReplicas: "1"
-#  offsetsReplicationFactor: "3"
-
 # zookeeper-v2 AWS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 zookeeper-v2:
   persistence:
     enabled: true
     aws:
-      - volumeId: "vol-037c523d21e24b376" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-09775e18a381230ff" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: af-south-1b            ## add your respective zone eg. af-south-1b
-      - volumeId: "vol-0204db4474a18f2d4" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-04f4ac74eefc65b05" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: af-south-1b            ## add your respective zone eg. af-south-1b
-      - volumeId: "vol-09bf466ca41283bd1" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: af-south-1b            ## add your respective zone eg. af-south-1b
-
-  ## Zookeeper JVM Heap Option
-  heapOptions: "-Xms256M -Xmx256M"
-  resources:
-    limits:
-      cpu: 300m
-      memory: 384Mi
-    requests:
-      cpu: 300m
-      memory: 384Mi
-
-# zookeeper-v2 AWS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-zookeeper-v2-infra:
-  persistence:
-    enabled: true
-    aws:
-      - volumeId: "vol-0624814f63ff91553" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: af-south-1b            ## add your respective zone eg. af-south-1b
-      - volumeId: "vol-01d81f2a60c6b693b" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: af-south-1b            ## add your respective zone eg. af-south-1b
-      - volumeId: "vol-032cd2a94a7f0cd47" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-0a6131308bd4626ab" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: af-south-1b            ## add your respective zone eg. af-south-1b
 
   ## Zookeeper JVM Heap Option
@@ -774,75 +712,43 @@ zookeeper-v2-infra:
     requests:
       cpu: 300m
       memory: 384Mi
-
-  # zookeeper-v2 Azure >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  #zookeeper-v2:
-  #  persistence:
-  #    enabled: true
-  #    azure:
-  #      - diskName: "diskName" ## add diskName
-  #        diskURI: ## Azure diskURI
-  #      - diskName: "diskName" ## add diskName
-  #        diskURI: ## Azure diskURI
-  #      - diskName: "diskName"  ## add diskName
-  #        diskURI:  ## Azure diskURI
-
-  ## Zookeeper JVM Heap Option
-#  heapOptions: "-Xms256M -Xmx256M"
-#  resources:
-#    limits:
-#      cpu: 300m
-#      memory: 384Mi
-#    requests:
-#      cpu: 300m
-#      memory: 384Mi
-
-# <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-## zookeeper-v2 SDC <<<<<<<<<<<<<<<<<
-#zookeeper-v2:
-#  persistence:
-#    enabled: true
-#    iscsi:
-#      targetPortal: 10.67.49.8:3260  ## change the targetPortal with yours.
-#      iqn:
-#      - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt3  ## change the iqn with yours.
-#      - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt4  ## change the iqn with yours.
-#      - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt5  ## change the iqn with yours.
-
-#  storage-size: 5Gi
-#  heapOptions: "-Xms256M -Xmx256M"
-#  resources:
-#    limits:
-#      cpu: 300m
-#      memory: 384Mi
-#    requests:
-#      cpu: 300m
-#      memory: 384Mi
 
 
 # es-v1-cluster AWS >>>>>>>>>>>>>>>>>>>>>>>>>>>>
-elasticsearch-data-v1:
+elasticsearch-data-infra-v1:
   image:
     tag: 6.6.2
   persistence:
     enabled: true
     aws:
-      - volumeId: "vol-00f1168d6e6efab41" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-0859b6c32f9401a6a" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: af-south-1b            ## add your respective zone eg. af-south-1b
-      - volumeId: "vol-01cf5bc624eef4cf6" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-015495df2a8b48fc1" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: af-south-1b            ## add your respective zone eg. af-south-1b
-      - volumeId: "vol-0b8fdb65f721539e7" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-0cc356479d1ba2cf2" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: af-south-1b            ## add your respective zone eg. af-south-1b
 
-  esJavaOpts: "-Xmx2.5g -Xms2.5g"
+  esJavaOpts: "-Xmx1g -Xms1g"
   resources:
     requests:
-      memory: "3Gi"
+      memory: "2Gi"
     limits:
-      memory: "3Gi"
+      memory: "2Gi"
 
+kibana:
+  healthCheckPath: "/de3c60e0-47a4-46b3-94a5-bb15b8608bfa/app/kibana"
+  serverBasePath: /de3c60e0-47a4-46b3-94a5-bb15b8608bfa
+  ingress:
+    hosts:
+      - host: salama.digit.org
+        paths:
+          - path: /de3c60e0-47a4-46b3-94a5-bb15b8608bfa
+    tls:
+      - secretName: salama.digit.org-tls-certs
+        hosts:
+          - salama.digit.org
 
-# es-v1-cluster AWS >>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# es8-cluster AWS >>>>>>>>>>>>>>>>>>>>>>>>>>>>
 elasticsearch-data:
   image:
     tag: 8.11.1
@@ -869,93 +775,6 @@ elasticsearch-data:
     limits:
       memory: "4Gi"
 
-# es-v1-cluster AWS >>>>>>>>>>>>>>>>>>>>>>>>>>>>
-elasticsearch-data-infra-v1:
-  image:
-    tag: 6.6.2
-  persistence:
-    enabled: true
-    aws:
-      - volumeId: "vol-0bcd385bc49cfdbc7" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: af-south-1b            ## add your respective zone eg. af-south-1b
-      - volumeId: "vol-0b17fe1cc91438880" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: af-south-1b            ## add your respective zone eg. af-south-1b
-      - volumeId: "vol-0e97f8e9e34e0aaad" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: af-south-1b            ## add your respective zone eg. af-south-1b
-
-  esJavaOpts: "-Xmx1g -Xms1g"
-  resources:
-    requests:
-      memory: "2Gi"
-    limits:
-      memory: "2Gi"
-## es-data-v1 Azure >>>>>>>>>>>>>>>>>>>>>
-#elasticsearch-data-v1:
-#  image:
-#    tag: 6.6.2
-#  persistence:
-#    enabled: true
-#    azure:
-#      - diskName: "diskName" ## add diskName
-#        diskURI: ## Azure diskURI
-#      - diskName: "diskName" ## add diskName
-#        diskURI: ## Azure diskURI
-#      - diskName: "diskName"  ## add diskName
-#        diskURI:  ## Azure diskURI
-#
-#  esJavaOpts: "-Xmx1g -Xms1g"
-#  resources:
-#    requests:
-#      memory: "896Mi"
-#    limits:
-#      memory: "896Mi"
-
-## es-data-v1 SDC<<<<<<<<<<<<<<<
-#elasticsearch-data-v1:
-#  image:
-#    tag: 6.6.2
-#  persistence:
-#    enabled: true
-#    iscsi:
-#       targetPortal: 10.67.49.8:3260  ## change the targetPortal with yours.
-#       iqn:
-#       - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt17  ## change the iqn with yours.
-#       - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt16  ## change the iqn with yours.
-#       - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt19  ## change the iqn with yours.
-#  storage-size: 25Gi
-#  esJavaOpts: "-Xmx1g -Xms1g"
-#   storage-size: 25Gi
-#  resources:
-#    requests:
-#      memory: "896Mi"
-#    limits:
-#      memory: "896Mi"
-
-### es-master-v1 AWS >>>>>>>>>>>>>>>>>>>>
-
-elasticsearch-master-v1:
-  replicas: 3
-  image:
-    tag: 6.6.2
-  persistence:
-    enabled: true
-    aws:
-      - volumeId: "vol-0e92075ba82417b58" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: af-south-1b            ## add your respective zone eg. af-south-1b
-      - volumeId: "vol-09edef9da58a06d1c" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: af-south-1b            ## add your respective zone eg. af-south-1b
-      - volumeId: "vol-0550e83ef00f3a0cf" ## add your respective volume id eg. vol-0085073c65f76dre5
-        zone: af-south-1b            ## add your respective zone eg. af-south-1b
-
-  esJavaOpts: "-Xmx448m -Xms448m"
-  resources:
-    requests:
-      memory: "896Mi"
-    limits:
-      memory: "896Mi"
-### es-master-infra-v1 AWS >>>>>>>>>>>>>>>>>>>>
-
-### es-master-v1 AWS >>>>>>>>>>>>>>>>>>>>
 
 elasticsearch-master:
   replicas: 3
@@ -980,22 +799,9 @@ elasticsearch-master:
   esJavaOpts: "-Xmx448m -Xms448m"
   resources:
     requests:
-      memory: "896Mi"
+      memory: "1536Mi"
     limits:
-      memory: "896Mi"
-
-kibana:
-  healthCheckPath: "/de3c60e0-47a4-46b3-94a5-bb15b8608bfa/app/kibana"
-  serverBasePath: /de3c60e0-47a4-46b3-94a5-bb15b8608bfa
-  ingress:
-    hosts:
-      - host: salama.digit.org
-        paths:
-          - path: /de3c60e0-47a4-46b3-94a5-bb15b8608bfa
-    tls:
-      - secretName: salama.digit.org-tls-certs
-        hosts:
-          - salama.digit.org
+      memory: "1536Mi"
 
 ### es-master-infra-v1 AWS >>>>>>>>>>>>>>>>>>>>
 
@@ -1006,11 +812,11 @@ elasticsearch-master-infra-v1:
   persistence:
     enabled: true
     aws:
-      - volumeId: "vol-00b00fe48c990d08d" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-0a1376d17cd022bc0" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: af-south-1b            ## add your respective zone eg. af-south-1b
-      - volumeId: "vol-01d0b00dde4c1b71d" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-00110035098d2154e" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: af-south-1b            ## add your respective zone eg. af-south-1b
-      - volumeId: "vol-0c672c11c950e3d37" ## add your respective volume id eg. vol-0085073c65f76dre5
+      - volumeId: "vol-05f9a17e2d480cdae" ## add your respective volume id eg. vol-0085073c65f76dre5
         zone: af-south-1b            ## add your respective zone eg. af-south-1b
 
   esJavaOpts: "-Xmx448m -Xms448m"
@@ -1019,49 +825,6 @@ elasticsearch-master-infra-v1:
       memory: "896Mi"
     limits:
       memory: "896Mi"
-
-## es-master-v1 Azure >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#elasticsearch-master-v1:
-#  replicas: 3
-#  image:
-#    tag: 6.6.2
-#  persistence:
-#    enabled: true
-#    azure:
-#      - diskName: "diskName" ## add diskName
-#        diskURI: ## Azure diskURI
-#      - diskName: "diskName" ## add diskName
-#        diskURI: ## Azure diskURI
-#      - diskName: "diskName"  ## add diskName
-#        diskURI:  ## Azure diskURI
-
-#  esJavaOpts: "-Xmx448m -Xms448m"
-#  resources:
-#    requests:
-#      memory: "896Mi"
-#    limits:
-#      memory: "896Mi"
-
-## es-master-v1 SDC <<<<<<<<<<<<<<<<<<<<
-#elasticsearch-master-v1:
-#  replicas: 3
-#  image:
-#    tag: 6.6.2
-#  persistence:
-#    enabled: true
-#    iscsi:
-#      targetPortal: 10.67.49.8:3260  ## change the targetPortal with yours.
-#      iqn:
-#      - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt14  ## change the iqn with yours.
-#      - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt15  ## change the iqn with yours.
-#      - iqn.2010-06.com.nutanix:kubernete-72b39064-fdbf-48d3-abfa-7a36c956d535-tgt16  ## change the iqn with yours.
-#  storage-size: 5Gi
-#  esJavaOpts: "-Xmx448m -Xms448m"
-#  resources:
-#    requests:
-#      memory: "896Mi"
-#    limits:
-#      memory: "896Mi"
 
 es-curator:
   schedule: "45 18 * * *"
@@ -1118,6 +881,19 @@ project-referral:
       memory: "2Gi"
     limits:
       memory: "2Gi"
+project-factory:
+  logLevel: 'debug'
+  maxDebugChar: '2000'
+  mdmsV2SearchEndpoint: 'mdms-v2/v2/_search'
+  mdmsV1SearchEndpoint: 'mdms-v2/v1/_search'
+plan-service:
+  egov-mdms-service-host-key: 'mdms-v2'
+  egov-mdms-service-endpoint-key: "/mdms-v2/v1/_search"
+  egov-mdms-service-v2-endpoint-key: "/mdms-v2/v2/_search"
+resource-generator:
+  egov-mdms-service-host-key: 'mdms-v2'
+  egov-mdms-service-endpoint-key: "/mdms-v2/v1/_search"
+  egov-mdms-service-v2-endpoint-key: "/mdms-v2/v2/_search"
 transformer:
   replicas: 2
   heap: "-Xmx1536m -Xms1536m"
