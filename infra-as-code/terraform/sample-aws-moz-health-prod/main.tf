@@ -23,10 +23,10 @@ module "db" {
   subnet_ids                    = "${module.network.private_subnets}"
   vpc_security_group_ids        = ["${module.network.rds_db_sg_id}"]
   availability_zone             = "${element(var.availability_zones, 0)}"
-  instance_class                = "db.m6g.large"  ## postgres db instance type
+  instance_class                = "db.m6g.2xlarge"  ## postgres db instance type
   engine_version                = "12.19"   ## postgres version
   storage_type                  = "gp3"
-  storage_gb                    = "250"     ## postgres disk size
+  storage_gb                    = "300"     ## postgres disk size
   backup_retention_days         = "7"
   administrator_login           = "${var.db_username}"
   administrator_login_password  = "${var.db_password}"
@@ -36,11 +36,11 @@ module "db" {
 }
 
 data "aws_eks_cluster" "cluster" {
-  name = "${module.eks.cluster_id}"
+  name = var.cluster_name
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = "${module.eks.cluster_id}"
+  name = var.cluster_name
 }
 
 data "aws_caller_identity" "current" {}
@@ -80,34 +80,93 @@ resource "aws_iam_role" "eks_iam" {
 
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
-  version         = "17.24.0"
-  cluster_name    = "${var.cluster_name}"
-  vpc_id          = "${module.network.vpc_id}"
-  cluster_version = "${var.kubernetes_version}"
-  subnets         = "${concat(module.network.private_subnets, module.network.public_subnets)}"
-
-##By default worker groups is Configured with SPOT, As per your requirement you can below values.
-
-  worker_groups = [
-    {
-      name                          = "spot"
-      ami_id                        = "ami-08fdf22cde041c7ce"
-      subnets                       = "${concat(slice(module.network.private_subnets, 0, length(var.availability_zones)))}"
-      instance_type                 = "${var.instance_type}"
-      override_instance_types       = "${var.override_instance_types}"
-      kubelet_extra_args            = "--node-labels=node.kubernetes.io/lifecycle=spot"
-      asg_max_size                  = "${var.number_of_worker_nodes}"
-      asg_desired_capacity          = "${var.number_of_worker_nodes}"
-      spot_allocation_strategy      = "capacity-optimized"
-      spot_instance_pools           = null
+  version         = "~> 20.0"
+  cluster_name    = var.cluster_name
+  cluster_version = var.kubernetes_version
+  vpc_id          = module.network.vpc_id
+  create_iam_role = false
+  iam_role_arn    = "arn:aws:iam::564518252813:role/moz-health-prd2023071410543744360000000f"
+  cluster_endpoint_public_access  = true
+  cluster_endpoint_private_access = true
+  authentication_mode = "API_AND_CONFIG_MAP"
+  subnet_ids      = concat(module.network.private_subnets, module.network.public_subnets)
+  node_security_group_additional_rules = {
+    ingress_self_ephemeral = {
+      description = "Node to node communication"
+      protocol    = "-1"
+      from_port   = 0
+      to_port     = 0
+      type        = "ingress"
+      self        = true
     }
-  ]
-  tags = "${
-    tomap({
-      "kubernetes.io/cluster/${var.cluster_name}" = "owned",
-      "KubernetesCluster" = "${var.cluster_name}"
-    })
-  }"
+  }
+  cluster_addons = {
+    vpc-cni = {
+      most_recent              = true
+      before_compute           = true
+      configuration_values = jsonencode({
+        env = {
+          # Reference docs https://docs.aws.amazon.com/eks/latest/userguide/cni-increase-ip-addresses.html
+          ENABLE_PREFIX_DELEGATION           = "true"
+        }
+      })
+    }
+  }
+  cluster_timeouts = {
+    create = "30m"
+    delete = "15m"
+    update = "60m"
+  }
+  node_security_group_tags = {
+    "karpenter.sh/discovery" = var.cluster_name
+  }
+  tags = {
+    "KubernetesCluster" = var.cluster_name
+    "Name"              = var.cluster_name
+  }
+}
+
+module "eks_managed_node_group" {
+  depends_on = [module.eks]
+  source = "terraform-aws-modules/eks/aws//modules/eks-managed-node-group"
+  name            = "${var.cluster_name}"
+  cluster_name    = var.cluster_name
+  cluster_version = var.kubernetes_version
+  subnet_ids = slice(module.network.private_subnets, 0, length(var.availability_zones))
+  vpc_security_group_ids  = [module.eks.node_security_group_id]
+  cluster_service_cidr = module.eks.cluster_service_cidr
+  use_custom_launch_template = true
+  launch_template_name = "${var.cluster_name}-lt"
+  block_device_mappings = {
+    xvda = {
+      device_name = "/dev/xvda"
+      ebs = {
+        volume_size           = 100
+        volume_type           = "gp3"
+        delete_on_termination = true
+      }
+    }
+  }
+  min_size     = var.min_worker_nodes
+  max_size     = var.max_worker_nodes
+  desired_size = var.desired_worker_nodes
+  instance_types = var.instance_types
+  capacity_type  = "ON_DEMAND"
+  ebs_optimized  = "true"
+  enable_monitoring = "true"
+  user_data_template_path = "user-data.yaml"
+  iam_role_additional_policies = {
+    CSI_DRIVER_POLICY = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+    AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+    SQS_POLICY                   = "arn:aws:iam::aws:policy/AmazonSQSFullAccess"
+  }
+  labels = {
+    Environment = var.cluster_name
+  }
+  tags = {
+    "KubernetesCluster" = var.cluster_name
+    "Name"              = var.cluster_name
+  }
 }
 
 resource "kubernetes_annotations" "example" {
@@ -121,6 +180,41 @@ resource "kubernetes_annotations" "example" {
     "eks.amazonaws.com/role-arn" = "${aws_iam_role.eks_iam.arn}"
   }
 }
+
+resource "kubernetes_annotations" "gp2_default" {
+  annotations = {
+    "storageclass.kubernetes.io/is-default-class" : "false"
+  }
+  api_version = "storage.k8s.io/v1"
+  kind        = "StorageClass"
+  metadata {
+    name = "gp2"
+  }
+
+  force = true
+}
+
+resource "kubernetes_storage_class" "ebs_csi_encrypted_gp3_storage_class" {
+  metadata {
+    name = "gp3"
+    annotations = {
+      "storageclass.kubernetes.io/is-default-class" : "true"
+    }
+  }
+
+  storage_provisioner    = "ebs.csi.aws.com"
+  reclaim_policy         = "Delete"
+  allow_volume_expansion = true
+  volume_binding_mode    = "WaitForFirstConsumer"
+  parameters = {
+    fsType    = "ext4"
+    encrypted = true
+    type      = "gp3"
+  }
+
+  depends_on = [kubernetes_annotations.gp2_default]
+}
+
 
 resource "aws_iam_role_policy_attachment" "cluster_AmazonEBSCSIDriverPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
@@ -143,8 +237,8 @@ resource "aws_security_group_rule" "rds_db_ingress_workers" {
   from_port                = 5432
   to_port                  = 5432
   protocol                 = "tcp"
-  security_group_id        = "${module.network.rds_db_sg_id}"
-  source_security_group_id = "${module.eks.worker_security_group_id}"
+  security_group_id        = module.network.rds_db_sg_id
+  source_security_group_id = module.eks.node_security_group_id
   type                     = "ingress"
 }
 
@@ -161,7 +255,7 @@ resource "aws_eks_addon" "core_dns" {
 resource "aws_eks_addon" "aws_ebs_csi_driver" {
   cluster_name      = data.aws_eks_cluster.cluster.name
   addon_name        = "aws-ebs-csi-driver"
-  addon_version     = "v1.23.0-eksbuild.1"
+  # addon_version     = "v1.23.0-eksbuild.1"
   resolve_conflicts = "OVERWRITE"
 }
 
@@ -172,7 +266,7 @@ module "es-master" {
   environment = "${var.cluster_name}"
   disk_prefix = "es-master"
   availability_zones = "${var.availability_zones}"
-  storage_sku = "gp2"
+  storage_sku = "gp3"
   disk_size_gb = "10"
 
 }
@@ -185,7 +279,7 @@ module "es-master-v8" {
   environment = "${var.cluster_name}"
   disk_prefix = "es-master-v8"
   availability_zones = "${var.availability_zones}"
-  storage_sku = "gp2"
+  storage_sku = "gp3"
   disk_size_gb = "10"
 
 }
@@ -197,7 +291,7 @@ module "es-data-v1" {
   environment = "${var.cluster_name}"
   disk_prefix = "es-data-v1"
   availability_zones = "${var.availability_zones}"
-  storage_sku = "gp2"
+  storage_sku = "gp3"
   disk_size_gb = "100"
 
 }
@@ -209,8 +303,8 @@ module "es-data-v8" {
   environment = "${var.cluster_name}"
   disk_prefix = "es-data-v8"
   availability_zones = "${var.availability_zones}"
-  storage_sku = "gp2"
-  disk_size_gb = "120"
+  storage_sku = "gp3"
+  disk_size_gb = "150"
 
 }
 
@@ -221,7 +315,7 @@ storage_count = 3
 environment = "${var.cluster_name}"
 disk_prefix = "zookeeper-infra"
 availability_zones = "${var.availability_zones}"
-storage_sku = "gp2"
+storage_sku = "gp3"
 disk_size_gb = "10"
 
 }
@@ -232,7 +326,7 @@ module "kafka-infra" {
   environment = "${var.cluster_name}"
   disk_prefix = "kafka-infra"
   availability_zones = "${var.availability_zones}"
-  storage_sku = "gp2"
+  storage_sku = "gp3"
   disk_size_gb = "100"
 
 }
@@ -243,7 +337,7 @@ module "es-master-infra" {
   environment = "${var.cluster_name}"
   disk_prefix = "es-master-infra"
   availability_zones = "${var.availability_zones}"
-  storage_sku = "gp2"
+  storage_sku = "gp3"
   disk_size_gb = "10"
 }
 
@@ -253,7 +347,7 @@ module "es-data-infra-v1" {
   environment = "${var.cluster_name}"
   disk_prefix = "es-data-infra-v1"
   availability_zones = "${var.availability_zones}"
-  storage_sku = "gp2"
+  storage_sku = "gp3"
   disk_size_gb = "100"
 }
 

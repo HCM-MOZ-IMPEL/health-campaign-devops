@@ -26,22 +26,27 @@ variable "availability_zones" {
 
 variable "kubernetes_version" {
   description = "kubernetes version"
-  default = "1.29"
+  default = "1.30"
 }
 
-variable "instance_type" {
+variable "instance_types" {
   description = "eGov recommended below instance type as a default"
-  default = "m5.2xlarge"
+  default = ["m5.2xlarge"]
 }
 
-variable "override_instance_types" {
-  description = "Arry of instance types for SPOT instances"
-  default = ["r5d.xlarge", "r5.xlarge", "m5.2xlarge"]
+variable "min_worker_nodes" {
+  description = "eGov recommended below worker node counts as default for min nodes"
+  default = "1" #REPLACE IF NEEDED
 }
 
-variable "number_of_worker_nodes" {
-  description = "eGov recommended below worker node counts as default"
+variable "desired_worker_nodes" {
+  description = "eGov recommended below worker node counts as default for desired nodes"
   default = "4" #REPLACE IF NEEDED
+}
+
+variable "max_worker_nodes" {
+  description = "eGov recommended below worker node counts as default for max nodes"
+  default = "7" #REPLACE IF NEEDED
 }
 
 variable "ssh_key_name" {
