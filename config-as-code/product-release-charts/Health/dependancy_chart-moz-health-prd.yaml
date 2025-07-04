@@ -79,7 +79,7 @@ modules:
       - egovio/facility:v1.1.2-00a7accbda-14
       - egovio/product:v1.1.0-00a7accbda-31
       - egovio/individual:HDDF-2209-individual-c2a5ea37e0-22
-      - egovio/transformer:smc-niassa-wasted-ac3254c0f2-321
+      - egovio/transformer:bauchi-transformer-fixes-c8bee83a90-362 #transformer:smc-niassa-wasted-f5c8a82b83-329
       - egovio/stock:sender-reciever-validation-changes-898070cadc-45
 #      - egovio/household:v1.1.4-a0e714254c-30
       - egovio/household:hhm-null-error-dae912e1f3-42

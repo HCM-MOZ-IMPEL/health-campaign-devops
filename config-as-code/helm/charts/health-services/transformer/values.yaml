@@ -228,6 +228,14 @@ env: |
     value: "transformer-producer-special-cases-index-topic"
   - name: SPECIAL_CASES_CHECKLIST_NAME
     value: "SPECIAL_CASES"
+  - name: CHECKLIST_EXTRATRANSFORMATION_NAMES
+    value: MALARIA_CASES
+  - name: TRANSFORMER_CHECKLIST_INFO_MDMS_MASTER 
+    value: transformerChecklistInfo
+  - name: TRANSFORMER_CHECKLIST_INFO_MDMS_MODULE 
+    value: HCM-TRANSFORMER-CHECKLIST-INFO
+  - name: TRANSFORMER_PRODUCER_EXTRA_TRANSFORMED_CHECKLIST_INDEX_V1_TOPIC 
+    value: transformer-producer-extra-transformed-checklist-index-topic
   - name: EGOV_HOUSEHOLD_HOST
     valueFrom:
       configMapKeyRef:
