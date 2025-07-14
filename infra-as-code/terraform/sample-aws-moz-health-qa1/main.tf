@@ -24,7 +24,7 @@ module "db" {
   vpc_security_group_ids        = ["${module.network.rds_db_sg_id}"]
   availability_zone             = "${element(var.availability_zones, 0)}"
   instance_class                = "db.t4g.medium"  ## postgres db instance type
-  engine_version                = "15.8"   ## postgres version
+  engine_version                = "15.12"   ## postgres version
   storage_type                  = "gp3"
   storage_gb                    = "20"     ## postgres disk size
   backup_retention_days         = "7"
@@ -127,7 +127,7 @@ module "eks" {
 }
 
 module "eks_managed_node_group" {
-  depends_on = [module.eks]
+  # depends_on = [module.eks]
   source = "terraform-aws-modules/eks/aws//modules/eks-managed-node-group"
   name            = "${var.cluster_name}-spot"
   cluster_name    = var.cluster_name
@@ -154,7 +154,7 @@ module "eks_managed_node_group" {
   capacity_type  = "SPOT"
   ebs_optimized  = "true"
   enable_monitoring = "true"
-  user_data_template_path = "user-data.yaml"
+  # user_data_template_path = "user-data.yaml"
   iam_role_additional_policies = {
     CSI_DRIVER_POLICY = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
     AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
