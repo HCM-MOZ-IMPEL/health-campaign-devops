@@ -160,13 +160,13 @@ ingress:
     nginx.ingress.kubernetes.io/lua-resty-waf-score-threshold: "10"
     nginx.ingress.kubernetes.io/use-regex: "true"
   hosts:
-    - host: moz-health-uat.digit.org
+    - host: salama.misau.org.mz
       paths:
         - path: /kibana-upgrade
   tls: 
-   - secretName: moz-health-uat.digit.org-tls-certs
+   - secretName: salama.misau.org.mz-tls-certs
      hosts:
-       - moz-health-uat.digit.org
+       - salama.misau.org.mz
 #  hosts:
 #    - host: salama.digit.org
 #      paths:
@@ -189,7 +189,7 @@ tolerations: []
 affinity: {}
 
 nameOverride: ""
-fullnameOverride: ""
+fullnameOverride: "kibana"
 
 lifecycle: {}
 # preStop:

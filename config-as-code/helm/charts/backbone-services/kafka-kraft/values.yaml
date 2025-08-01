@@ -18,7 +18,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: ""
+  storageClass: "salama-nfs"
 
 ## @section Common parameters
 ##
@@ -1705,7 +1705,7 @@ metrics:
     ##
     podSecurityContext:
       enabled: true
-      fsGroup: 1001
+      fsGroup: 65534
       seccompProfile:
         type: "RuntimeDefault"
     ## Kafka exporter containers' Security Context
