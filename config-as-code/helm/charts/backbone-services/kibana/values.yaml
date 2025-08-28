@@ -160,13 +160,13 @@ ingress:
     nginx.ingress.kubernetes.io/lua-resty-waf-score-threshold: "10"
     nginx.ingress.kubernetes.io/use-regex: "true"
   hosts:
-    - host: salama.misau.org.mz
+    - host: salama.misau.gov.mz
       paths:
         - path: /kibana-upgrade
   tls: 
-   - secretName: salama.misau.org.mz-tls-certs
+   - secretName: salama.misau.gov.mz-tls-certs
      hosts:
-       - salama.misau.org.mz
+       - salama.misau.gov.mz
 #  hosts:
 #    - host: salama.digit.org
 #      paths:

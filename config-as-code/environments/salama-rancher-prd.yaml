@@ -1,5 +1,5 @@
 global:
-  domain: salama.misau.org.mz
+  domain: salama.misau.gov.mz
   setup: fullsetup
 
 cluster-configs:
@@ -16,10 +16,10 @@ cluster-configs:
         db-name: "mozhealthprd" ## Add db-name
         db-url: "jdbc:postgresql://10.0.0.5:5432/mozhealthprd" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
         db-read-url: "jdbc:postgresql://10.0.0.5:5432/mozhealthprd" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
-        domain: "salama.misau.org.mz" ## Add your Domain Name
+        domain: "salama.misau.gov.mz" ## Add your Domain Name
         redis-host: "redis.backbone"
         redis-downsync-host: "redis.backbone"
-        egov-services-fqdn-name: "https://salama.misau.org.mz/" ## Add your Domain Name
+        egov-services-fqdn-name: "https://salama.misau.gov.mz/" ## Add your Domain Name
         aws-cluster-ip: "" #ask
         aws-region: "" #ask
         aws-cluster-name: "" #ask
@@ -552,7 +552,7 @@ egov-workflow-v2:
 egov-hrms:
   java-args: -Dspring.profiles.active=monitoring
   heap: "-Xmx512m -Xms512m"
-  employee-applink: "https://salama.misau.org.mz/digit-ui/employee/user/login"
+  employee-applink: "https://salama.misau.gov.mz/digit-ui/employee/user/login"
 
 
 egov-weekly-impact-notifier:
@@ -736,13 +736,13 @@ kibana:
   serverBasePath: /de3c60e0-47a4-46b3-94a5-bb15b8608bfa
   ingress:
     hosts:
-      - host: salama.misau.org.mz
+      - host: salama.misau.gov.mz
         paths:
           - path: /de3c60e0-47a4-46b3-94a5-bb15b8608bfa
     tls:
-      - secretName: salama.misau.org.mz-tls-certs
+      - secretName: salama.misau.gov.mz-tls-certs
         hosts:
-          - salama.misau.org.mz
+          - salama.misau.gov.mz
 
 # es8-cluster AWS >>>>>>>>>>>>>>>>>>>>>>>>>>>>
 elasticsearch-data:
@@ -770,7 +770,7 @@ elasticsearch-data:
     requests:
       memory: "4Gi"
     limits:
-      memory: "4Gi"
+      memory: "8Gi"
 
 
 elasticsearch-master:
@@ -930,9 +930,9 @@ prometheus:
         module: [ http_2xx ]
       static_configs:
         - targets:
-            - https://salama.misau.org.mz/jupyter/hub/
-            - https://salama.misau.org.mz/kibana-upgrade/
-            - https://salama.misau.org.mz/pgadmin/
+            - https://salama.misau.gov.mz/jupyter/hub/
+            - https://salama.misau.gov.mz/kibana-upgrade/
+            - https://salama.misau.gov.mz/pgadmin/
       relabel_configs:
         - source_labels: [ __address__ ]
           target_label: __param_target

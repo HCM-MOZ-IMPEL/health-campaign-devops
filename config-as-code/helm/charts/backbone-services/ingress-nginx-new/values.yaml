@@ -63,8 +63,8 @@ controller:
     Content-Security-Policy: 'default-src ''self'' https: ''unsafe-eval'' ''unsafe-inline'';
     object-src ''none''; img-src ''self'' https: data: blob:; style-src https: blob:
     ''unsafe-inline''; worker-src ''self'' blob:; font-src ''self'' https: data: blob:;
-    child-src ''self'' https: data: blob:; frame-src *.digit.org https://egov-uat-assets.s3.ap-south-1.amazonaws.com/
-    https://view.officeapps.live.com/; frame-ancestors *.digit.org;'
+    child-src ''self'' https: data: blob:; frame-src salama.misau.gov.mz https://egov-uat-assets.s3.ap-south-1.amazonaws.com/
+    https://view.officeapps.live.com/; frame-ancestors salama.misau.gov.mz;'
     Referrer-Policy: no-referrer-when-downgrade
     Strict-Transport-Security: max-age=63072000; includeSubdomains; preload
     X-Content-Type-Options: nosniff
@@ -260,7 +260,11 @@ controller:
   # -- Node tolerations for server scheduling to nodes with taints
   ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
   ##
-  tolerations: []
+  tolerations:
+    - key: "metallb"
+      operator: "Equal"
+      value: "deployed"
+      effect: "NoSchedule"
   #  - key: "key"
   #    operator: "Equal|Exists"
   #    value: "value"
@@ -344,6 +348,7 @@ controller:
   ##
   nodeSelector:
     kubernetes.io/os: linux
+    "deploy-metallb-controller": "true"
   ## Liveness and readiness probe values
   ## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
   ##
@@ -1048,7 +1053,11 @@ defaultBackend:
   # -- Node tolerations for server scheduling to nodes with taints
   ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
   ##
-  tolerations: []
+  tolerations:
+    - key: "metallb"
+      operator: "Equal"
+      value: "deployed"
+      effect: "NoSchedule"
   #  - key: "key"
   #    operator: "Equal|Exists"
   #    value: "value"
@@ -1133,6 +1142,7 @@ defaultBackend:
   ##
   nodeSelector:
     kubernetes.io/os: linux
+    "deploy-metallb-controller": "true"
   # -- Annotations to be added to default backend pods
   ##
   podAnnotations: {}
