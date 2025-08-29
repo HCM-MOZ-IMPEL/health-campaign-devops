@@ -59,7 +59,7 @@ modules:
       - "business"
     services:
       - egovio/employee:v1.8.0-2ac8314b2f-116
-      - egovio/digit-ui:SMC-Dashboard-d68b13a818-291
+      - egovio/digit-ui:filter_cycle_selection-3652dd2baf-326
   - name: m_dss   #dss
     dependencies:
       - "frontend"
@@ -76,15 +76,15 @@ modules:
       - "core"
     services:
       # - egovio/facility:v1.0.0-a51bee1435-19
-      - egovio/facility:v1.1.2-00a7accbda-14
+      - egovio/facility-db:v1.1.2-3f860f8a31-23
       - egovio/product:v1.1.0-00a7accbda-31
-      - egovio/individual:HDDF-2209-individual-c2a5ea37e0-22
+      - egovio/individual-db:HCMPRE-2480-Beneficiary-ID-Generation-using-Id-gen-service-26d009ab42-62
       - egovio/transformer:bauchi-transformer-fixes-c8bee83a90-362 #transformer:smc-niassa-wasted-f5c8a82b83-329
       - egovio/stock:sender-reciever-validation-changes-898070cadc-45
 #      - egovio/household:v1.1.4-a0e714254c-30
-      - egovio/household:hhm-null-error-dae912e1f3-42
+      - egovio/household-db:dev-2fd1348b02-63
       - egovio/project:HDDF-1638-e0cc729ef6-31
       - egovio/referralmanagement:hh-matview-fetch-d348299ba1-47
-      - egovio/health-attendance:v1.0.2-c20992b0d-61
+      - egovio/health-attendance-db:v1.1.0-55e92c713-51
       - egovio/egov-mdms-create:develop-3a53c3b-3
       - egovio/hcm-moz-impl:HDDF-1499-8cedf8c5-411
