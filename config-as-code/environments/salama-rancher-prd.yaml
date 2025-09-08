@@ -116,6 +116,15 @@ employee:
       ';"
 
 payments-ui:
+  replicas: 1
+  cpu_requests: 200m
+  memory_requests: 256Mi
+  cpu_limits: 300m
+  memory_limits: 512Mi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3 
   custom-js-injection: |
     sub_filter.conf: "
       sub_filter  '<head>' '<head>
@@ -124,12 +133,30 @@ payments-ui:
       ';"
 
 workbench-ui:
+  replicas: 1
+  cpu_requests: 200m
+  memory_requests: 256Mi
+  cpu_limits: 300m
+  memory_limits: 512Mi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3 
   custom-js-injection: |
     sub_filter.conf: "
       sub_filter  '<head>' '<head>
       <script src=https://moz-health-prd.s3.af-south-1.amazonaws.com/globalConfigsWorkbench-mz-prd.js type=text/javascript></script>';" 
 
 digit-ui:
+  replicas: 1
+  cpu_requests: 200m
+  memory_requests: 256Mi
+  cpu_limits: 300m
+  memory_limits: 512Mi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
   custom-js-injection: |
     sub_filter.conf: "
       sub_filter  '<head>' '<head>
@@ -146,10 +173,14 @@ microplan-ui:
 
 egov-filestore:
   replicas: 1
-  cpu_requests: 300m
+  cpu_requests: 200m
   memory_requests: 512Mi
-  cpu_limits: 400m
+  cpu_limits: 300m
   memory_limits: 1Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
   volume: /opt/eGov/filestore
   is-bucket-fixed: "true"
   minio.url : "https://s3.amazonaws.com"
@@ -162,22 +193,30 @@ egov-filestore:
   fixed-bucketname: "mozprodfilestore"
 
 egov-idgen:
-  replicas: 3
-  cpu_requests: 500m
+  replicas: 1
+  cpu_requests: 300m
   memory_requests: 1Gi
-  cpu_limits: 600m
+  cpu_limits: 400m
   memory_limits: 1.5Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
   idformat-from-mdms: "true"
   java-args: -Dspring.profiles.active=monitoring
   heap: "-Xmx192m -Xms192m"
   autocreate-new-seq: "true"
 
 egov-user:
-  replicas: 3
-  cpu_requests: 600m
+  replicas: 1
+  cpu_requests: 500m
   memory_requests: 1.5Gi
-  cpu_limits: 800m
+  cpu_limits: 600m
   memory_limits: 2Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3  
   heap: "-Xmx256m -Xms256m"
   otp-validation: "true"
   citizen-otp-enabled: "true"
@@ -197,7 +236,15 @@ egov-pg-service:
   axis: true
 
 audit-service:
-  replicas: 3
+  replicas: 1
+  cpu_requests: 200m
+  memory_requests: 1Gi
+  cpu_limits: 300m
+  memory_limits: 1.5Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
   persist-yml-path: "https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/PROD/egov-persister/egov-workflow-v2-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/PROD/egov-persister/facility-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/PROD/egov-persister/hcm-moz-impl-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/PROD/egov-persister/household-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/PROD/egov-persister/hrms-employee-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/PROD/egov-persister/individual-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/PROD/egov-persister/stock-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/PROD/egov-persister/service-request-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/PROD/egov-persister/project-task-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/PROD/egov-persister/project-persister.yml,https://raw.githubusercontent.com/HCM-MOZ-IMPEL/health-campaign-config/PROD/egov-persister/product-persister.yml"
   initContainers:
     gitSync:
@@ -222,11 +269,15 @@ egov-mdms-create:
   java-args: -Dspring.profiles.active=monitoring
 
 egov-indexer:
-  replicas: 3
-  cpu_requests: 500m
+  replicas: 1
+  cpu_requests: 300m
   memory_requests: 768Mi
-  cpu_limits: 600m
+  cpu_limits: 400m
   memory_limits: 1Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
   heap: "-Xmx512m -Xms512m"
   memory_limits: "768Mi"
   initContainers:
@@ -236,11 +287,15 @@ egov-indexer:
   egov-indexer-yaml-repo-path: "file:///work-dir/health-campaign-config/egov-indexer/transformer-pgr-services.yml,file:///work-dir/health-campaign-config/egov-indexer/error-queue.yml,file:///work-dir/health-campaign-config/egov-indexer/product-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/project-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/individual-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/household-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/project-task-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/stock-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/facility-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/project-staff-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/egov-error-queue-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/pgr-services.yml,file:///work-dir/health-campaign-config/egov-indexer/service-request-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/referral-management-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/attendance-service-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/plan-service-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/census-service-indexer.yml"
 
 egov-persister:
-  replicas: 3
-  cpu_requests: 500m
+  replicas: 1
+  cpu_requests: 300m
   memory_requests: 1Gi
-  cpu_limits: 600m
+  cpu_limits: 400m
   memory_limits: 1.5Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 4
   images:
     - egovio/egov-persister
   persist-yml-path: "file:///work-dir/health-campaign-config/egov-persister/audit-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-user-event-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-workflow-v2-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hrms-employee-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pdf-generator.yml,file:///work-dir/health-campaign-config/egov-persister/product-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-persister.yml,file:///work-dir/health-campaign-config/egov-persister/individual-persister.yml,file:///work-dir/health-campaign-config/egov-persister/household-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-task-persister.yml,file:///work-dir/health-campaign-config/egov-persister/stock-persister.yml,file:///work-dir/health-campaign-config/egov-persister/facility-persister.yml,file:///work-dir/health-campaign-config/egov-persister/service-request-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pgr-services-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hcm-moz-impl-persister.yml,file:///work-dir/health-campaign-config/egov-persister/mdms-persister.yml,file:///work-dir/health-campaign-config/egov-persister/referral-management-persister.yml,file:///work-dir/health-campaign-config/egov-persister/attendance-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/boundary-persister.yml,file:///work-dir/health-campaign-config/egov-persister/irs-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-factory-persister.yml,file:///work-dir/health-campaign-config/egov-persister/plan-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/census-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/muster-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/expense-bill-payment-persister.yaml"
@@ -250,7 +305,11 @@ egov-persister:
       branch: "PROD"                                    ##### Change repo branch with Your fork Repo branch
 
 dashboard-analytics:
-  replicas: 2
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
+  replicas: 1
   cpu_requests: 200m
   memory_requests: 512Mi
   cpu_limits: 300m
@@ -308,11 +367,15 @@ nginx-ingress:
 
 
 zuul:
-  replicas: 5
+  replicas: 3
   cpu_requests: 400m
   memory_requests: 512Mi
   cpu_limits: 500m
   memory_limits: 750Mi
+  hpa:
+    enabled: true
+    minReplicas: 3
+    maxReplicas: 5  
   custom-filter-property: "false"
   tracing-enabled: "true"
   heap: "-Xmx704m -Xms512m"
@@ -345,10 +408,14 @@ attendance-service:
   contracts-revision-topic: "contracts-revision"
 
 health-expense:
-  replicas: 3
-  cpu_requests: 300m
+  replicas: 1
+  cpu_requests: 200m
   memory_requests: 512Mi
-  cpu_limits: 400m
+  cpu_limits: 300m
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3  
   memory_limits: 1Gi
   tracing-enabled: true
   java-enable-debug: true
@@ -360,11 +427,15 @@ health-expense:
   egov-mdms-v2-search-endpoint: "/mdms-v2/v1/_search"
 
 health-expense-calculator:
-  replicas: 3
-  cpu_requests: 300m
+  replicas: 1
+  cpu_requests: 200m
   memory_requests: 512Mi
-  cpu_limits: 400m
+  cpu_limits: 300m
   memory_limits: 1Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3  
   tracing-enabled: true
   java-enable-debug: true
   egov-mdms-service-endpoint-key: "/mdms-v2/v1/_search"
@@ -375,11 +446,15 @@ health-expense-calculator:
   bill-generation-async-topic: "bill-generation-async-topic"
 
 health-muster-roll:
-  replicas: 3
-  cpu_requests: 500m
+  replicas: 1
+  cpu_requests: 200m
   memory_requests: 512Mi
-  cpu_limits: 600m
+  cpu_limits: 300m
   memory_limits: 1Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
   tracing-enabled: true
   java-enable-debug: true
   musterroll-default-offset: 0
@@ -404,11 +479,15 @@ health-muster-roll:
   musterroll-validate-attendance-register-enabled: "true"
 
 egov-workflow-v2:
-  replicas: 2
-  cpu_requests: 300m
+  replicas: 1
+  cpu_requests: 200m
   memory_requests: 512Mi
-  cpu_limits: 400m
+  cpu_limits: 300m
   memory_limits: 1Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
   logging-level: "DEBUG"
   java-args: -Dspring.profiles.active=monitoring
   heap: "-Xmx192m -Xms192m"
@@ -417,11 +496,16 @@ egov-workflow-v2:
   pdf-link: "/download/epass?tenantId={TENANTID}&ids={UUID}"
 
 egov-hrms:
-  replicas: 3
-  cpu_requests: 500m
+  replicas: 1
+  cpu_requests: 200m
   memory_requests: 1Gi
-  cpu_limits: 600m
+  cpu_limits: 300m
   memory_limits: 1.5Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
+
   java-args: -Dspring.profiles.active=monitoring
   heap: "-Xmx512m -Xms512m"
   employee-applink: "https://salama.misau.gov.mz/digit-ui/employee/user/login"
@@ -594,11 +678,15 @@ grafana:
   dashboardsFolder: /work-dir/health-campaign-config/monitoring-dashboards
 
 project:
-  replicas: 3
+  replicas: 1
   cpu_requests: 250m
   memory_requests: 1.5Gi
   cpu_limits: 400m
   memory_limits: 2Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 4  
   heap: "-Xmx2g -Xms2g"
 
 project-referral:
@@ -608,6 +696,15 @@ project-referral:
   cpu_limits: "250m"
 
 project-factory:
+  replicas: 1
+  cpu_requests: 200m
+  memory_requests: 512Mi
+  cpu_limits: 300m
+  memory_limits: 1Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3 
   logLevel: 'debug'
   maxDebugChar: '2000'
   mdmsV2SearchEndpoint: 'mdms-v2/v2/_search'
@@ -622,12 +719,16 @@ resource-generator:
   egov-mdms-service-v2-endpoint-key: "/mdms-v2/v2/_search"
 
 transformer:
-  replicas: 3
+  replicas: 1
   cpu_requests: 300m
   memory_requests: 2Gi
   cpu_limits: 400m
   memory_limits: 2.5Gi
   heap: "-Xmx1536m -Xms1536m"
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3  
 
 hcm-moz-impl:
   replicas: 1
@@ -638,11 +739,15 @@ hcm-moz-impl:
   cpu_limits: "250m"
 
 health-attendance:
-  replicas: 2
-  cpu_requests: 300m
+  replicas: 1
+  cpu_requests: 200m
   memory_requests: 512Mi
-  cpu_limits: 400m
+  cpu_limits: 300m
   memory_limits: 1Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3  
   java-enable-debug: true
   heap: "-Xmx256m -Xms256m"
   memory_limits: 512Mi
@@ -700,107 +805,167 @@ prometheus:
 #### Production Rancher Replicas ####
 
 boundary-service:
-  replicas: 3
-  cpu_requests: 400m
+  replicas: 1
+  cpu_requests: 200m
   memory_requests: 512Mi
-  cpu_limits: 500m
+  cpu_limits: 300m
   memory_limits: 1Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
 
 egov-accesscontrol:
-  replicas: 3
-  cpu_requests: 300m
+  replicas: 1
+  cpu_requests: 200m
   memory_requests: 712Mi
-  cpu_limits: 400m
+  cpu_limits: 300m
   memory_limits: 1Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
 
 egov-enc-service:
-  replicas: 3
-  cpu_requests: 500m
+  replicas: 1
+  cpu_requests: 300m
   memory_requests: 1Gi
-  cpu_limits: 600m
+  cpu_limits: 400m
   memory_limits: 1.5Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
 
 egov-localization:
-  replicas: 3
-  cpu_requests: 500m
+  replicas: 1
+  cpu_requests: 200m
   memory_requests: 1Gi
-  cpu_limits: 600m
+  cpu_limits: 300m
   memory_limits: 1.5Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 4
+  heap: "-Xmx768m -Xms512m"
 
 egov-url-shortening:
-  replicas: 2
+  replicas: 1
   cpu_requests: 200m
   memory_requests: 512Mi
   cpu_limits: 300m
   memory_limits: 1Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
 
 error-handler:
-  replicas: 2
-  cpu_requests: 300m
+  replicas: 1
+  cpu_requests: 200m
   memory_requests: 512Mi
-  cpu_limits: 400m
+  cpu_limits: 300m
   memory_limits: 1Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3  
 
 facility:
-  replicas: 2
-  cpu_requests: 300m
+  replicas: 1
+  cpu_requests: 200m
   memory_requests: 512Mi
-  cpu_limits: 400m
+  cpu_limits: 300m
   memory_limits: 1Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
 
 household:
-  replicas: 3
-  cpu_requests: 500m
+  replicas: 1
+  cpu_requests: 300m
   memory_requests: 1Gi
-  cpu_limits: 600m
+  cpu_limits: 400m
   memory_limits: 1.5Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 4
 
 individual:
-  replicas: 3
-  cpu_requests: 500m
+  replicas: 1
+  cpu_requests: 300m
   memory_requests: 1Gi
-  cpu_limits: 600m
+  cpu_limits: 400m
   memory_limits: 1.5Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 4
 
 mdms-v2:
-  replicas: 3
-  cpu_requests: 400m
+  replicas: 1
+  cpu_requests: 300m
   memory_requests: 512Mi
-  cpu_limits: 500m
+  cpu_limits: 400m
   memory_limits: 1Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
 
 pgr-services:
-  replicas: 2
-  cpu_requests: 300m
+  replicas: 1
+  cpu_requests: 200m
   memory_requests: 512Mi
-  cpu_limits: 400m
+  cpu_limits: 300m
   memory_limits: 1Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3  
 
 product:
-  replicas: 2
-  cpu_requests: 300m
+  replicas: 1
+  cpu_requests: 200m
   memory_requests: 512Mi
-  cpu_limits: 400m
+  cpu_limits: 300m
   memory_limits: 1Gi
-
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3  
 
 referralmanagement:
-  replicas: 3
+  replicas: 1
   cpu_requests: 400m
   memory_requests: 1Gi
   cpu_limits: 500m
   memory_limits: 1.5Gi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 4  
 
 service-request:
-  replicas: 2
+  replicas: 1
   cpu_requests: 200m
   memory_requests: 256Mi
   cpu_limits: 300m
   memory_limits: 512Mi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3  
 
 stock:
-  replicas: 2
+  replicas: 1
   cpu_requests: 200m
   memory_requests: 256Mi
   cpu_limits: 300m
   memory_limits: 512Mi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3   
