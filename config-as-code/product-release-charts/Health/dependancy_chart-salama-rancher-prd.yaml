@@ -52,7 +52,8 @@ modules:
       - "core"
       - "business"
     services:
-      - egovio/dashboard-analytics:analytics-es8-auth-9ef1a52729-72
+      - egovio/dashboard-analytics:analytics-es8-auth-e2dbdac597-73
+
   - name: m_health
     dependencies:
       - "backbone"
@@ -60,18 +61,21 @@ modules:
       - "core"
     services:
       # - egovio/facility:v1.0.0-a51bee1435-19
-      - egovio/facility:v1.1.2-00a7accbda-14
+      - egovio/facility:v1.1.2-3f860f8a31-23
       - egovio/product:v1.1.0-00a7accbda-31
-      - egovio/individual:HDDF-2209-individual-c2a5ea37e0-22
+      - egovio/individual:master-cc431fb
       - egovio/transformer:bauchi-transformer-fixes-c8bee83a90-362 #transformer:smc-niassa-wasted-f5c8a82b83-329
-      - egovio/stock:sender-reciever-validation-changes-898070cadc-45
+      - egovio/stock:HDDF-2933-bauchi-stock-search-model-update-6ea483894d-63
 #      - egovio/household:v1.1.4-a0e714254c-30
-      - egovio/household:hhm-null-error-dae912e1f3-42
+      - egovio/household:dev-2fd1348b02-63
       - egovio/project:HDDF-1638-e0cc729ef6-31
-      - egovio/referralmanagement:hh-matview-fetch-d348299ba1-47
-      - egovio/health-attendance:v1.0.2-c20992b0d-61
+      - egovio/referralmanagement:hh-matview-fetch-18fecab1d4-71
+      - egovio/health-attendance:v1.1.0-55e92c713-51
       - egovio/egov-mdms-create:develop-3a53c3b-3
       - egovio/hcm-moz-impl:HDDF-1499-8cedf8c5-411
+      - egovio/health-expense:master-impel-expense-2f2007da0-29
+      - egovio/health-expense-calculator:HDDF-2572-2-burundi-impl-89957628a-72
+      - egovio/health-muster-roll:v1.1.0-8e8f04913-11
   - name: m_hcmconsole
     dependencies:
       - "backbone"

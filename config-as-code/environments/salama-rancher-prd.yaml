@@ -141,6 +141,11 @@ microplan-ui:
       ';" 
 
 egov-filestore:
+  replicas: 1
+  cpu_requests: 300m
+  memory_requests: 512Mi
+  cpu_limits: 400m
+  memory_limits: 1Gi
   volume: /opt/eGov/filestore
   is-bucket-fixed: "true"
   minio.url : "https://s3.amazonaws.com"
@@ -153,14 +158,23 @@ egov-filestore:
   fixed-bucketname: "mozprodfilestore"
 
 egov-idgen:
+  replicas: 3
+  cpu_requests: 500m
+  memory_requests: 1Gi
+  cpu_limits: 600m
+  memory_limits: 1.5Gi
   idformat-from-mdms: "true"
   java-args: -Dspring.profiles.active=monitoring
   heap: "-Xmx192m -Xms192m"
   autocreate-new-seq: "true"
 
 egov-user:
+  replicas: 3
+  cpu_requests: 600m
+  memory_requests: 1.5Gi
+  cpu_limits: 800m
+  memory_limits: 2Gi
   heap: "-Xmx256m -Xms256m"
-  memory_limits: 512Mi
   otp-validation: "true"
   citizen-otp-enabled: "true"
   employee-otp-enabled: "false"
@@ -204,6 +218,11 @@ egov-mdms-create:
   java-args: -Dspring.profiles.active=monitoring
 
 egov-indexer:
+  replicas: 3
+  cpu_requests: 500m
+  memory_requests: 768Mi
+  cpu_limits: 600m
+  memory_limits: 1Gi
   heap: "-Xmx512m -Xms512m"
   memory_limits: "768Mi"
   initContainers:
@@ -213,7 +232,11 @@ egov-indexer:
   egov-indexer-yaml-repo-path: "file:///work-dir/health-campaign-config/egov-indexer/transformer-pgr-services.yml,file:///work-dir/health-campaign-config/egov-indexer/error-queue.yml,file:///work-dir/health-campaign-config/egov-indexer/product-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/project-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/individual-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/household-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/project-task-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/stock-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/facility-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/project-staff-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/egov-error-queue-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/pgr-services.yml,file:///work-dir/health-campaign-config/egov-indexer/service-request-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/referral-management-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/attendance-service-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/plan-service-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/census-service-indexer.yml"
 
 egov-persister:
-  replicas: 2
+  replicas: 3
+  cpu_requests: 500m
+  memory_requests: 1Gi
+  cpu_limits: 600m
+  memory_limits: 1.5Gi
   images:
     - egovio/egov-persister
   persist-yml-path: "file:///work-dir/health-campaign-config/egov-persister/audit-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-user-event-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-workflow-v2-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hrms-employee-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pdf-generator.yml,file:///work-dir/health-campaign-config/egov-persister/product-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-persister.yml,file:///work-dir/health-campaign-config/egov-persister/individual-persister.yml,file:///work-dir/health-campaign-config/egov-persister/household-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-task-persister.yml,file:///work-dir/health-campaign-config/egov-persister/stock-persister.yml,file:///work-dir/health-campaign-config/egov-persister/facility-persister.yml,file:///work-dir/health-campaign-config/egov-persister/service-request-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pgr-services-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hcm-moz-impl-persister.yml,file:///work-dir/health-campaign-config/egov-persister/mdms-persister.yml,file:///work-dir/health-campaign-config/egov-persister/referral-management-persister.yml,file:///work-dir/health-campaign-config/egov-persister/attendance-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/boundary-persister.yml,file:///work-dir/health-campaign-config/egov-persister/irs-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-factory-persister.yml,file:///work-dir/health-campaign-config/egov-persister/plan-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/census-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/muster-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/expense-bill-payment-persister.yaml"
@@ -223,6 +246,11 @@ egov-persister:
       branch: "PROD"                                    ##### Change repo branch with Your fork Repo branch
 
 dashboard-analytics:
+  replicas: 2
+  cpu_requests: 200m
+  memory_requests: 512Mi
+  cpu_limits: 300m
+  memory_limits: 1Gi
   config-schema-paths: "file:///work-dir/health-campaign-config/egov-dss-dashboards/dashboard-analytics/*.json"
   memory_limit: 2Gi
   heap: "-Xmx1580m -Xms1024m"
@@ -277,11 +305,13 @@ nginx-ingress:
 
 zuul:
   replicas: 5
+  cpu_requests: 400m
+  memory_requests: 512Mi
+  cpu_limits: 500m
+  memory_limits: 750Mi
   custom-filter-property: "false"
   tracing-enabled: "true"
   heap: "-Xmx704m -Xms512m"
-  memory_limits: "750Mi"
-  cpu_limits: "500m"
   server-tomcat-max-threads: "350"
   server-tomcat-max-connections: "1500"
   egov-open-endpoints-whitelist: "/user/oauth/token,/user-otp/v1/_send,/otp/v1/_validate,/user/citizen/_create,/localization/messages,/localization/messages/v1/_search,/user/password/nologin/_update,/pgr/servicedefinition/v1/_search,/pgr/servicecategories/v1/_search,/pgr/v1/otp/_send,/pgr-master/receivingmode/v1/_search,/tenant/v1/tenant/_search,/egov-location/boundarys,/egov-location/boundarys/boundariesByBndryTypeNameAndHierarchyTypeName,/pgr-master/service/v1/_search,/egov-location/boundarys/getLocationByLocationName,/pgr-master/OTPConfig/_search,/pgr-master/serviceGroup/v1/_search,/egov-location/boundarys/isshapefileexist,/pgr/services/v1/_search,/hr-masters/hrconfigurations/_search,/collection-services/receipts/_view,/pgr-master/service/v2/_search,/pgr-master/servicedefinition/v1/_search,/citizen-services,/citizen-services/v1/requests/receipt/_create,/citizen-services/v1/pgresponse,/citizen-services/v1/requests/anonymous/_search,/egov-mdms-service/v1/_search,/egov-mdms-service/v1/_get,/egov-mdms-service/v1/_reload,/egov-mdms-service/v1/_reloadobj,/egov-location/boundarys/getshapefile,/egov-indexer/index-operations/_index,/egov-indexer/index-operations/_reload,/egov-mdms-service-test/v1/_search,/egov-mdms-create/v1/_update,/egov-mdms-create/v1/_create,/egov-mdms-service-test/v1/_reload,/filestore/v1/files/url,/egov-url-shortening,/whatsapp-webhook/messages,/edcr/rest/dcr/downloadfile,/dashboard-ingest/ingest/upload,/egov-searcher/water-services/wateropensearch/_get,/egov-searcher/sewerage-services/sewerageopensearch/_get,/xstate-chatbot/status,/xstate-chatbot/reminder,/nlp-engine/fuzzy/city,/nlp-engine/fuzzy/locality,/mdms-v2/schema/v1/_search,/mdms-v2/v2/_search,/mdms-v2/v2/_create,/mdms-v2/v1/_search,/mdms-v2/v2/_create/ACCESSCONTROL-ACTIONS-TEST.actions-test,/mdms-v2/v2/_create/ACCESSCONTROL-ROLES.roles,/mdms-v2/v2/_create/ACCESSCONTROL-ROLEACTIONS.roleactions,/mdms-v2/v2/_create,/boundary-service/boundary/_search"
@@ -311,6 +341,11 @@ attendance-service:
   contracts-revision-topic: "contracts-revision"
 
 health-expense:
+  replicas: 3
+  cpu_requests: 300m
+  memory_requests: 512Mi
+  cpu_limits: 400m
+  memory_limits: 1Gi
   tracing-enabled: true
   java-enable-debug: true
   business-workflow-status-map: "{'EXPENSE.WAGES':'false'}"
@@ -321,6 +356,11 @@ health-expense:
   egov-mdms-v2-search-endpoint: "/mdms-v2/v1/_search"
 
 health-expense-calculator:
+  replicas: 3
+  cpu_requests: 300m
+  memory_requests: 512Mi
+  cpu_limits: 400m
+  memory_limits: 1Gi
   tracing-enabled: true
   java-enable-debug: true
   egov-mdms-service-endpoint-key: "/mdms-v2/v1/_search"
@@ -331,6 +371,11 @@ health-expense-calculator:
   bill-generation-async-topic: "bill-generation-async-topic"
 
 health-muster-roll:
+  replicas: 3
+  cpu_requests: 500m
+  memory_requests: 512Mi
+  cpu_limits: 600m
+  memory_limits: 1Gi
   tracing-enabled: true
   java-enable-debug: true
   musterroll-default-offset: 0
@@ -355,6 +400,11 @@ health-muster-roll:
   musterroll-validate-attendance-register-enabled: "true"
 
 egov-workflow-v2:
+  replicas: 2
+  cpu_requests: 300m
+  memory_requests: 512Mi
+  cpu_limits: 400m
+  memory_limits: 1Gi
   logging-level: "DEBUG"
   java-args: -Dspring.profiles.active=monitoring
   heap: "-Xmx192m -Xms192m"
@@ -363,6 +413,11 @@ egov-workflow-v2:
   pdf-link: "/download/epass?tenantId={TENANTID}&ids={UUID}"
 
 egov-hrms:
+  replicas: 3
+  cpu_requests: 500m
+  memory_requests: 1Gi
+  cpu_limits: 600m
+  memory_limits: 1.5Gi
   java-args: -Dspring.profiles.active=monitoring
   heap: "-Xmx512m -Xms512m"
   employee-applink: "https://salama.misau.gov.mz/digit-ui/employee/user/login"
@@ -533,11 +588,14 @@ grafana:
       repo: "git@github.com:HCM-MOZ-IMPEL/health-campaign-config" #REPLACE with your configs repo
       branch: "PROD" #REPLACE with config repo branch name
   dashboardsFolder: /work-dir/health-campaign-config/monitoring-dashboards
+
 project:
-  replicas: 2
+  replicas: 3
+  cpu_requests: 250m
+  memory_requests: 1.5Gi
+  cpu_limits: 400m
+  memory_limits: 2Gi
   heap: "-Xmx2g -Xms2g"
-  memory_limits: "2Gi"
-  cpu_limits: "250m"
 
 project-referral:
   replicas: 2
@@ -558,11 +616,14 @@ resource-generator:
   egov-mdms-service-host-key: 'mdms-v2'
   egov-mdms-service-endpoint-key: "/mdms-v2/v1/_search"
   egov-mdms-service-v2-endpoint-key: "/mdms-v2/v2/_search"
+
 transformer:
-  replicas: 2
+  replicas: 3
+  cpu_requests: 300m
+  memory_requests: 2Gi
+  cpu_limits: 400m
+  memory_limits: 2.5Gi
   heap: "-Xmx1536m -Xms1536m"
-  memory_limits: "2Gi"
-  cpu_limits: "250m"
 
 hcm-moz-impl:
   replicas: 1
@@ -573,6 +634,11 @@ hcm-moz-impl:
   cpu_limits: "250m"
 
 health-attendance:
+  replicas: 2
+  cpu_requests: 300m
+  memory_requests: 512Mi
+  cpu_limits: 400m
+  memory_limits: 1Gi
   java-enable-debug: true
   heap: "-Xmx256m -Xms256m"
   memory_limits: 512Mi
@@ -631,3 +697,106 @@ prometheus:
 
 boundary-service:
   replicas: 3
+  cpu_requests: 400m
+  memory_requests: 512Mi
+  cpu_limits: 500m
+  memory_limits: 1Gi
+
+egov-accesscontrol:
+  replicas: 3
+  cpu_requests: 300m
+  memory_requests: 712Mi
+  cpu_limits: 400m
+  memory_limits: 1Gi
+
+egov-enc-service:
+  replicas: 3
+  cpu_requests: 500m
+  memory_requests: 1Gi
+  cpu_limits: 600m
+  memory_limits: 1.5Gi
+
+egov-localization:
+  replicas: 3
+  cpu_requests: 500m
+  memory_requests: 1Gi
+  cpu_limits: 600m
+  memory_limits: 1.5Gi
+
+egov-url-shortening:
+  replicas: 2
+  cpu_requests: 200m
+  memory_requests: 512Mi
+  cpu_limits: 300m
+  memory_limits: 1Gi
+
+error-handler:
+  replicas: 2
+  cpu_requests: 300m
+  memory_requests: 512Mi
+  cpu_limits: 400m
+  memory_limits: 1Gi
+
+facility:
+  replicas: 2
+  cpu_requests: 300m
+  memory_requests: 512Mi
+  cpu_limits: 400m
+  memory_limits: 1Gi
+
+household:
+  replicas: 3
+  cpu_requests: 500m
+  memory_requests: 1Gi
+  cpu_limits: 600m
+  memory_limits: 1.5Gi
+
+individual:
+  replicas: 3
+  cpu_requests: 500m
+  memory_requests: 1Gi
+  cpu_limits: 600m
+  memory_limits: 1.5Gi
+
+mdms-v2:
+  replicas: 3
+  cpu_requests: 400m
+  memory_requests: 512Mi
+  cpu_limits: 500m
+  memory_limits: 1Gi
+
+pgr-services:
+  replicas: 2
+  cpu_requests: 300m
+  memory_requests: 512Mi
+  cpu_limits: 400m
+  memory_limits: 1Gi
+
+product:
+  replicas: 2
+  cpu_requests: 300m
+  memory_requests: 512Mi
+  cpu_limits: 400m
+  memory_limits: 1Gi
+
+
+referralmanagement:
+  replicas: 3
+  cpu_requests: 400m
+  memory_requests: 1Gi
+  cpu_limits: 500m
+  memory_limits: 1.5Gi
+
+service-request:
+  replicas: 2
+  cpu_requests: 200m
+  memory_requests: 256Mi
+  cpu_limits: 300m
+  memory_limits: 512Mi
+
+stock:
+  replicas: 2
+  cpu_requests: 200m
+  memory_requests: 256Mi
+  cpu_limits: 300m
+  memory_limits: 512Mi
