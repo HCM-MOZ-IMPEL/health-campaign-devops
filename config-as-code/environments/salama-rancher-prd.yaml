@@ -13,9 +13,9 @@ cluster-configs:
     egov-config:
       data:
         db-host: "10.0.0.5" ## Add db-host name eg: egov-demo.database.azure.com
-        db-name: "mozhealthprd" ## Add db-name
-        db-url: "jdbc:postgresql://10.0.0.5:5432/mozhealthprd" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
-        db-read-url: "jdbc:postgresql://10.0.0.5:5432/mozhealthprd" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
+        db-name: "salamadbprd" ## Add db-name
+        db-url: "jdbc:postgresql://10.0.0.5:5432/salamadbprd" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
+        db-read-url: "jdbc:postgresql://10.0.0.5:5432/salamadbprd" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
         domain: "salama.misau.gov.mz" ## Add your Domain Name
         redis-host: "redis.backbone"
         redis-downsync-host: "redis.backbone"
@@ -756,7 +756,7 @@ health-attendance:
 
 
 pgadmin:
-  dbUrl: "jdbc:postgresql://10.0.0.5:5432/mozhealthprd"
+  dbUrl: "jdbc:postgresql://10.0.0.5:5432/salamadbprd"
   environment: "PROD"
   serverBasePath: "/pgadmin"
   persistence:
@@ -839,9 +839,9 @@ egov-enc-service:
 
 egov-localization:
   replicas: 1
-  cpu_requests: 200m
+  cpu_requests: 600m
   memory_requests: 1Gi
-  cpu_limits: 300m
+  cpu_limits: 800m
   memory_limits: 1.5Gi
   hpa:
     enabled: true
