@@ -279,6 +279,8 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: egov-localization
+  - name: EGOV_LOCALIZATION_MODULE_NAME
+    value: 'hcm-boundary-admin'
   - name: EGOV_BOUNDARY_HOST
     valueFrom:
       configMapKeyRef:
