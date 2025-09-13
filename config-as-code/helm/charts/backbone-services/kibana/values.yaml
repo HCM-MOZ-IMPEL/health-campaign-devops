@@ -159,6 +159,7 @@ ingress:
     nginx.ingress.kubernetes.io/lua-resty-waf-process-multipart-body: "false"
     nginx.ingress.kubernetes.io/lua-resty-waf-score-threshold: "10"
     nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 2m
   hosts:
     - host: salama.misau.gov.mz
       paths:

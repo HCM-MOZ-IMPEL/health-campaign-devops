@@ -901,13 +901,13 @@ sidecar:
     tag: 1.25.2
     sha: ""
   imagePullPolicy: IfNotPresent
-  resources: {}
-#   limits:
-#     cpu: 100m
-#     memory: 100Mi
-#   requests:
-#     cpu: 50m
-#     memory: 50Mi
+  resources:
+    limits:
+      cpu: 100m
+      memory: 256Mi
+    requests:
+      cpu: 50m
+      memory: 100Mi
   securityContext:
     allowPrivilegeEscalation: false
     capabilities:

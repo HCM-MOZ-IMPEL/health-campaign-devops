@@ -292,8 +292,12 @@ podLabels: {}
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
 resources:
+  limits:
+    memory: 1Gi
+    cpu: 200m
   requests:
     memory: 512Mi
+    cpu: 100m
 
 ## List of policies to be created after minio install
 ##

@@ -237,9 +237,9 @@ egov-pg-service:
 
 audit-service:
   replicas: 1
-  cpu_requests: 200m
+  cpu_requests: 300m
   memory_requests: 1Gi
-  cpu_limits: 300m
+  cpu_limits: 400m
   memory_limits: 1.5Gi
   hpa:
     enabled: true
@@ -613,20 +613,22 @@ elasticsearch-data:
     tag: 8.11.1
   volumeClaimTemplate:
     accessModes: [ "ReadWriteOnce" ]
-    storageClassName: salama-nfs
+    storageClassName: salama-nfs-csi
     resources:
       requests:
-        storage: 100Gi
+        storage: 200Gi
   persistence:
     enabled: true
-    dataDirSize: "100Gi"
+    dataDirSize: "200Gi"
 
   esJavaOpts: "-Xmx3500M -Xms3500M"
   resources:
     requests:
-      memory: "4Gi"
+      memory: "6Gi"
+      cpu: 1
     limits:
       memory: "8Gi"
+      cpu: 2
 
 
 elasticsearch-master:
@@ -635,7 +637,7 @@ elasticsearch-master:
     tag: 8.11.1
   volumeClaimTemplate:
     accessModes: [ "ReadWriteOnce" ]
-    storageClassName: salama-nfs
+    storageClassName: salama-nfs-csi
     resources:
       requests:
         storage: 10Gi
@@ -647,8 +649,10 @@ elasticsearch-master:
   resources:
     requests:
       memory: "1536Mi"
+      cpu: "300m"
     limits:
-      memory: "1536Mi"
+      memory: "2Gi"
+      cpu: "400m"
 
 
 es-curator:
@@ -757,6 +761,10 @@ health-attendance:
 
 pgadmin:
   dbUrl: "jdbc:postgresql://10.0.0.5:5432/salamadbprd"
+  cpu_requests: 200m
+  memory_requests: 1Gi
+  cpu_limits: 300m
+  memory_limits: 2Gi
   environment: "PROD"
   serverBasePath: "/pgadmin"
   persistence:
@@ -802,10 +810,10 @@ prometheus:
 loki:
   persistence:
     enabled: true
-    storageClassName: salama-nfs
+    storageClassName: salama-nfs-csi
     accessModes:
       - ReadWriteMany
-    size: 100Gi
+    size: 150Gi
   additionalConfigs:
     schema_config:
       configs:
