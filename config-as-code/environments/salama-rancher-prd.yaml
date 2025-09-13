@@ -43,7 +43,7 @@ cluster-configs:
         timezone: "UTC"
         tracer-errors-provideexceptionindetails: "true"
         egov-env: "PRD"
-        boundary-hierarchy: "IRS"
+        boundary-hierarchy: "MISAU"
 
     egov-service-host:
       namespace: [egov, monitoring]
