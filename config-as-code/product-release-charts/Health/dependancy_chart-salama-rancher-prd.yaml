@@ -69,7 +69,7 @@ modules:
 #      - egovio/household:v1.1.4-a0e714254c-30
       - egovio/household:dev-2fd1348b02-63
       - egovio/project:HDDF-1638-e0cc729ef6-31
-      - egovio/referralmanagement:hh-matview-fetch-18fecab1d4-71
+      - egovio/referralmanagement:hh-matview-fetch-household-type-88b72a357e-84
       - egovio/health-attendance:v1.1.0-55e92c713-51
       - egovio/egov-mdms-create:develop-3a53c3b-3
       - egovio/hcm-moz-impl:HDDF-1499-8cedf8c5-411
