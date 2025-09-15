@@ -34,6 +34,7 @@ heap: "-Xmx256m -Xms256m"
 memory_limits: 512Mi
 java-args: ""
 cpu_limits: "300m"
+egov_boundary_hierarchy_name: "ADMIN"
 
 # Additional Container Envs
 env: |
@@ -118,10 +119,11 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: pdf-service
-  {{- if index .Values "state-level-tenant-id" }}
   - name: STATE_LEVEL_TENANT_ID
-    value: {{ index .Values "state-level-tenant-id" | quote }} 
-  {{- end }}
+    valueFrom:
+      configMapKeyRef:
+        name: egov-config
+        key: egov-state-level-tenant-id
   {{- if index .Values "payment-pdf-key" }}
   - name: PAYMENT_PDF_KEY
     value: {{ index .Values "payment-pdf-key" | quote }}
@@ -141,6 +143,19 @@ env: |
   - name: REPORT_LOCALIZATION_LOCALE_CODE
     value: {{ index .Values "report-localization-locale-code" | quote }}
   {{- end }}
+  
+  {{- if index .Values "egov-localization-module-name" }}
+  - name: EGOV_LOCALIZATION_MODULE_NAME
+    value: {{ index .Values "egov-localization-module-name" | quote }}
+  {{- end }}
+
+  {{- if index .Values "egov-localization-locale-code" }}
+  - name: EGOV_LOCALIZATION_LOCALE_CODE
+    value: {{ index .Values "egov-localization-locale-code" | quote }}
+  {{- end }}
+  
+  - name: EGOV_BOUNDARY_HIERARCHY_NAME
+    value: {{ index .Values "egov_boundary_hierarchy_name" | quote }}
 
   {{- if index .Values "report-header-title" }}
   - name: REPORT_HEADER_TITLE
@@ -198,5 +213,3 @@ env: |
     value: attendance/v1/_search
   - name: EGOV_INDIVIDUAL_SEARCH_ENDPOINT
     value: individual/v1/_search
-  - name: STATE_LEVEL_TENANT_ID
-    value: bi

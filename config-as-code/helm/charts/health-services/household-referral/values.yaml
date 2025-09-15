@@ -12,7 +12,7 @@ ingress:
 # Init Containers Configs
 initContainers:
   dbMigration:
-    enabled: true
+    enabled: false
     schemaTable: "household_schema"
     image:
       repository: "household-db"
@@ -23,8 +23,8 @@ image:
 replicas: "1"
 healthChecks:
   enabled: true
-  livenessProbePath: "/household-referral/health"
-  readinessProbePath: "/household-referral/health"
+  livenessProbePath: "/household/health"
+  readinessProbePath: "/household/health"
 appType: "java-spring"
 tracing-enabled: true
 heap: "-Xmx1024m -Xms192m"
@@ -37,7 +37,7 @@ env: |
   - name: SPRING_KAFKA_CONSUMER_GROUP_ID
     value: health-household
   - name: SERVER_SERVLET_CONTEXT_PATH
-    value: /household-referral
+    value: /household
   - name: SPRING_KAFKA_PRODUCER_KEY_SERIALIZER
     value: org.apache.kafka.common.serialization.StringSerializer
   {{- if index .Values "global" "tracer-errors-provideexceptionindetails" }}
@@ -85,7 +85,7 @@ env: |
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: individual
+        key: individual-referral
   - name: EGOV_INDIVIDUAL_SEARCH_URL
     value: "/individual/v1/_search"
   - name: EGOV_BOUNDARY_HOST
@@ -131,4 +131,6 @@ env: |
   - name: HOUSEHOLD.KAFKA.DELETE.TOPIC
     value: "delete-household-topic"
   - name: EGOV_PERSISTER_BULK_PROCESSING_ENABLED
+    value: "false"
+  - name: SPRING_KAFKA_LISTENER_AUTO_STARTUP
     value: "false"

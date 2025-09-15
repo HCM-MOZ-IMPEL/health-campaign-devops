@@ -15,7 +15,7 @@ cluster-configs:
         db-host: "10.0.0.5" ## Add db-host name eg: egov-demo.database.azure.com
         db-name: "salamadbprd" ## Add db-name
         db-url: "jdbc:postgresql://10.0.0.5:5432/salamadbprd" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
-        db-read-url: "jdbc:postgresql://10.0.0.5:5432/salamadbprd" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
+        db-read-url: "jdbc:postgresql://10.0.0.6:5432/salamadbprd" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
         domain: "salama.misau.gov.mz" ## Add your Domain Name
         redis-host: "redis.backbone"
         redis-downsync-host: "redis.backbone"
@@ -62,7 +62,7 @@ cluster-configs:
         egov-idgen: "http://egov-idgen:8080/"
         egov-otp: "http://egov-otp:8080/"
         egov-common-workflows: "http://egov-common-workflows:8080/"
-        egov-mdms-service: "http://egov-mdms-service:8080/"
+        egov-mdms-service: "http://mdms-v2:8080/"
         mdms-v2: "http://mdms-v2:8080/"
         egov-mdms-create: "http://egov-mdms-create:8080/"
         egov-workflow: "http://egov-workflow:8080/"
@@ -75,7 +75,7 @@ cluster-configs:
         pdf-service: "http://pdf-service.egov:8080/"
         tenant: "http://tenant:8080/"
         rainmaker-pgr: "http://rainmaker-pgr:8080/"
-        minio-url: "https://minio-uat.digit.org/"
+        minio-url: "http://minio.default:9000/"
         zuul: "http://zuul:8080/"
         egov-url-shortening: "http://egov-url-shortening:8080/"
         inbox: "http://inbox.egov:8080/"
@@ -173,20 +173,20 @@ microplan-ui:
 
 egov-filestore:
   replicas: 1
-  cpu_requests: 200m
-  memory_requests: 512Mi
-  cpu_limits: 300m
+  cpu_requests: 300m
+  memory_requests: 1024Mi
+  cpu_limits: 400m
   memory_limits: 1Gi
+  heap: "-Xmx768m -Xms512m"
   hpa:
     enabled: true
     minReplicas: 1
     maxReplicas: 3
   volume: /opt/eGov/filestore
   is-bucket-fixed: "true"
-  minio.url : "https://s3.amazonaws.com"
   aws.s3.url : "https://s3.amazonaws.com"
-  is-s3-enabled: "true"
-  minio-enabled: false
+  is-s3-enabled: "false"
+  minio-enabled: "true"
   allowed-file-formats-map: "{jpg:{'image/jpg','image/jpeg'},jpeg:{'image/jpeg','image/jpg'},png:{'image/png'},pdf:{'application/pdf'},odt:{'application/vnd.oasis.opendocument.text'},ods:{'application/vnd.oasis.opendocument.spreadsheet'},docx:{'application/x-tika-msoffice','application/x-tika-ooxml','application/vnd.oasis.opendocument.text','application/msword'},doc:{'application/x-tika-msoffice','application/x-tika-ooxml','application/vnd.oasis.opendocument.text','application/msword'},dxf:{'text/plain','application/dxf','application/octet-stream','image/vnd.dxf','image/vnd.dxf; format=ascii','image/vnd.dxf; format=binary','image/vnd.dxb'},csv:{'text/plain'},txt:{'text/plain'},xlsx:{'application/x-tika-ooxml','application/x-tika-msoffice','application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','application/zip','multipart/form-data'},xls:{'application/x-tika-ooxml','application/x-tika-msoffice','application/vnd.ms-excel','multipart/form-data'},zip:{'application/zip','application/octet-stream'},geojson:{'application/json','text/plain','application/geo+json','multipart/form-data'},json:{'application/json','text/plain'}}"
   allowed-file-formats: "jpg,jpeg,png,doc,docx,pdf,odt,ods,text,dxf,xls,xlsx,zip,geojson,json"
   filestore-url-validity: 3600
@@ -273,7 +273,6 @@ egov-indexer:
   cpu_requests: 300m
   memory_requests: 768Mi
   cpu_limits: 400m
-  memory_limits: 1Gi
   hpa:
     enabled: true
     minReplicas: 1
@@ -323,12 +322,16 @@ dashboard-analytics:
       branch: "PROD"                                    ##### Change repo branch with Your fork Repo branch
 
 pdf-service:
+  cpu_requests: 100m
+  memory_requests: 256Mi
+  cpu_limits: 200m
+  memory_limits: 512Mi
   initContainers:
     gitSync:
       repo: "git@github.com:HCM-MOZ-IMPEL/health-campaign-config"     ##### Change repo url with Your fork Repo url
       branch: "PROD"                                   ##### Change repo branch with Your fork Repo branch
-  data-config-urls: "file:///work-dir/health-campaign-config/pdf-service/data-config/tradelicense-receipt.json,file:///work-dir/health-campaign-config/pdf-service/data-config/property-receipt.json,file:///work-dir/health-campaign-config/pdf-service/data-config/property-bill.json,file:///work-dir/health-campaign-config/pdf-service/data-config/tradelicense-bill.json,file:///work-dir/health-campaign-config/pdf-service/data-config/firenoc-receipt.json,file:///work-dir/health-campaign-config/pdf-service/data-config/pt-receipt.json,file:///work-dir/health-campaign-config/pdf-service/data-config/tl-receipt.json,file:///work-dir/health-campaign-config/pdf-service/data-config/consolidatedbill.json,file:///work-dir/health-campaign-config/pdf-service/data-config/consolidatedreceipt.json,file:///work-dir/health-campaign-config/pdf-service/data-config/tlapplication.json,file:///work-dir/health-campaign-config/pdf-service/data-config/passvehicle-certificate.json,file:///work-dir/health-campaign-config/pdf-service/data-config/ws-consolidatedacknowlegment.json,file:///work-dir/health-campaign-config/pdf-service/data-config/ws-consolidatedsewerageconnection.json,file:///work-dir/health-campaign-config/pdf-service/data-config/buildingpermit.json,file:///work-dir/health-campaign-config/pdf-service/data-config/ptmutationcertificate.json,file:///work-dir/health-campaign-config/pdf-service/data-config/tlrenewalcertificate.json,file:///work-dir/health-campaign-config/pdf-service/data-config/bpa-revocation.json,file:///work-dir/health-campaign-config/pdf-service/data-config/buildingpermit-low.json,file:///work-dir/health-campaign-config/pdf-service/data-config/misc-receipt.json,file:///work-dir/health-campaign-config/pdf-service/data-config/ws-applicationwater.json,file:///work-dir/health-campaign-config/pdf-service/data-config/ws-sanctionletter.json,file:///work-dir/health-campaign-config/pdf-service/data-config/ws-estimationnotice.json,file:///work-dir/health-campaign-config/pdf-service/data-config/ws-applicationsewerage.json,file:///work-dir/health-campaign-config/pdf-service/data-config/tlcertificate.json,file:///work-dir/health-campaign-config/pdf-service/data-config/health-bill-payment.json"
-  format-config-urls: "file:///work-dir/health-campaign-config/pdf-service/format-config/tradelicense-receipt.json,file:///work-dir/health-campaign-config/pdf-service/format-config/property-receipt.json,file:///work-dir/health-campaign-config/pdf-service/format-config/property-bill.json,file:///work-dir/health-campaign-config/pdf-service/format-config/tradelicense-bill.json,file:///work-dir/health-campaign-config/pdf-service/format-config/firenoc-receipt.json,file:///work-dir/health-campaign-config/pdf-service/format-config/pt-receipt.json,file:///work-dir/health-campaign-config/pdf-service/format-config/tl-receipt.json,file:///work-dir/health-campaign-config/pdf-service/format-config/consolidatedbill.json,file:///work-dir/health-campaign-config/pdf-service/format-config/consolidatedreceipt.json,file:///work-dir/health-campaign-config/pdf-service/format-config/tlapplication.json,file:///work-dir/health-campaign-config/pdf-service/format-config/passvehicle-certificate.json,file:///work-dir/health-campaign-config/pdf-service/format-config/ws-consolidatedacknowlegment.json,file:///work-dir/health-campaign-config/pdf-service/format-config/ws-consolidatedsewerageconnection.json,file:///work-dir/health-campaign-config/pdf-service/format-config/buildingpermit.json,file:///work-dir/health-campaign-config/pdf-service/format-config/ptmutationcertificate.json,file:///work-dir/health-campaign-config/pdf-service/format-config/tlrenewalcertificate.json,file:///work-dir/health-campaign-config/pdf-service/format-config/bpa-revocation.json,file:///work-dir/health-campaign-config/pdf-service/format-config/buildingpermit-low.json,file:///work-dir/health-campaign-config/pdf-service/format-config/misc-receipt.json,file:///work-dir/health-campaign-config/pdf-service/format-config/ws-applicationwater.json,file:///work-dir/health-campaign-config/pdf-service/format-config/ws-sanctionletter.json,file:///work-dir/health-campaign-config/pdf-service/format-config/ws-estimationnotice.json,file:///work-dir/health-campaign-config/pdf-service/format-config/ws-applicationsewerage.json,file:///work-dir/health-campaign-config/pdf-service/format-config/tlcertificate.json,file:///work-dir/health-campaign-config/pdf-service/format-config/health-bill-payment.json"
+  data-config-urls: "file:///work-dir/health-campaign-config/pdf-service/data-config/health-bill-payment.json"
+  format-config-urls: "file:///work-dir/health-campaign-config/pdf-service/format-config/health-bill-payment.json"
 
 # docs >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 redoc:
@@ -432,10 +435,11 @@ health-expense-calculator:
   memory_requests: 512Mi
   cpu_limits: 300m
   memory_limits: 1Gi
+  heap: "-Xms256m -Xmx768m"
   hpa:
     enabled: true
     minReplicas: 1
-    maxReplicas: 3  
+    maxReplicas: 3
   tracing-enabled: true
   java-enable-debug: true
   egov-mdms-service-endpoint-key: "/mdms-v2/v1/_search"
@@ -444,6 +448,11 @@ health-expense-calculator:
   register-batch-size: 15
   bill-generation-async-enabled: "true"
   bill-generation-async-topic: "bill-generation-async-topic"
+  egov_boundary_hierarchy_name: "MISAU"
+  report-localization-boundary-module-name: "rainmaker-boundary-admin"
+  egov-localization-module-name: "hcm-payments"
+  report-localization-locale-code: "pt_MZ"
+  egov-localization-locale-code: "pt_MZ"
 
 health-muster-roll:
   replicas: 1
@@ -693,12 +702,6 @@ project:
     maxReplicas: 4  
   heap: "-Xmx2g -Xms2g"
 
-project-referral:
-  replicas: 2
-  heap: "-Xmx2g -Xms2g"
-  memory_limits: "2Gi"
-  cpu_limits: "250m"
-
 project-factory:
   replicas: 1
   cpu_requests: 200m
@@ -747,11 +750,10 @@ health-attendance:
   cpu_requests: 200m
   memory_requests: 512Mi
   cpu_limits: 300m
-  memory_limits: 1Gi
   hpa:
     enabled: true
     minReplicas: 1
-    maxReplicas: 3  
+    maxReplicas: 3
   java-enable-debug: true
   heap: "-Xmx256m -Xms256m"
   memory_limits: 512Mi
@@ -1013,4 +1015,41 @@ stock:
   hpa:
     enabled: true
     minReplicas: 1
-    maxReplicas: 3   
+    maxReplicas: 3
+
+
+household-referral:
+  replicas: 2
+  cpu_requests: 300m
+  memory_requests: 1Gi
+  cpu_limits: 400m
+  memory_limits: 1.5Gi
+  heap: "-Xmx1260m -Xms768m"
+  hpa:
+    enabled: true
+    minReplicas: 6
+    maxReplicas: 9
+
+individual-referral:
+  replicas: 2
+  cpu_requests: 300m
+  memory_requests: 1Gi
+  cpu_limits: 400m
+  memory_limits: 1.5Gi
+  heap: "-Xmx1260m -Xms768m"
+  hpa:
+    enabled: true
+    minReplicas: 6
+    maxReplicas: 9
+
+project-referral:
+  replicas: 2
+  heap: "-Xmx1536m -Xms1260m"
+  cpu_requests: 200m
+  memory_requests: 1.5Gi
+  memory_limits: "2Gi"
+  cpu_limits: "250m"
+  hpa:
+    enabled: true
+    minReplicas: 6
+    maxReplicas: 9

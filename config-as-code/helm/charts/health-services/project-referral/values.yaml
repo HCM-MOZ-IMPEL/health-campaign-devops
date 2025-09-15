@@ -12,7 +12,7 @@ ingress:
 # Init Containers Configs
 initContainers:
   dbMigration:
-    enabled: true
+    enabled: false
     schemaTable: "project_schema"
     image:
       repository: "project-db"
@@ -23,8 +23,8 @@ image:
 replicas: "1"
 healthChecks:
   enabled: true
-  livenessProbePath: "/project-referral/health"
-  readinessProbePath: "/project-referral/health"
+  livenessProbePath: "/project/health"
+  readinessProbePath: "/project/health"
 appType: "java-spring"
 tracing-enabled: true
 heap: "-Xmx1024m -Xms1024m"
@@ -37,7 +37,7 @@ env: |
   - name: SPRING_KAFKA_CONSUMER_GROUP_ID
     value: health-project
   - name: SERVER_SERVLET_CONTEXT_PATH
-    value: /project-referral
+    value: /project
   - name: SPRING_KAFKA_PRODUCER_KEY_SERIALIZER
     value: org.apache.kafka.common.serialization.StringSerializer
   {{- if index .Values "global" "tracer-errors-provideexceptionindetails" }}
@@ -134,14 +134,14 @@ env: |
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: household
+        key: household-referral
   - name: EGOV_SEARCH_HOUSEHOLD_URL
     value: "/household/v1/_search"
   - name: EGOV_INDIVIDUAL_HOST
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: individual
+        key: individual-referral
   - name: EGOV_SEARCH_INDIVIDUAL_URL
     value: "/individual/v1/_search"
   - name: EGOV_PRODUCT_HOST
@@ -282,3 +282,5 @@ env: |
     value: "save-location-capture-project-health-topic"
   - name: PROJECT_LOCATION_CAPTURE_TASK_CONSUMER_BULK_CREATE_TOPIC
     value: "save-location-capture-project-bulk-health-topic"
+  - name: SPRING_KAFKA_LISTENER_AUTO_STARTUP
+    value: "false"

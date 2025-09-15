@@ -12,7 +12,7 @@ ingress:
 # Init Containers Configs
 initContainers:
   dbMigration:
-    enabled: true
+    enabled: false
     schemaTable: "individual_schema"
     image:
       repository: "individual-db"
@@ -23,8 +23,8 @@ image:
 replicas: "1"
 healthChecks:
   enabled: true
-  livenessProbePath: "/individual-referral/health"
-  readinessProbePath: "/individual-referral/health"
+  livenessProbePath: "/individual/health"
+  readinessProbePath: "/individual/health"
 appType: "java-spring"
 tracing-enabled: true
 heap: "-Xmx192m -Xms192m"
@@ -37,7 +37,7 @@ env: |
   - name: SPRING_KAFKA_CONSUMER_GROUP_ID
     value: health-individual
   - name: SERVER_SERVLET_CONTEXT_PATH
-    value: /individual-referral
+    value: /individual
   - name: SPRING_KAFKA_PRODUCER_KEY_SERIALIZER
     value: org.apache.kafka.common.serialization.StringSerializer
   {{- if index .Values "global" "tracer-errors-provideexceptionindetails" }}
@@ -169,4 +169,6 @@ env: |
     value: "true" 
   {{- end }}
   - name: EGOV_PERSISTER_BULK_PROCESSING_ENABLED
+    value: "false"
+  - name: SPRING_KAFKA_LISTENER_AUTO_STARTUP
     value: "false"
