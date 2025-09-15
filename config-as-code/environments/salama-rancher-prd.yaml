@@ -195,29 +195,29 @@ egov-filestore:
 egov-idgen:
   replicas: 1
   cpu_requests: 300m
-  memory_requests: 1Gi
+  memory_requests: 512Mi
   cpu_limits: 400m
-  memory_limits: 1.5Gi
+  memory_limits: 768Mi
   hpa:
     enabled: true
     minReplicas: 1
     maxReplicas: 3
   idformat-from-mdms: "true"
   java-args: -Dspring.profiles.active=monitoring
-  heap: "-Xmx192m -Xms192m"
+  heap: "-Xmx512m -Xms256m"
   autocreate-new-seq: "true"
 
 egov-user:
-  replicas: 1
+  replicas: 2
   cpu_requests: 500m
-  memory_requests: 1.5Gi
+  memory_requests: 768Mi
   cpu_limits: 600m
-  memory_limits: 2Gi
+  memory_limits: 1Gi
   hpa:
     enabled: true
-    minReplicas: 1
-    maxReplicas: 3  
-  heap: "-Xmx256m -Xms256m"
+    minReplicas: 2
+    maxReplicas: 5
+  heap: "-Xmx512m -Xms256m"
   otp-validation: "true"
   citizen-otp-enabled: "true"
   employee-otp-enabled: "false"
@@ -275,8 +275,8 @@ egov-indexer:
   cpu_limits: 400m
   hpa:
     enabled: true
-    minReplicas: 1
-    maxReplicas: 3
+    minReplicas: 3
+    maxReplicas: 6
   heap: "-Xmx512m -Xms512m"
   memory_limits: "768Mi"
   initContainers:
@@ -286,15 +286,16 @@ egov-indexer:
   egov-indexer-yaml-repo-path: "file:///work-dir/health-campaign-config/egov-indexer/transformer-pgr-services.yml,file:///work-dir/health-campaign-config/egov-indexer/error-queue.yml,file:///work-dir/health-campaign-config/egov-indexer/product-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/project-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/individual-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/household-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/project-task-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/stock-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/facility-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/project-staff-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/egov-error-queue-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/pgr-services.yml,file:///work-dir/health-campaign-config/egov-indexer/service-request-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/referral-management-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/attendance-service-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/plan-service-indexer.yml,file:///work-dir/health-campaign-config/egov-indexer/census-service-indexer.yml"
 
 egov-persister:
-  replicas: 1
+  replicas: 6
   cpu_requests: 300m
   memory_requests: 1Gi
   cpu_limits: 400m
   memory_limits: 1.5Gi
+  heap: "-Xmx1024m -Xms512m"
   hpa:
     enabled: true
-    minReplicas: 1
-    maxReplicas: 4
+    minReplicas: 6
+    maxReplicas: 9
   images:
     - egovio/egov-persister
   persist-yml-path: "file:///work-dir/health-campaign-config/egov-persister/audit-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-user-event-persister.yml,file:///work-dir/health-campaign-config/egov-persister/egov-workflow-v2-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hrms-employee-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pdf-generator.yml,file:///work-dir/health-campaign-config/egov-persister/product-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-persister.yml,file:///work-dir/health-campaign-config/egov-persister/individual-persister.yml,file:///work-dir/health-campaign-config/egov-persister/household-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-task-persister.yml,file:///work-dir/health-campaign-config/egov-persister/stock-persister.yml,file:///work-dir/health-campaign-config/egov-persister/facility-persister.yml,file:///work-dir/health-campaign-config/egov-persister/service-request-persister.yml,file:///work-dir/health-campaign-config/egov-persister/pgr-services-persister.yml,file:///work-dir/health-campaign-config/egov-persister/hcm-moz-impl-persister.yml,file:///work-dir/health-campaign-config/egov-persister/mdms-persister.yml,file:///work-dir/health-campaign-config/egov-persister/referral-management-persister.yml,file:///work-dir/health-campaign-config/egov-persister/attendance-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/boundary-persister.yml,file:///work-dir/health-campaign-config/egov-persister/irs-persister.yml,file:///work-dir/health-campaign-config/egov-persister/project-factory-persister.yml,file:///work-dir/health-campaign-config/egov-persister/plan-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/census-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/muster-service-persister.yml,file:///work-dir/health-campaign-config/egov-persister/expense-bill-payment-persister.yaml"
@@ -377,8 +378,8 @@ zuul:
   memory_limits: 750Mi
   hpa:
     enabled: true
-    minReplicas: 3
-    maxReplicas: 5  
+    minReplicas: 6
+    maxReplicas: 8
   custom-filter-property: "false"
   tracing-enabled: "true"
   heap: "-Xmx704m -Xms512m"
@@ -691,15 +692,15 @@ grafana:
   dashboardsFolder: /work-dir/health-campaign-config/monitoring-dashboards
 
 project:
-  replicas: 1
+  replicas: 3
   cpu_requests: 250m
   memory_requests: 1.5Gi
   cpu_limits: 400m
   memory_limits: 2Gi
   hpa:
     enabled: true
-    minReplicas: 1
-    maxReplicas: 4  
+    minReplicas: 3
+    maxReplicas: 6
   heap: "-Xmx2g -Xms2g"
 
 project-factory:
@@ -726,16 +727,16 @@ resource-generator:
   egov-mdms-service-v2-endpoint-key: "/mdms-v2/v2/_search"
 
 transformer:
-  replicas: 1
+  replicas: 4
   cpu_requests: 300m
   memory_requests: 2Gi
   cpu_limits: 400m
   memory_limits: 2.5Gi
-  heap: "-Xmx1536m -Xms1536m"
+  heap: "-Xmx2048m -Xms1536m"
   hpa:
     enabled: true
-    minReplicas: 1
-    maxReplicas: 3  
+    minReplicas: 4
+    maxReplicas: 8
 
 hcm-moz-impl:
   replicas: 1
@@ -852,49 +853,49 @@ loki:
 #### Production Rancher Replicas ####
 
 boundary-service:
-  replicas: 1
+  replicas: 2
   cpu_requests: 200m
   memory_requests: 512Mi
   cpu_limits: 300m
   memory_limits: 1Gi
   hpa:
     enabled: true
-    minReplicas: 1
-    maxReplicas: 3
+    minReplicas: 2
+    maxReplicas: 5
 
 egov-accesscontrol:
-  replicas: 1
+  replicas: 2
   cpu_requests: 200m
   memory_requests: 712Mi
   cpu_limits: 300m
   memory_limits: 1Gi
   hpa:
     enabled: true
-    minReplicas: 1
-    maxReplicas: 3
+    minReplicas: 2
+    maxReplicas: 4
 
 egov-enc-service:
-  replicas: 1
+  replicas: 2
   cpu_requests: 300m
   memory_requests: 1Gi
   cpu_limits: 400m
   memory_limits: 1.5Gi
   hpa:
     enabled: true
-    minReplicas: 1
-    maxReplicas: 3
+    minReplicas: 2
+    maxReplicas: 5
 
 egov-localization:
-  replicas: 1
+  replicas: 3
   cpu_requests: 600m
-  memory_requests: 1Gi
+  memory_requests: 1296Gi
   cpu_limits: 800m
   memory_limits: 1.5Gi
   hpa:
     enabled: true
-    minReplicas: 1
-    maxReplicas: 4
-  heap: "-Xmx768m -Xms512m"
+    minReplicas: 3
+    maxReplicas: 5
+  heap: "-Xmx1024m -Xms768m"
 
 egov-url-shortening:
   replicas: 1
@@ -919,48 +920,48 @@ error-handler:
     maxReplicas: 3  
 
 facility:
-  replicas: 1
+  replicas: 2
   cpu_requests: 200m
   memory_requests: 512Mi
   cpu_limits: 300m
   memory_limits: 1Gi
   hpa:
     enabled: true
-    minReplicas: 1
-    maxReplicas: 3
+    minReplicas: 2
+    maxReplicas: 4
 
 household:
-  replicas: 1
+  replicas: 3
   cpu_requests: 300m
   memory_requests: 1Gi
   cpu_limits: 400m
   memory_limits: 1.5Gi
   hpa:
     enabled: true
-    minReplicas: 1
-    maxReplicas: 4
+    minReplicas: 3
+    maxReplicas: 6
 
 individual:
-  replicas: 1
+  replicas: 3
   cpu_requests: 300m
   memory_requests: 1Gi
   cpu_limits: 400m
   memory_limits: 1.5Gi
   hpa:
     enabled: true
-    minReplicas: 1
-    maxReplicas: 4
+    minReplicas: 3
+    maxReplicas: 6
 
 mdms-v2:
-  replicas: 1
+  replicas: 2
   cpu_requests: 300m
   memory_requests: 512Mi
   cpu_limits: 400m
   memory_limits: 1Gi
   hpa:
     enabled: true
-    minReplicas: 1
-    maxReplicas: 3
+    minReplicas: 2
+    maxReplicas: 4
 
 pgr-services:
   replicas: 1
@@ -971,7 +972,7 @@ pgr-services:
   hpa:
     enabled: true
     minReplicas: 1
-    maxReplicas: 3  
+    maxReplicas: 3
 
 product:
   replicas: 1
@@ -982,32 +983,32 @@ product:
   hpa:
     enabled: true
     minReplicas: 1
-    maxReplicas: 3  
+    maxReplicas: 3
 
 referralmanagement:
-  replicas: 1
+  replicas: 4
   cpu_requests: 400m
   memory_requests: 1Gi
   cpu_limits: 500m
   memory_limits: 1.5Gi
   hpa:
     enabled: true
-    minReplicas: 1
-    maxReplicas: 4  
+    minReplicas: 4
+    maxReplicas: 6
 
 service-request:
-  replicas: 1
+  replicas: 2
   cpu_requests: 200m
   memory_requests: 256Mi
   cpu_limits: 300m
   memory_limits: 512Mi
   hpa:
     enabled: true
-    minReplicas: 1
-    maxReplicas: 3  
+    minReplicas: 2
+    maxReplicas: 4
 
 stock:
-  replicas: 4
+  replicas: 2
   cpu_requests: 200m
   heap: "-Xmx512m -Xms256m"
   memory_requests: 512Mi
@@ -1015,12 +1016,12 @@ stock:
   memory_limits: 768Mi
   hpa:
     enabled: true
-    minReplicas: 4
-    maxReplicas: 6
+    minReplicas: 2
+    maxReplicas: 4
 
 
 household-referral:
-  replicas: 6
+  replicas: 3
   cpu_requests: 300m
   memory_requests: 1Gi
   cpu_limits: 400m
@@ -1028,11 +1029,11 @@ household-referral:
   heap: "-Xmx1260m -Xms768m"
   hpa:
     enabled: true
-    minReplicas: 6
-    maxReplicas: 9
+    minReplicas: 3
+    maxReplicas: 6
 
 individual-referral:
-  replicas: 6
+  replicas: 3
   cpu_requests: 300m
   memory_requests: 1Gi
   cpu_limits: 400m
@@ -1040,11 +1041,11 @@ individual-referral:
   heap: "-Xmx1260m -Xms768m"
   hpa:
     enabled: true
-    minReplicas: 6
-    maxReplicas: 9
+    minReplicas: 3
+    maxReplicas: 6
 
 project-referral:
-  replicas: 2
+  replicas: 3
   heap: "-Xmx1536m -Xms1260m"
   cpu_requests: 200m
   memory_requests: 1.5Gi
@@ -1052,5 +1053,5 @@ project-referral:
   cpu_limits: "250m"
   hpa:
     enabled: true
-    minReplicas: 6
-    maxReplicas: 9
+    minReplicas: 3
+    maxReplicas: 6
