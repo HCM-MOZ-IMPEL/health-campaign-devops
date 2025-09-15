@@ -1007,19 +1007,20 @@ service-request:
     maxReplicas: 3  
 
 stock:
-  replicas: 1
+  replicas: 4
   cpu_requests: 200m
-  memory_requests: 256Mi
+  heap: "-Xmx512m -Xms256m"
+  memory_requests: 512Mi
   cpu_limits: 300m
-  memory_limits: 512Mi
+  memory_limits: 768Mi
   hpa:
     enabled: true
-    minReplicas: 1
-    maxReplicas: 3
+    minReplicas: 4
+    maxReplicas: 6
 
 
 household-referral:
-  replicas: 2
+  replicas: 6
   cpu_requests: 300m
   memory_requests: 1Gi
   cpu_limits: 400m
@@ -1031,7 +1032,7 @@ household-referral:
     maxReplicas: 9
 
 individual-referral:
-  replicas: 2
+  replicas: 6
   cpu_requests: 300m
   memory_requests: 1Gi
   cpu_limits: 400m
