@@ -16,6 +16,10 @@ initContainers:
     schemaTable: "audit_service_schema"
     image:
       repository: "audit-service-db"
+  gitSync:
+    enabled: true
+    repo: "git@github.com:egovernments/configs"
+    branch: "master"
 
 # Container Configs
 image:
