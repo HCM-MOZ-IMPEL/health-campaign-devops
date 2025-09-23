@@ -65,7 +65,7 @@ modules:
       - egovio/product:v1.1.0-00a7accbda-31
       - egovio/individual:master-cc431fb
       - egovio/transformer:bauchi-transformer-fixes-c8bee83a90-362 #transformer:smc-niassa-wasted-f5c8a82b83-329
-      - egovio/stock:HDDF-2933-bauchi-stock-search-model-update-6ea483894d-63
+      - egovio/stock-db:irs-moz-stock-fix-93dafae4f9-71
 #      - egovio/household:v1.1.4-a0e714254c-30
       - egovio/household:dev-2fd1348b02-63
       - egovio/project:HDDF-1638-e0cc729ef6-31
