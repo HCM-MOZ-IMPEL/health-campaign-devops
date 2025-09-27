@@ -45,7 +45,7 @@ modules:
       - "business"
     services:
       # - egovio/employee:v1.8.0-2ac8314b2f-116
-      - egovio/digit-ui:filter_cycle_selection-21283efaac-390
+      - egovio/digit-ui:filter_cycle_selection-3196496a20-392
   - name: m_dss   #dss
     dependencies:
       - "frontend"
