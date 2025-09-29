@@ -463,4 +463,8 @@ env: |
     value: /health-attendance/attendee/v1/_create
   - name: EGOV_ATTENDANCE_ATTENDEES_SEARCH_PATH
     value: /health-attendance/attendee/v1/_search
+  - name: EGOV_INGESTION_INTERVAL_MIN_DATE
+    value: '1737552887000'
+  - name: EGOV_INGESTION_INTERVAL_MAX_DATE
+    value: '1737639287000'
   

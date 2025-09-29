@@ -45,6 +45,7 @@ modules:
       - "business"
     services:
       # - egovio/employee:v1.8.0-2ac8314b2f-116
+      - egovio/microplan-ui:console-97866dfc66-104
       - egovio/digit-ui:filter_cycle_selection-3196496a20-392
   - name: m_dss   #dss
     dependencies:
@@ -76,6 +77,9 @@ modules:
       - egovio/health-expense:master-impel-expense-2f2007da0-29
       - egovio/health-expense-calculator:HDDF-2572-2-burundi-impl-89957628a-72
       - egovio/health-muster-roll:v1.1.0-8e8f04913-11
+      - egovio/plan-service-db:microplanning-dev-24a32aa371-292
+      - egovio/resource-generator:microplanning-dev-6e9df4dc70-134
+      - egovio/census-service-db:microplanning-dev-aa64801625-98
   - name: m_hcmconsole
     dependencies:
       - "backbone"
