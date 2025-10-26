@@ -49,7 +49,7 @@ shared-storage: "[{'name': 'Shared Folder', 'path': '/var/lib/pgadmin/shared_fol
 
 persistence:
   enabled: true
-  storageClassName: default
+  storageClassName: salama-nfs-csi
   accessMode: ReadWriteOnce
   volumeMode: Filesystem
   dataDirSize: 1Gi
@@ -88,7 +88,7 @@ extraVolumeMounts: |
 #   fsGroup: 1000
 
 securityContext:
-  fsGroup: 5050
+  fsGroup: 1001
 
 # Additional Container Envs
 env: |

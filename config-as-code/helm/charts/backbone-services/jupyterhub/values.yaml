@@ -77,7 +77,7 @@ hub:
         - ReadWriteOnce
       storage: 25Gi
       subPath:
-      storageClassName:
+      storageClassName: salama-nfs-csi
     url:
     password:
   labels: {}
@@ -399,7 +399,7 @@ singleuser:
     capacity: 25Gi
     homeMountPath: /home/jovyan
     dynamic:
-      storageClass:
+      storageClass: salama-nfs-csi
       pvcNameTemplate: claim-{username}{servername}
       volumeNameTemplate: volume-{username}{servername}
       storageAccessModes: [ReadWriteOnce]
@@ -652,15 +652,16 @@ prePuller:
 ingress:
   enabled: true
   hosts:
-    - salama.digit.org
+    - salama.misau.gov.mz
   tls:
     - hosts:
-        - salama.digit.org
-      secretName: salama.digit.org-tls-certs
-  annotations: {}
+        - salama.misau.gov.mz
+      secretName: salama.misau.gov.mz-tls-certs
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 10m
   ingressClassName: nginx
   pathSuffix: hub
-  userPathSuffix: user(/|$)(.*)
+  userPathSuffix: user
   pathType: Prefix
 
 # cull relates to the jupyterhub-idle-culler service, responsible for evicting

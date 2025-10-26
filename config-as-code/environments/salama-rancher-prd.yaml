@@ -772,14 +772,14 @@ pgadmin:
   environment: "PROD"
   serverBasePath: "/pgadmin"
   persistence:
-    storageClassName: salama-nfs
+    storageClassName: salama-nfs-csi
 
 prometheus:
   retention: 90d
   storageSpec:
     volumeClaimTemplate:
       spec:
-        storageClassName: salama-nfs
+        storageClassName: salama-nfs-csi
         accessModes: ["ReadWriteOnce"]
         resources:
           requests:

@@ -18,7 +18,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: "salama-nfs"
+  storageClass: "salama-nfs-csi"
 
 ## @section Common parameters
 ##
