@@ -2,3 +2,5 @@
 creation_rules:
   - path: environments/salama-rancher-prd-secrets.yaml
     age: 'age1p8t464akzn6amsckhjyhr6j5wkn2epwg52n6nj9rv5ld5f3mp57qs5fj0k'
+  - path: environments/salama-rancher-uat-secrets.yaml
+    age: 'age1p8t464akzn6amsckhjyhr6j5wkn2epwg52n6nj9rv5ld5f3mp57qs5fj0k'
