@@ -280,3 +280,5 @@ env: |
     value: "save-location-capture-project-health-topic"
   - name: PROJECT_LOCATION_CAPTURE_CONSUMER_BULK_CREATE_TOPIC
     value: "save-location-capture-project-bulk-health-topic"
+  - name: PROJECT_TASK_NO_RESOURCE_VALIDATION_STATUS
+    value: ADMINISTRATION_FAILED, BENEFICIARY_REFUSED, CLOSED_HOUSEHOLD,NOT_ADMINISTERED, BENEFICIARY_REFERRED, BENEFICIARY_INELIGIBLE
