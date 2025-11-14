@@ -161,13 +161,13 @@ ingress:
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/proxy-body-size: 2m
   hosts:
-    - host: salama.misau.gov.mz
+    - host: uat.salama.misau.gov.mz
       paths:
         - path: /kibana-upgrade
   tls: 
-   - secretName: salama.misau.gov.mz-tls-certs
+   - secretName: uat.salama.misau.gov.mz-tls-certs
      hosts:
-       - salama.misau.gov.mz
+       - uat.salama.misau.gov.mz
 #  hosts:
 #    - host: salama.digit.org
 #      paths:

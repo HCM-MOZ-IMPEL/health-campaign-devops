@@ -10,7 +10,7 @@ httpPort: 8080
 appType: ""
 
 hpa:
-  enabled: true
+  enabled: false
 
 ingress:
   enabled: false
@@ -113,11 +113,11 @@ lifecycle:
             - -c
             - "sleep 10"
 
-cpu_requests: "500m"
-memory_requests: "1024Mi"
+# cpu_requests: "500m"
+# memory_requests: "1024Mi"
 
-memory_limits: "1536Mi"
-cpu_limits: "600m"
+# memory_limits: "1536Mi"
+# cpu_limits: "600m"
 resources: |
   requests:
     cpu: {{ .Values.cpu_requests | quote }}

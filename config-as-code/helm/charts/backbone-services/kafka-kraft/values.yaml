@@ -80,7 +80,7 @@ diagnosticMode:
 ##
 image:
   registry: docker.io
-  repository: bitnami/kafka
+  repository: egovio/bitnami-kafka
   tag: 3.6.0-debian-11-r0
   digest: ""
   ## Specify a imagePullPolicy
@@ -787,7 +787,7 @@ controller:
       - ReadWriteOnce
     ## @param controller.persistence.size PVC Storage Request for Kafka data volume
     ##
-    size: 200Gi
+    size: 100Gi
     ## @param controller.persistence.annotations Annotations for the PVC
     ##
     annotations: {}
@@ -827,7 +827,7 @@ controller:
       - ReadWriteOnce
     ## @param controller.logPersistence.size PVC Storage Request for Kafka logs volume
     ##
-    size: 200Gi
+    size: 100Gi
     ## @param controller.logPersistence.annotations Annotations for the PVC
     ##
     annotations: {}
@@ -1166,7 +1166,7 @@ broker:
       - ReadWriteOnce
     ## @param broker.persistence.size PVC Storage Request for Kafka data volume
     ##
-    size: 200Gi
+    size: 100Gi
     ## @param broker.persistence.annotations Annotations for the PVC
     ##
     annotations: {}
@@ -1206,7 +1206,7 @@ broker:
       - ReadWriteOnce
     ## @param broker.logPersistence.size PVC Storage Request for Kafka logs volume
     ##
-    size: 200Gi
+    size: 100Gi
     ## @param broker.logPersistence.annotations Annotations for the PVC
     ##
     annotations: {}

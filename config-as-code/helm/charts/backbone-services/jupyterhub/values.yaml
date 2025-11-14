@@ -652,11 +652,11 @@ prePuller:
 ingress:
   enabled: true
   hosts:
-    - salama.misau.gov.mz
+    - uat.salama.misau.gov.mz
   tls:
     - hosts:
-        - salama.misau.gov.mz
-      secretName: salama.misau.gov.mz-tls-certs
+        - uat.salama.misau.gov.mz
+      secretName: uat.salama.misau.gov.mz-tls-certs
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: 10m
   ingressClassName: nginx

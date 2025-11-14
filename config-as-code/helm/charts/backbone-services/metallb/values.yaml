@@ -253,16 +253,16 @@ controller:
   ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
   ##
   nodeSelector: {
-    "deploy-metallb-controller": "true"
+    # "deploy-metallb-controller": "true"
   }
   ## @param controller.tolerations Tolerations for controller pod assignment
   ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
   ##
-  tolerations:
-    - key: "metallb"
-      operator: "Equal"
-      value: "deployed"
-      effect: "NoSchedule"
+  tolerations: []
+    # - key: "metallb"
+    #   operator: "Equal"
+    #   value: "deployed"
+    #   effect: "NoSchedule"
   ## @param controller.affinity Affinity for controller pod assignment
   ## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
   ##

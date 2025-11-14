@@ -256,11 +256,11 @@ consoleIngress:
     # nginx.ingress.kubernetes.io/whitelist-source-range: 0.0.0.0/0
   path: /minio/?(.*)
   hosts:
-    - salama.misau.gov.mz
+    - uat.salama.misau.gov.mz
   tls: 
-    - secretName: salama.misau.gov.mz-tls-certs
+    - secretName: uat.salama.misau.gov.mz-tls-certs
       hosts:
-        - salama.misau.gov.mz
+        - uat.salama.misau.gov.mz
 
 ## Node labels for pod assignment
 ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
@@ -518,7 +518,7 @@ environment:
   ## MINIO_SUBNET_LICENSE: "License key obtained from https://subnet.min.io"
   # MINIO_BROWSER: "on"
   # MINIO_DOMAIN: ""
-  MINIO_BROWSER_REDIRECT_URL: "https://salama.misau.gov.mz/minio/"
+  MINIO_BROWSER_REDIRECT_URL: "https://uat.salama.misau.gov.mz/minio/"
   MINIO_SCANNER_EXCLUDE: ".minio.sys"
   # MINIO_SERVER_URL: ""
 
