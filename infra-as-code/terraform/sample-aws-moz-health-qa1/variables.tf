@@ -26,12 +26,31 @@ variable "availability_zones" {
 
 variable "kubernetes_version" {
   description = "kubernetes version"
-  default = "1.31"
+  default = "1.32"
+}
+
+variable "architecture" {
+  description = "Architecture for worker nodes (x86_64 or arm64)"
+  type        = string
+  default     = "x86_64"
+  validation {
+    condition     = contains(["x86_64", "arm64"], var.architecture)
+    error_message = "Architecture must be either x86_64 or arm64."
+  }
+}
+
+# Map of architecture → instance types
+variable "instance_types_map" {
+  description = "Map of instance types per architecture"
+  type = map(list(string))
+  default = {
+    x86_64 = ["t3a.xlarge"]
+  }
 }
 
 variable "instance_types" {
   description = "eGov recommended below instance type as a default"
-  default = ["m4.xlarge"]
+  default = []
 }
 
 variable "min_worker_nodes" {
@@ -49,11 +68,18 @@ variable "max_worker_nodes" {
   default = "4" #REPLACE IF NEEDED
 }
 
+variable "ami_id" {
+  description = "Provide the AMI ID that supports your eks version"
+  default = {
+    id   = "ami-0b6753867a45581f3"
+    name = "bottlerocket-aws-k8s-1.32-x86_64-v1.49.0-713f44ce"
+  }
+}
+
 variable "ssh_key_name" {
   description = "ssh key name, not required if your using spot instance types"
   default = "moz-impl" #REPLACE
 }
-
 
 variable "db_name" {
   description = "RDS DB name. Make sure there are no hyphens or other special characters in the DB name. Else, DB creation will fail"
@@ -73,7 +99,12 @@ variable "public_key" {
   description = "ssh key"
 }
 
-## change ssh key_name eg. digit-quickstart_your-name
+variable "enable_ClusterAutoscaler" {
+  description = "Enable the Cluster Autoscaler."
+  type        = bool
+  default     = false
+}
 
-
-
+variable "enable_karpenter" {
+  default = false
+}
