@@ -945,10 +945,11 @@ household:
 
 individual:
   replicas: 3
+  heap: "-Xmx512m -Xms192m"
   cpu_requests: 300m
-  memory_requests: 1Gi
+  memory_requests: 512Mi
   cpu_limits: 400m
-  memory_limits: 1.5Gi
+  memory_limits: 1Gi
   hpa:
     enabled: true
     minReplicas: 3
