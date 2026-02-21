@@ -6,14 +6,13 @@ labels:
 
 # Ingress Configs
 ingress:
-  enabled: false
+  enabled: true
   context: "kafka-ui"
   waf:
     enabled: false
   annotations:
-    # nginx.ingress.kubernetes.io/auth-signin:  https://$host/oauth2/start?rd=$escaped_request_uri
-    # nginx.ingress.kubernetes.io/auth-url:     https://$host/oauth2/auth
-    kubernetes.io/ingress.class:              nginx
+    nginx.ingress.kubernetes.io/auth-signin:  https://$host/oauth2/start?rd=$escaped_request_uri
+    nginx.ingress.kubernetes.io/auth-url:     https://$host/oauth2/auth
 
 livenessProbe:
   enabled: true
@@ -38,7 +37,7 @@ serviceAccount:
   create: true
   # Annotations to add to the service account
   annotations: {}
-  # The name of the spervice account to use.
+  # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
@@ -49,6 +48,7 @@ yamlApplicationConfig:
     clusters:
       - name: salama-rancher-prd-kafka-cluster
         bootstrapServers: release-name-kafka-controller-0.release-name-kafka-controller-headless.kafka-cluster.svc.cluster.local:9092, release-name-kafka-controller-1.release-name-kafka-controller-headless.kafka-cluster.svc.cluster.local:9092, release-name-kafka-controller-2.release-name-kafka-controller-headless.kafka-cluster.svc.cluster.local:9092
+        readOnly: true
   # spring:
   #   security:
   #     oauth2:

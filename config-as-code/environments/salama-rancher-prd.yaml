@@ -680,8 +680,8 @@ oauth2-proxy:
   config:
     configFile: |-
       email_domains = [ "*" ]
-      github_org = "HCM-MOZ-IMPEL"
-      github_team = "hcm-moz-impl"
+      github_org = "HCM-BAUCHI"
+      github_team = "salama-oauth-access"
       upstreams = [ "file:///dev/null" ]
 
 grafana:
@@ -945,11 +945,10 @@ household:
 
 individual:
   replicas: 3
-  heap: "-Xmx512m -Xms192m"
   cpu_requests: 300m
-  memory_requests: 512Mi
+  memory_requests: 1Gi
   cpu_limits: 400m
-  memory_limits: 1Gi
+  memory_limits: 1.5Gi
   hpa:
     enabled: true
     minReplicas: 3
