@@ -1,0 +1,34 @@
+# Default values for egov-finance.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+namespace: backbone 
+
+# Common Labels
+labels:
+  app: "redis-new"
+
+# Container Configs
+image:
+  repository: "redis"
+  pullPolicy: IfNotPresent
+  tag: "7.2.4"
+replicas: "1"
+httpPort: 6379
+
+persistence:
+  enabled: true
+  storageClassName: salama-nfs-csi
+  accessMode: ReadWriteOnce
+  volumeMode: Filesystem
+  dataDirSize: 30Gi
+
+extraVolumeMounts: |
+  - name: redis-storage
+    mountPath: /data
+
+extraVolumes: |
+  - name: redis-storage
+    persistentVolumeClaim:
+      claimName: {{ .Chart.Name }}-data
+
+resources: {}
