@@ -17,8 +17,8 @@ cluster-configs:
         db-url: "jdbc:postgresql://10.0.0.5:5432/salamadbprd" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
         db-read-url: "jdbc:postgresql://10.0.0.6:5432/salamadbprd" ## example: jdbc:postgresql://egov-demo.postgres.database.azure.com:5432/egov_demo
         domain: "salama.misau.gov.mz" ## Add your Domain Name
-        redis-host: "redis.backbone"
-        redis-downsync-host: "redis.backbone"
+        redis-host: "redis-new.backbone"
+        redis-downsync-host: "redis-new.backbone"
         egov-services-fqdn-name: "https://salama.misau.gov.mz/" ## Add your Domain Name
         aws-cluster-ip: ""
         aws-region: ""
